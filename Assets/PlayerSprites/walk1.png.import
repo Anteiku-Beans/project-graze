@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk1.png-8ea962e9c667a600376ce13230addfc1.stex"
+path="res://.import/walk1.png-7805f17e427b8c7c930eaf1cdc29ae6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://The_Knight/sprites/walk1.png"
-dest_files=[ "res://.import/walk1.png-8ea962e9c667a600376ce13230addfc1.stex" ]
+source_file="res://Assets/PlayerSprites/walk1.png"
+dest_files=[ "res://.import/walk1.png-7805f17e427b8c7c930eaf1cdc29ae6a.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack4.png-a2a87020806e276ace9d5aa1561c9971.stex"
+path="res://.import/jump.png-9932a778625d0773ea3986ce7468d7e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://The_Knight/sprites/attack4.png"
-dest_files=[ "res://.import/attack4.png-a2a87020806e276ace9d5aa1561c9971.stex" ]
+source_file="res://Src/Player/sprites/jump.png"
+dest_files=[ "res://.import/jump.png-9932a778625d0773ea3986ce7468d7e3.stex" ]
 
 [params]
 

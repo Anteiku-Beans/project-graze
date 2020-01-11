@@ -16,12 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Graze"
-run/main_scene="res://Levels/level1.tscn"
+run/main_scene="res://Src/Levels/level1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://Singletons/global.gd"
+Global="*res://Src/Singletons/global.gd"
 
 [display]
 
