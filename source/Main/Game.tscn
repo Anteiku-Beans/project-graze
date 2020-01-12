@@ -7,6 +7,7 @@
 [node name="Game" type="Node"]
 
 [node name="UI" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="DebugDock" type="MarginContainer" parent="UI"]
 margin_right = 104.0
@@ -15,7 +16,7 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 103.0
+margin_bottom = 76.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -30,13 +31,14 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 40.0
 margin_right = 104.0
-margin_bottom = 85.0
+margin_bottom = 76.0
 reference_path = NodePath("../../../../Player/StateMachine/Free")
-properties = PoolStringArray( "velocity", "is_on_floor" )
+properties = PoolStringArray( "velocity" )
 
-[node name="Scene" parent="." instance=ExtResource( 2 )]
+[node name="Level1" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 61.6981, 100.474 )
+editor/display_folded = true
+position = Vector2( 155.974, 25.0534 )
 
 [editable path="Player"]

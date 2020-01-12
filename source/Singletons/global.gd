@@ -1,3 +1,3 @@
 extends Node
 
-const GRAVITY = 7
+const GRAVITY = 600.0

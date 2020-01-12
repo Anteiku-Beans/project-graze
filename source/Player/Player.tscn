@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/PlayerSprites/idle.png" type="Texture" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=15]
 [ext_resource path="res://source/Player/states/Idle.gd" type="Script" id=16]
 [ext_resource path="res://source/Player/states/Fall.gd" type="Script" id=17]
+[ext_resource path="res://source/Player/states/Move.gd" type="Script" id=18]
+[ext_resource path="res://source/Player/states/Jump.gd" type="Script" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.0172, 10 )
@@ -85,3 +87,9 @@ script = ExtResource( 16 )
 
 [node name="Fall" type="Node" parent="StateMachine/Free"]
 script = ExtResource( 17 )
+
+[node name="Move" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 18 )
+
+[node name="Jump" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 19 )
