@@ -22,5 +22,5 @@ func exit():
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed('jump'):
-		pass
+		_state_machine.transition_to('Free/Jump')
 	free.unhandled_input(event)
