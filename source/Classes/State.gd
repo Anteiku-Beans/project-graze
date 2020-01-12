@@ -19,7 +19,7 @@ func physics_process(delta: float) -> void:
 	return
 
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(data: Dictionary = {}) -> void:
 	return
 
 

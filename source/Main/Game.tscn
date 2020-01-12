@@ -15,17 +15,28 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 67.0
+margin_bottom = 103.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 104.0
-margin_bottom = 45.0
-reference_path = NodePath("../../../../Player")
-properties = PoolStringArray( "move_speed", "gravity" )
+margin_bottom = 36.0
+reference_path = NodePath("../../../../Player/StateMachine")
+properties = PoolStringArray( "_state_name" )
+
+[node name="DebugPanel2" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 40.0
+margin_right = 104.0
+margin_bottom = 85.0
+reference_path = NodePath("../../../../Player/StateMachine/Free")
+properties = PoolStringArray( "velocity", "is_on_floor" )
 
 [node name="Scene" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 61.6981, 100.474 )
+
+[editable path="Player"]
