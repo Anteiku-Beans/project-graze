@@ -2,16 +2,12 @@ extends State
 
 onready var free = get_parent()
 
+func enter(data: Dictionary = {}) -> void:
+	free.enter(data)
+
 func physics_process(delta: float) -> void:
-	var move_direction = free.get_move_direction()
-	free.velocity = free.calculate_velocity(
-		free.velocity,
-		free.max_speed,
-		free.acceleration,
-		delta,
-		move_direction
-	)
-	free.velocity = owner.move_and_slide(free.velocity, Vector2.UP)
+	free.velocity = free.calculate_move_velocity()
+	owner.move_and_slide(free.velocity, Vector2.UP)
 	
 	# idle
 	if free.get_move_direction().x == 0.0:
@@ -22,3 +18,11 @@ func physics_process(delta: float) -> void:
 	if not owner.is_on_floor():
 		_state_machine.transition_to("Free/Fall")
 		return
+
+func exit() -> void:
+	free.exit()
+
+func unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed('jump'):
+		pass
+	free.unhandled_input(event)

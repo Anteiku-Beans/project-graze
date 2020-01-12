@@ -1,22 +1,23 @@
 extends State
 
 onready var free = get_parent()
+var fall_acceleration: = 800.0
+var fall_velocity: Vector2
+var max_fall_speed: = 400.0
+var move_velocity: Vector2
 
 func enter(data: Dictionary = {}) -> void:
 	free.enter()
+	fall_velocity = Vector2.ZERO
 
 func physics_process(delta: float) -> void:
-	var fall_direction = free.get_move_direction()
-	free.acceleration.y = Global.GRAVITY
+	# Calculate velocities
+	fall_velocity.y += fall_acceleration * delta
+	fall_velocity.y = min(fall_velocity.y, max_fall_speed)
+	move_velocity = free.calculate_move_velocity()
 	
-	free.velocity = free.calculate_velocity(
-		free.velocity,
-		free.max_speed,
-		free.acceleration,
-		delta,
-		fall_direction
-	)
-	free.velocity = owner.move_and_slide(free.velocity, Vector2.UP)
+	free.velocity = fall_velocity + move_velocity
+	owner.move_and_slide(free.velocity, Vector2.UP)
 	
 	# land
 	if (owner.is_on_floor()):
@@ -25,7 +26,10 @@ func physics_process(delta: float) -> void:
 			return
 		else:
 			_state_machine.transition_to("Free/Idle")
+			return
 
 func exit():
-	free.acceleration = free.acceleration_default
 	free.exit()
+
+func unhandled_input(event: InputEvent) -> void:
+	free.unhandled_input(event)

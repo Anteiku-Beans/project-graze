@@ -39,6 +39,6 @@ properties = PoolStringArray( "velocity" )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 155.974, 25.0534 )
+position = Vector2( 139.912, 27.8468 )
 
 [editable path="Player"]
