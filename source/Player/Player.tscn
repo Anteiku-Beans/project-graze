@@ -92,7 +92,7 @@ t_ease = 1
 [node name="jumpTween" type="Tween" parent="StateMachine/Free/Jump"]
 
 [node name="jumpTimer" type="Timer" parent="StateMachine/Free/Jump"]
-wait_time = 0.2
+wait_time = 0.18
 one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine/Free"]
