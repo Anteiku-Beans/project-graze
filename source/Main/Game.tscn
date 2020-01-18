@@ -8,7 +8,6 @@
 [node name="Game" type="Node"]
 
 [node name="UI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="DebugDock" type="MarginContainer" parent="UI"]
 margin_right = 104.0
@@ -17,7 +16,7 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 76.0
+margin_bottom = 134.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -35,6 +34,15 @@ margin_right = 104.0
 margin_bottom = 76.0
 reference_path = NodePath("../../../../Player/StateMachine/Free")
 properties = PoolStringArray( "velocity" )
+
+[node name="DebugPanel3" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 80.0
+margin_right = 104.0
+margin_bottom = 116.0
+reference_path = NodePath("../../../../Player/Mana")
+properties = PoolStringArray( "mana" )
 
 [node name="Level1" parent="." instance=ExtResource( 2 )]
 
