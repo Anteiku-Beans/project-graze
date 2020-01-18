@@ -1,9 +1,9 @@
 extends State
 
 # Tween export variables
-export(float) var t_initial = 180.0
+export(float) var t_initial = 210.0
 export(float) var t_final = 0.0
-export(float, 0.0, 1.0, 0.02) var t_duration = 0.2
+export(float, 0.0, 1.0, 0.01) var t_duration = 0.15
 export(int, "TRANS_LINEAR", "TRANS_SINE", "TRANS_QUINT", "TRANS_QUART", "TRANS_QUAD", "TRANS_EXPO", "TRANS_ELASTIC", "TRANS_CUBIC", "TRANS_CIRC", "TRANS_BOUNCE", "TRANS_BACK") var t_trans
 export(int, "EASE_IN", "EASE_OUT", "EASE_IN_OUT", "EASE_OUT_IN") var t_ease
 
