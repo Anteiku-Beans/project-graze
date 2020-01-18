@@ -10,6 +10,7 @@ export var initial_state: = NodePath()
 onready var state: State = get_node(initial_state) setget set_state
 onready var _state_name: = state.name
 
+signal state_changed
 
 func _init() -> void:
 	add_to_group("state_machine")
@@ -37,7 +38,7 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	self.state = target_state
 	state.enter(msg)
-	print("entered state: {state}".format({"state":state.name}))
+	emit_signal("state_changed", _state_name)
 
 
 func set_state(value: State) -> void:
