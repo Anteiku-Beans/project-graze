@@ -1,0 +1,104 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/PlayerSprites/idle.png" type="Texture" id=2]
+[ext_resource path="res://assets/PlayerSprites/fall.png" type="Texture" id=3]
+[ext_resource path="res://assets/PlayerSprites/jump.png" type="Texture" id=4]
+[ext_resource path="res://assets/PlayerSprites/attack1.png" type="Texture" id=5]
+[ext_resource path="res://assets/PlayerSprites/attack2.png" type="Texture" id=6]
+[ext_resource path="res://assets/PlayerSprites/attack3.png" type="Texture" id=7]
+[ext_resource path="res://assets/PlayerSprites/attack4.png" type="Texture" id=8]
+[ext_resource path="res://assets/PlayerSprites/walk1.png" type="Texture" id=9]
+[ext_resource path="res://assets/PlayerSprites/walk2.png" type="Texture" id=10]
+[ext_resource path="res://assets/PlayerSprites/walk3.png" type="Texture" id=11]
+[ext_resource path="res://assets/PlayerSprites/walk4.png" type="Texture" id=12]
+[ext_resource path="res://source/Player/Sprite.gd" type="Script" id=13]
+[ext_resource path="res://source/Classes/StateMachine.gd" type="Script" id=14]
+[ext_resource path="res://source/Player/states/Free.gd" type="Script" id=15]
+[ext_resource path="res://source/Player/states/Idle.gd" type="Script" id=16]
+[ext_resource path="res://source/Player/states/Jump.gd" type="Script" id=17]
+[ext_resource path="res://source/Player/states/Fall.gd" type="Script" id=18]
+[ext_resource path="res://source/Player/states/Move.gd" type="Script" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.0172, 10 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "attack",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "move",
+"speed": 10.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 0, -7 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -3 )
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -8 )
+frames = SubResource( 2 )
+animation = "idle"
+playing = true
+script = ExtResource( 13 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 14 )
+initial_state = NodePath("Free/Idle")
+
+[node name="Free" type="Node" parent="StateMachine"]
+script = ExtResource( 15 )
+
+[node name="Idle" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 16 )
+
+[node name="Jump" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 17 )
+t_ease = 1
+
+[node name="jumpTween" type="Tween" parent="StateMachine/Free/Jump"]
+
+[node name="jumpTimer" type="Timer" parent="StateMachine/Free/Jump"]
+wait_time = 0.18
+one_shot = true
+
+[node name="Fall" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 18 )
+fall_acceleration = 1200.0
+max_fall_speed = 440.0
+
+[node name="Move" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 19 )
