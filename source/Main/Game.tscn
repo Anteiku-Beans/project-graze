@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://source/UI/debug/DebugPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/Levels/level1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/Enemies/SampleEnemy.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node"]
 
@@ -40,5 +41,8 @@ properties = PoolStringArray( "velocity" )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 editor/display_folded = true
 position = Vector2( 139.912, 27.8468 )
+
+[node name="sampleEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 408.438, 288.284 )
 
 [editable path="Player"]
