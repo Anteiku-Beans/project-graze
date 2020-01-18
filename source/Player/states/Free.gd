@@ -1,7 +1,10 @@
 extends State
 
-var move_speed: = 120.0
-var velocity: Vector2
+export var move_speed: = 100.0
+var velocity: = Vector2.ZERO
+var move_direction: = Vector2.ZERO
+
+signal move_direction_changed
 
 func calculate_move_velocity() -> Vector2:
 	var move_direction: = get_move_direction()
@@ -11,4 +14,9 @@ func calculate_move_velocity() -> Vector2:
 func get_move_direction() -> Vector2:
 	var h_dir = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var v_dir = 1.0
-	return Vector2(h_dir, v_dir)
+	
+	if (h_dir != move_direction.x):
+		emit_signal("move_direction_changed", h_dir)
+	
+	move_direction = Vector2(h_dir, v_dir)
+	return move_direction

@@ -3,22 +3,22 @@
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/PlayerSprites/idle.png" type="Texture" id=2]
 [ext_resource path="res://assets/PlayerSprites/fall.png" type="Texture" id=3]
-[ext_resource path="res://assets/PlayerSprites/attack1.png" type="Texture" id=4]
-[ext_resource path="res://assets/PlayerSprites/attack2.png" type="Texture" id=5]
-[ext_resource path="res://assets/PlayerSprites/attack3.png" type="Texture" id=6]
-[ext_resource path="res://assets/PlayerSprites/attack4.png" type="Texture" id=7]
+[ext_resource path="res://assets/PlayerSprites/walk1.png" type="Texture" id=4]
+[ext_resource path="res://assets/PlayerSprites/walk2.png" type="Texture" id=5]
+[ext_resource path="res://assets/PlayerSprites/walk3.png" type="Texture" id=6]
+[ext_resource path="res://assets/PlayerSprites/walk4.png" type="Texture" id=7]
 [ext_resource path="res://assets/PlayerSprites/jump.png" type="Texture" id=8]
-[ext_resource path="res://assets/PlayerSprites/walk1.png" type="Texture" id=9]
-[ext_resource path="res://assets/PlayerSprites/walk2.png" type="Texture" id=10]
-[ext_resource path="res://assets/PlayerSprites/walk3.png" type="Texture" id=11]
-[ext_resource path="res://assets/PlayerSprites/walk4.png" type="Texture" id=12]
+[ext_resource path="res://assets/PlayerSprites/attack1.png" type="Texture" id=9]
+[ext_resource path="res://assets/PlayerSprites/attack2.png" type="Texture" id=10]
+[ext_resource path="res://assets/PlayerSprites/attack3.png" type="Texture" id=11]
+[ext_resource path="res://assets/PlayerSprites/attack4.png" type="Texture" id=12]
 [ext_resource path="res://source/Player/Sprite.gd" type="Script" id=13]
 [ext_resource path="res://source/Classes/StateMachine.gd" type="Script" id=14]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=15]
 [ext_resource path="res://source/Player/states/Idle.gd" type="Script" id=16]
-[ext_resource path="res://source/Player/states/Fall.gd" type="Script" id=17]
-[ext_resource path="res://source/Player/states/Move.gd" type="Script" id=18]
-[ext_resource path="res://source/Player/states/Jump.gd" type="Script" id=19]
+[ext_resource path="res://source/Player/states/Jump.gd" type="Script" id=17]
+[ext_resource path="res://source/Player/states/Fall.gd" type="Script" id=18]
+[ext_resource path="res://source/Player/states/Move.gd" type="Script" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.0172, 10 )
@@ -42,7 +42,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "attack",
+"name": "move",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -52,7 +52,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "move",
+"name": "attack",
 "speed": 10.0
 } ]
 
@@ -85,21 +85,19 @@ script = ExtResource( 15 )
 [node name="Idle" type="Node" parent="StateMachine/Free"]
 script = ExtResource( 16 )
 
-[node name="Fall" type="Node" parent="StateMachine/Free"]
-script = ExtResource( 17 )
-
-[node name="fallSpeedTween" type="Tween" parent="StateMachine/Free/Fall"]
-
-[node name="Move" type="Node" parent="StateMachine/Free"]
-script = ExtResource( 18 )
-
 [node name="Jump" type="Node" parent="StateMachine/Free"]
-script = ExtResource( 19 )
-t_initial = 180.0
+editor/display_folded = true
+script = ExtResource( 17 )
 t_ease = 1
 
-[node name="jumpSpeedTween" type="Tween" parent="StateMachine/Free/Jump"]
+[node name="jumpTween" type="Tween" parent="StateMachine/Free/Jump"]
 
-[node name="holdTimer" type="Timer" parent="StateMachine/Free/Jump"]
-wait_time = 0.1
+[node name="jumpTimer" type="Timer" parent="StateMachine/Free/Jump"]
+wait_time = 0.2
 one_shot = true
+
+[node name="Fall" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 18 )
+
+[node name="Move" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 19 )
