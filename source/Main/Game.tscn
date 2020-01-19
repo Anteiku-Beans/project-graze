@@ -3,7 +3,7 @@
 [ext_resource path="res://source/UI/debug/DebugPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/Levels/level1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/Enemies/SampleEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/Enemies/SampleEnemy/SampleEnemy.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node"]
 
@@ -16,7 +16,7 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 134.0
+margin_bottom = 116.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -48,7 +48,7 @@ properties = PoolStringArray( "mana" )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 139.912, 27.8468 )
+position = Vector2( 331.081, 171.223 )
 
 [node name="sampleEnemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 408.438, 288.284 )
