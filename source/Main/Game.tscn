@@ -48,9 +48,9 @@ properties = PoolStringArray( "mana" )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 editor/display_folded = true
-position = Vector2( 331.081, 171.223 )
+position = Vector2( 374.378, 249.437 )
 
 [node name="sampleEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 408.438, 288.284 )
+position = Vector2( 452.5, 330.839 )
 
 [editable path="Player"]
