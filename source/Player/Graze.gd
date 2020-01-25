@@ -11,7 +11,9 @@ func _ready() -> void:
 	mana = owner.get_node("Mana")
 
 func _on_area_entered(hitbox: Area2D) -> void:
-	if hitbox.has_method('is_grazed'):
-		if not hitbox.is_grazed():
-			hitbox.graze()
-			mana.add_mana(MANA_PER_GRAZE)
+	if hitbox is ManaOrbHitbox:
+		hitbox.consume()
+		mana.add_mana(MANA_PER_GRAZE)
+		return
+	if hitbox is GrazeableHitbox:
+		hitbox.graze()

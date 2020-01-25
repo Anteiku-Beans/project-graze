@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 func _ready() -> void:
-	self.add_to_group("player")
+	Player.set_player(self)
 
 # hack: override inbuilt is_on_floor to prevent state from
 #       rapidly switching between move and fall during movement

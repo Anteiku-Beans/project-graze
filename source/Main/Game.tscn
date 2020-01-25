@@ -51,6 +51,6 @@ editor/display_folded = true
 position = Vector2( 374.378, 249.437 )
 
 [node name="sampleEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 452.5, 330.839 )
+position = Vector2( 372.868, 287.131 )
 
 [editable path="Player"]

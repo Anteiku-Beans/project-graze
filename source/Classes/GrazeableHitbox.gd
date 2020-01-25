@@ -2,13 +2,17 @@ extends Area2D
 
 class_name GrazeableHitbox
 
-var _is_grazed: = false
+const ORBS_PER_GRAZE = 3
+const MANA_ORB = preload("res://source/Effects/ManaOrb/ManaOrb.tscn")
 
-func is_grazed() -> bool:
-	return _is_grazed
+func graze():
+	emit_mana_orbs(ORBS_PER_GRAZE)
 
-func graze() -> void:
-	_is_grazed = true
+func emit_mana_orb() -> void:
+	var new_orb = MANA_ORB.instance()
+	self.call_deferred("add_child", new_orb)
 
-func reset_grazed() -> void:
-	_is_grazed = false
+func emit_mana_orbs(num: int) -> void:
+# warning-ignore:unused_variable
+	for x in range(num):
+		emit_mana_orb()

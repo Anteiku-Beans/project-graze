@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/Effects/ManaOrb/ManaOrb.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/mana-small.png" type="Texture" id=2]
+[ext_resource path="res://source/Effects/ManaOrb/ManaOrbHitbox.gd" type="Script" id=3]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.539063, 0.616811, 1, 1, 0.0862745, 0.164706, 0.54902, 1 )
@@ -14,9 +15,9 @@ width = 256
 flag_disable_z = true
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = -1.51263e-023
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+radial_accel = -100.0
 scale = 4.0
 color_ramp = SubResource( 2 )
 
@@ -38,14 +39,18 @@ modulate = Color( 1, 1, 1, 0.133333 )
 show_behind_parent = true
 position = Vector2( -0.193695, -0.38744 )
 amount = 100
-lifetime = 0.2
+lifetime = 0.15
 local_coords = false
 draw_order = 1
 process_material = SubResource( 3 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( -0.193695, -0.38744 )
+collision_layer = 8
+script = ExtResource( 3 )
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 visible = false
 shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
