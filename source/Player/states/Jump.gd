@@ -21,11 +21,13 @@ func _ready():
 
 func enter(data: Dictionary = {}) -> void:
 	free.enter()
+	free.use_jump_stock()
 	jump_speed = t_initial
 	timer.start()
 	tween.interpolate_property(self, 'jump_speed', t_initial, t_final,
 								   t_duration, t_trans, t_ease)
-
+	print('jump entered. stock = %d' % free.jump_stock)
+	
 func physics_process(delta: float) -> void:
 	jump_velocity = Vector2.UP * jump_speed
 	move_velocity = free.calculate_move_velocity()
@@ -36,6 +38,10 @@ func unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_released("jump")):
 		timer.stop()
 		tween.start()
+		return
+	if event.is_action_pressed('jump') and free.has_jump_stock():
+		_state_machine.transition_to('Free/Jump')
+		return
 	free.unhandled_input(event)
 
 func _on_timer_timeout() -> void:

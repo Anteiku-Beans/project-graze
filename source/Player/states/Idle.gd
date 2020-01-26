@@ -5,6 +5,7 @@ onready var free = get_parent()
 func enter(data: Dictionary = {}) -> void:
 	free.enter()
 	free.velocity = Vector2.ZERO
+	free.reset_jump_stock()
 
 func physics_process(delta: float) -> void:
 	# fall

@@ -4,6 +4,7 @@ onready var free = get_parent()
 
 func enter(data: Dictionary = {}) -> void:
 	free.enter(data)
+	free.reset_jump_stock()
 
 func physics_process(delta: float) -> void:
 	free.velocity = free.calculate_move_velocity()

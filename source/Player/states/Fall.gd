@@ -34,4 +34,7 @@ func exit():
 	free.exit()
 
 func unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed('jump') and free.has_jump_stock():
+		_state_machine.transition_to('Free/Jump')
+		return
 	free.unhandled_input(event)
