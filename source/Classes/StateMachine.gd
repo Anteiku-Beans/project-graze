@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	state.physics_process(delta)
 
 
-func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
+func transition_to(target_state_path: String, data: Dictionary = {}) -> void:
 	if not has_node(target_state_path):
 		return
 
@@ -37,7 +37,7 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 
 	state.exit()
 	self.state = target_state
-	state.enter(msg)
+	state.enter(data)
 	emit_signal("state_changed", _state_name)
 
 
