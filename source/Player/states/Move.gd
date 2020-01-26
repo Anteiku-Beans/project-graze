@@ -7,11 +7,11 @@ func enter(data: Dictionary = {}) -> void:
 	free.reset_jump_stock()
 
 func physics_process(delta: float) -> void:
-	free.velocity = free.calculate_move_velocity()
-	owner.move_and_slide(free.velocity, Vector2.UP)
+	free.move_velocity = free.calculate_move_velocity()
+	owner.move_and_slide(free.move_velocity, Vector2.UP)
 	
 	# idle
-	if free.get_move_direction().x == 0.0:
+	if free.calculate_move_velocity() == Vector2.ZERO:
 		_state_machine.transition_to("Free/Idle")
 		return
 	

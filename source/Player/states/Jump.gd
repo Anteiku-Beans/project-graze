@@ -9,7 +9,6 @@ export(int, "EASE_IN", "EASE_OUT", "EASE_IN_OUT", "EASE_OUT_IN") var t_ease
 
 var jump_speed: = 0.0
 var jump_velocity: = Vector2.ZERO
-var move_velocity: = Vector2.ZERO
 
 onready var free = get_parent()
 onready var tween = $jumpTween
@@ -30,9 +29,8 @@ func enter(data: Dictionary = {}) -> void:
 	
 func physics_process(delta: float) -> void:
 	jump_velocity = Vector2.UP * jump_speed
-	move_velocity = free.calculate_move_velocity()
-	free.velocity = jump_velocity + move_velocity
-	owner.move_and_slide(free.velocity, Vector2.UP)
+	free.move_velocity = free.calculate_move_velocity()
+	owner.move_and_slide(jump_velocity + free.move_velocity, Vector2.UP)
 
 func unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_released("jump")):
