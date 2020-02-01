@@ -1,27 +1,41 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/PlayerSprites/idle.png" type="Texture" id=2]
-[ext_resource path="res://assets/PlayerSprites/attack1.png" type="Texture" id=3]
-[ext_resource path="res://assets/PlayerSprites/attack2.png" type="Texture" id=4]
-[ext_resource path="res://assets/PlayerSprites/attack3.png" type="Texture" id=5]
-[ext_resource path="res://assets/PlayerSprites/attack4.png" type="Texture" id=6]
+[ext_resource path="res://assets/PlayerSprites/walk1.png" type="Texture" id=3]
+[ext_resource path="res://assets/PlayerSprites/walk2.png" type="Texture" id=4]
+[ext_resource path="res://assets/PlayerSprites/walk3.png" type="Texture" id=5]
+[ext_resource path="res://assets/PlayerSprites/walk4.png" type="Texture" id=6]
 [ext_resource path="res://assets/PlayerSprites/jump.png" type="Texture" id=7]
-[ext_resource path="res://assets/PlayerSprites/fall.png" type="Texture" id=8]
-[ext_resource path="res://assets/PlayerSprites/walk1.png" type="Texture" id=9]
-[ext_resource path="res://assets/PlayerSprites/walk2.png" type="Texture" id=10]
-[ext_resource path="res://assets/PlayerSprites/walk3.png" type="Texture" id=11]
-[ext_resource path="res://assets/PlayerSprites/walk4.png" type="Texture" id=12]
-[ext_resource path="res://source/Player/Sprite.gd" type="Script" id=13]
-[ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=14]
-[ext_resource path="res://source/Player/states/Free.gd" type="Script" id=15]
-[ext_resource path="res://source/Player/states/Idle.gd" type="Script" id=16]
-[ext_resource path="res://source/Player/states/Jump.gd" type="Script" id=17]
-[ext_resource path="res://source/Player/states/Fall.gd" type="Script" id=18]
-[ext_resource path="res://source/Player/states/Move.gd" type="Script" id=19]
-[ext_resource path="res://source/Player/states/Dash.gd" type="Script" id=20]
-[ext_resource path="res://source/Player/Mana.gd" type="Script" id=21]
-[ext_resource path="res://source/Player/Graze.gd" type="Script" id=22]
+[ext_resource path="res://assets/PlayerSprites/attack1.png" type="Texture" id=8]
+[ext_resource path="res://assets/PlayerSprites/attack2.png" type="Texture" id=9]
+[ext_resource path="res://assets/PlayerSprites/attack3.png" type="Texture" id=10]
+[ext_resource path="res://assets/PlayerSprites/attack4.png" type="Texture" id=11]
+[ext_resource path="res://assets/PlayerSprites/fall.png" type="Texture" id=12]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run1.png" type="Texture" id=13]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run2.png" type="Texture" id=14]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run3.png" type="Texture" id=15]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run4.png" type="Texture" id=16]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run5.png" type="Texture" id=17]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run6.png" type="Texture" id=18]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run7.png" type="Texture" id=19]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run8.png" type="Texture" id=20]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle1.png" type="Texture" id=21]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle2.png" type="Texture" id=22]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle6.png" type="Texture" id=23]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle5.png" type="Texture" id=24]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle4.png" type="Texture" id=25]
+[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle3.png" type="Texture" id=26]
+[ext_resource path="res://source/Player/Sprite.gd" type="Script" id=27]
+[ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=28]
+[ext_resource path="res://source/Player/states/Free.gd" type="Script" id=29]
+[ext_resource path="res://source/Player/states/Idle.gd" type="Script" id=30]
+[ext_resource path="res://source/Player/states/Jump.gd" type="Script" id=31]
+[ext_resource path="res://source/Player/states/Fall.gd" type="Script" id=32]
+[ext_resource path="res://source/Player/states/Move.gd" type="Script" id=33]
+[ext_resource path="res://source/Player/states/Dash.gd" type="Script" id=34]
+[ext_resource path="res://source/Player/Mana.gd" type="Script" id=35]
+[ext_resource path="res://source/Player/Graze.gd" type="Script" id=36]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.0172, 10 )
@@ -40,7 +54,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "attack",
+"name": "move",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -48,20 +62,38 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "attack",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [  ],
 "loop": true,
-"name": "move",
+"name": "ss_stop",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "ss_run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "ss_idle",
 "speed": 10.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 11.4014
 height = 10.2653
+
+[sub_resource type="Animation" id=4]
+resource_name = "default"
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, -7 )
@@ -80,23 +112,24 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -8 )
 frames = SubResource( 2 )
-animation = "idle"
+animation = "ss_idle"
+frame = 4
 playing = true
-script = ExtResource( 13 )
+script = ExtResource( 27 )
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 28 )
 initial_state = NodePath("Free/Idle")
 
 [node name="Free" type="Node" parent="StateMachine"]
-script = ExtResource( 15 )
+script = ExtResource( 29 )
 
 [node name="Idle" type="Node" parent="StateMachine/Free"]
-script = ExtResource( 16 )
+script = ExtResource( 30 )
 
 [node name="Jump" type="Node" parent="StateMachine/Free"]
 editor/display_folded = true
-script = ExtResource( 17 )
+script = ExtResource( 31 )
 t_ease = 1
 
 [node name="jumpTween" type="Tween" parent="StateMachine/Free/Jump"]
@@ -106,15 +139,15 @@ wait_time = 0.18
 one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine/Free"]
-script = ExtResource( 18 )
+script = ExtResource( 32 )
 fall_acceleration = 1200.0
 max_fall_speed = 440.0
 
 [node name="Move" type="Node" parent="StateMachine/Free"]
-script = ExtResource( 19 )
+script = ExtResource( 33 )
 
 [node name="Dash" type="Node" parent="StateMachine"]
-script = ExtResource( 20 )
+script = ExtResource( 34 )
 
 [node name="SpeedTween" type="Tween" parent="StateMachine/Dash"]
 
@@ -131,13 +164,16 @@ drag_margin_bottom = 0.0
 editor_draw_drag_margin = true
 
 [node name="Mana" type="Node" parent="."]
-script = ExtResource( 21 )
+script = ExtResource( 35 )
 
 [node name="Graze" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 10
-script = ExtResource( 22 )
+script = ExtResource( 36 )
 
 [node name="DetectionArea" type="CollisionShape2D" parent="Graze"]
 position = Vector2( 0, -6 )
 shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 4 )

@@ -16,7 +16,7 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 134.0
+margin_bottom = 116.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -47,7 +47,6 @@ properties = PoolStringArray( "mana" )
 [node name="Level1" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-editor/display_folded = true
 position = Vector2( 374.378, 249.437 )
 
 [node name="sampleEnemy" parent="." instance=ExtResource( 4 )]

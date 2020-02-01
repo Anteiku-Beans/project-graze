@@ -1,10 +1,10 @@
 extends AnimatedSprite
 
 const ANIMATIONS_MAP = {
-	"Idle": "idle",
+	"Idle": "ss_idle",
 	"Jump": "jump",
 	"Fall": "fall",
-	"Move": "move",
+	"Move": "ss_run",
 }
 
 onready var state_machine = get_parent().get_node("StateMachine")
