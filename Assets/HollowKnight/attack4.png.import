@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack1.png-91acae2bc16b67a92e19a372247c7609.stex"
+path="res://.import/attack4.png-3d6bdf54467169937f5ae7b6ec6acfab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/attack1.png"
-dest_files=[ "res://.import/attack1.png-91acae2bc16b67a92e19a372247c7609.stex" ]
+source_file="res://assets/HollowKnight/attack4.png"
+dest_files=[ "res://.import/attack4.png-3d6bdf54467169937f5ae7b6ec6acfab.stex" ]
 
 [params]
 

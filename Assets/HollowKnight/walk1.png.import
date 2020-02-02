@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle.png-9401545e727bc9f9f3a9650417228bc3.stex"
+path="res://.import/walk1.png-a85dbe269479a84aae242e910218fe7b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/idle.png"
-dest_files=[ "res://.import/idle.png-9401545e727bc9f9f3a9650417228bc3.stex" ]
+source_file="res://assets/HollowKnight/walk1.png"
+dest_files=[ "res://.import/walk1.png-a85dbe269479a84aae242e910218fe7b.stex" ]
 
 [params]
 

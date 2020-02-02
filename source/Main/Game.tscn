@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://source/UI/debug/DebugPanel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://source/Levels/level1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/Enemies/SampleEnemy/SampleEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/Levels/Level2.tscn" type="PackedScene" id=2]
 
 [node name="Game" type="Node"]
 
@@ -16,40 +14,36 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 116.0
+margin_bottom = 89.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 104.0
-margin_bottom = 36.0
-reference_path = NodePath("../../../../Player/StateMachine")
+margin_bottom = 27.0
+reference_path = NodePath("../../../../Level2/Player/StateMachine")
 properties = PoolStringArray( "_state_name" )
 
 [node name="DebugPanel2" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 40.0
+margin_top = 31.0
 margin_right = 104.0
-margin_bottom = 76.0
-reference_path = NodePath("../../../../Player/StateMachine/Dash/Cooldown")
+margin_bottom = 58.0
+reference_path = NodePath("../../../../Level2/Player/StateMachine/Dash/Cooldown")
 properties = PoolStringArray( "time_left" )
 
 [node name="DebugPanel3" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 80.0
+margin_top = 62.0
 margin_right = 104.0
-margin_bottom = 116.0
-reference_path = NodePath("../../../../Player/Mana")
+margin_bottom = 89.0
+reference_path = NodePath("../../../../Level2/Player/Mana")
 properties = PoolStringArray( "mana" )
 
-[node name="Level1" parent="." instance=ExtResource( 2 )]
+[node name="Level2" parent="." instance=ExtResource( 2 )]
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 374.378, 249.437 )
+[editable path="Level2"]
 
-[node name="sampleEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 372.868, 287.131 )
-
-[editable path="Player"]
+[editable path="Level2/Player"]

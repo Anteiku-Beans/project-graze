@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack2.png-ea6d086524d3933fa0d29610ded704d7.stex"
+path="res://.import/idle.png-890455bf6c0a4cdbec7dfdbbeabc05fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/attack2.png"
-dest_files=[ "res://.import/attack2.png-ea6d086524d3933fa0d29610ded704d7.stex" ]
+source_file="res://assets/HollowKnight/idle.png"
+dest_files=[ "res://.import/idle.png-890455bf6c0a4cdbec7dfdbbeabc05fa.stex" ]
 
 [params]
 

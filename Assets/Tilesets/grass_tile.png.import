@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk1.png-9ddad8cc78dc164ac0515fc569579746.stex"
+path="res://.import/grass_tile.png-c5239ca3af7699713fd137c4c6dd3a93.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/walk1.png"
-dest_files=[ "res://.import/walk1.png-9ddad8cc78dc164ac0515fc569579746.stex" ]
+source_file="res://assets/Tilesets/grass_tile.png"
+dest_files=[ "res://.import/grass_tile.png-c5239ca3af7699713fd137c4c6dd3a93.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fall.png-4f9412408e4ec7836dbba3d3099525a5.stex"
+path="res://.import/walk3.png-2de6f795c09406c349f61644d13c3c8c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/fall.png"
-dest_files=[ "res://.import/fall.png-4f9412408e4ec7836dbba3d3099525a5.stex" ]
+source_file="res://assets/HollowKnight/walk3.png"
+dest_files=[ "res://.import/walk3.png-2de6f795c09406c349f61644d13c3c8c.stex" ]
 
 [params]
 

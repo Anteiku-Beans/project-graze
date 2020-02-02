@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk4.png-8349328e03552179bbaf8991e1845324.stex"
+path="res://.import/attack1.png-57e49d7d813978e00ea58ffc3cf6c4c7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PlayerSprites/walk4.png"
-dest_files=[ "res://.import/walk4.png-8349328e03552179bbaf8991e1845324.stex" ]
+source_file="res://assets/HollowKnight/attack1.png"
+dest_files=[ "res://.import/attack1.png-57e49d7d813978e00ea58ffc3cf6c4c7.stex" ]
 
 [params]
 
