@@ -14,36 +14,50 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 89.0
+margin_bottom = 174.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 104.0
-margin_bottom = 27.0
+margin_bottom = 36.0
 reference_path = NodePath("../../../../Level2/Player/StateMachine")
 properties = PoolStringArray( "_state_name" )
 
 [node name="DebugPanel2" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 31.0
+margin_top = 40.0
 margin_right = 104.0
-margin_bottom = 58.0
+margin_bottom = 76.0
 reference_path = NodePath("../../../../Level2/Player/StateMachine/Dash/Cooldown")
 properties = PoolStringArray( "time_left" )
 
 [node name="DebugPanel3" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 62.0
+margin_top = 80.0
 margin_right = 104.0
-margin_bottom = 89.0
+margin_bottom = 116.0
 reference_path = NodePath("../../../../Level2/Player/Mana")
 properties = PoolStringArray( "mana" )
 
+[node name="DebugPanel4" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 120.0
+margin_right = 104.0
+margin_bottom = 156.0
+reference_path = NodePath("../../../../Level2/AspidHatchling/StateMachine/Approach")
+properties = PoolStringArray( "offset" )
+
 [node name="Level2" parent="." instance=ExtResource( 2 )]
+
+[node name="Sprite" parent="Level2/AspidHatchling" index="1"]
+frame = 1
 
 [editable path="Level2"]
 
 [editable path="Level2/Player"]
+
+[editable path="Level2/AspidHatchling"]

@@ -1,31 +1,19 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/HollowKnight/idle.png" type="Texture" id=2]
-[ext_resource path="res://assets/HollowKnight/walk1.png" type="Texture" id=3]
-[ext_resource path="res://assets/HollowKnight/walk2.png" type="Texture" id=4]
-[ext_resource path="res://assets/HollowKnight/walk3.png" type="Texture" id=5]
-[ext_resource path="res://assets/HollowKnight/walk4.png" type="Texture" id=6]
-[ext_resource path="res://assets/HollowKnight/jump.png" type="Texture" id=7]
-[ext_resource path="res://assets/HollowKnight/attack1.png" type="Texture" id=8]
-[ext_resource path="res://assets/HollowKnight/attack2.png" type="Texture" id=9]
-[ext_resource path="res://assets/HollowKnight/attack3.png" type="Texture" id=10]
-[ext_resource path="res://assets/HollowKnight/attack4.png" type="Texture" id=11]
-[ext_resource path="res://assets/HollowKnight/fall.png" type="Texture" id=12]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run1.png" type="Texture" id=13]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run2.png" type="Texture" id=14]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run3.png" type="Texture" id=15]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run4.png" type="Texture" id=16]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run5.png" type="Texture" id=17]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run6.png" type="Texture" id=18]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run7.png" type="Texture" id=19]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_run8.png" type="Texture" id=20]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle1.png" type="Texture" id=21]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle2.png" type="Texture" id=22]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle6.png" type="Texture" id=23]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle5.png" type="Texture" id=24]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle4.png" type="Texture" id=25]
-[ext_resource path="res://assets/SilentSwordsman/SilentSwordsmanl_idle3.png" type="Texture" id=26]
+[ext_resource path="res://assets/LittleGhost/fall.png" type="Texture" id=2]
+[ext_resource path="res://assets/LittleGhost/jump.png" type="Texture" id=3]
+[ext_resource path="res://assets/LittleGhost/idle2.png" type="Texture" id=4]
+[ext_resource path="res://assets/LittleGhost/run1.png" type="Texture" id=5]
+[ext_resource path="res://assets/LittleGhost/idle1.png" type="Texture" id=6]
+[ext_resource path="res://assets/LittleGhost/run2.png" type="Texture" id=7]
+[ext_resource path="res://assets/LittleGhost/attack3.png" type="Texture" id=8]
+[ext_resource path="res://assets/LittleGhost/attack2.png" type="Texture" id=9]
+[ext_resource path="res://assets/LittleGhost/attack1.png" type="Texture" id=10]
+[ext_resource path="res://source/Player/states/Attack.gd" type="Script" id=11]
+[ext_resource path="res://assets/LittleGhost/dash1.png" type="Texture" id=12]
+[ext_resource path="res://assets/LittleGhost/dash2.png" type="Texture" id=13]
+[ext_resource path="res://assets/LittleGhost/dash3.png" type="Texture" id=14]
 [ext_resource path="res://source/Player/Sprite.gd" type="Script" id=27]
 [ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=28]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=29]
@@ -36,69 +24,174 @@
 [ext_resource path="res://source/Player/states/Dash.gd" type="Script" id=34]
 [ext_resource path="res://source/Player/Mana.gd" type="Script" id=35]
 [ext_resource path="res://source/Player/Graze.gd" type="Script" id=36]
-
+[ext_resource path="res://source/Player/Animations.gd" type="Script" id=37]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.0172, 10 )
+extents = Vector2( 4.16877, 8.01588 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "move",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "attack",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "ss_stop",
+"name": "attack",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "dash",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "ss_run",
+"name": "jump",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "ss_idle",
-"speed": 10.0
+"name": "move",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 11.4014
+radius = 22.9596
 height = 10.2653
 
 [sub_resource type="Animation" id=4]
 resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "ss_idle" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "ss_idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "ss_run" ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "ss_stop" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
 position = Vector2( 0, -7 )
-collision_mask = 12
+collision_mask = 4
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -106,15 +199,15 @@ __meta__ = {
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 modulate = Color( 0.827451, 1, 0, 1 )
-position = Vector2( 0, -3 )
+position = Vector2( 0, -1 )
 z_index = 1
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -8 )
+position = Vector2( 1, -8 )
 frames = SubResource( 2 )
-animation = "ss_idle"
-frame = 4
+animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 27 )
 
@@ -129,7 +222,6 @@ script = ExtResource( 29 )
 script = ExtResource( 30 )
 
 [node name="Jump" type="Node" parent="StateMachine/Free"]
-editor/display_folded = true
 script = ExtResource( 31 )
 t_ease = 1
 
@@ -156,6 +248,9 @@ script = ExtResource( 34 )
 wait_time = 0.6
 one_shot = true
 
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 drag_margin_left = 0.0
@@ -176,5 +271,11 @@ script = ExtResource( 36 )
 position = Vector2( 0, -6 )
 shape = SubResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animations" type="AnimationPlayer" parent="."]
+autoplay = "default"
 anims/default = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/move = SubResource( 6 )
+anims/stop = SubResource( 7 )
+next/stop = "idle"
+script = ExtResource( 37 )

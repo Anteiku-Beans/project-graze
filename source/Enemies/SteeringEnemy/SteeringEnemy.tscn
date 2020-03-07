@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/Enemies/SteeringEnemy/SteeringEnemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/AspidHatchling/idle1.png" type="Texture" id=2]
+
+[node name="SteeringEnemy" type="KinematicBody2D" groups=[
+"Enemies",
+]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -11.6638, -10.3369, -14.5633, -1.40627, -12.9396, 7.8723, -5.86467, 12.6276, 8.40113, 13.4394, 12.4605, 3.46498, 11.8806, -8.82912, -1.45735, -11.9606 )

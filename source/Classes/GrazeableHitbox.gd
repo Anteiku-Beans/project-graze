@@ -10,7 +10,8 @@ func graze():
 
 func emit_mana_orb() -> void:
 	var new_orb = MANA_ORB.instance()
-	self.call_deferred("add_child", new_orb)
+	get_tree().get_root().call_deferred("add_child", new_orb)
+	new_orb.set_deferred("global_position", self.global_position)
 
 func emit_mana_orbs(num: int) -> void:
 # warning-ignore:unused_variable

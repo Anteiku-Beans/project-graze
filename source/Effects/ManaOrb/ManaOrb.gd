@@ -1,9 +1,9 @@
 extends Position2D
 
-const INITIAL_SPEED = 170.0
-const FINAL_SPEED = 100.0
+const INITIAL_SPEED = 200.0
+const FINAL_SPEED = 150.0
 const TWEEN_TIME = 0.2
-const ANGULAR_V = 1.5*PI
+const ANGULAR_V = 2*PI
 
 var current_phase: int = 1
 var speed: = INITIAL_SPEED

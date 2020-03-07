@@ -4,7 +4,7 @@ const MAX_JUMP_STOCK: int = 2
 const RIGHT_2D = 1
 const LEFT_2D = -1
 
-export var move_speed: = 100.0
+export var move_speed: = 130.0
 
 var facing_direction: = Vector2.RIGHT
 var move_velocity: = Vector2.ZERO
@@ -20,6 +20,9 @@ func enter(data: Dictionary = {}) -> void:
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("dash"):
 		_state_machine.transition_to("Dash", {"direction":facing_direction})
+		return
+	if event.is_action_pressed("attack"):
+		_state_machine.transition_to("Attack")
 		return
 
 func calculate_move_velocity() -> Vector2:
