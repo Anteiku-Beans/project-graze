@@ -1,13 +1,13 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://assets/AspidHatchling/shoot4.png" type="Texture" id=1]
-[ext_resource path="res://assets/AspidHatchling/shoot6.png" type="Texture" id=2]
-[ext_resource path="res://assets/AspidHatchling/shoot3.png" type="Texture" id=3]
-[ext_resource path="res://assets/AspidHatchling/idle1.png" type="Texture" id=4]
-[ext_resource path="res://assets/AspidHatchling/shoot2.png" type="Texture" id=5]
-[ext_resource path="res://assets/AspidHatchling/shoot5.png" type="Texture" id=6]
-[ext_resource path="res://assets/AspidHatchling/idle2.png" type="Texture" id=7]
-[ext_resource path="res://assets/AspidHatchling/shoot1.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/AspidHatchling/shoot4.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/AspidHatchling/shoot6.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/AspidHatchling/shoot3.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/AspidHatchling/idle1.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/AspidHatchling/shoot2.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/AspidHatchling/shoot5.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/AspidHatchling/idle2.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/AspidHatchling/shoot1.png" type="Texture" id=8]
 [ext_resource path="res://source/Classes/GrazeableHitbox.gd" type="Script" id=9]
 [ext_resource path="res://source/Enemies/AspidHatchling/States/Approach.gd" type="Script" id=10]
 [ext_resource path="res://source/Classes/StateMachine.gd" type="Script" id=11]
@@ -47,11 +47,12 @@ __meta__ = {
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 14 )
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"Enemies",
+]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 9 )

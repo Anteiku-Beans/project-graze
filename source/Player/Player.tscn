@@ -1,21 +1,22 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/LittleGhost/fall.png" type="Texture" id=2]
-[ext_resource path="res://assets/LittleGhost/jump.png" type="Texture" id=3]
-[ext_resource path="res://assets/LittleGhost/idle2.png" type="Texture" id=4]
-[ext_resource path="res://assets/LittleGhost/run1.png" type="Texture" id=5]
-[ext_resource path="res://assets/LittleGhost/idle1.png" type="Texture" id=6]
-[ext_resource path="res://assets/LittleGhost/run2.png" type="Texture" id=7]
-[ext_resource path="res://assets/LittleGhost/attack3.png" type="Texture" id=8]
-[ext_resource path="res://assets/LittleGhost/attack2.png" type="Texture" id=9]
-[ext_resource path="res://assets/LittleGhost/attack1.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/LittleGhost/fall.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/LittleGhost/jump.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/LittleGhost/idle2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/LittleGhost/run1.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/LittleGhost/idle1.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/LittleGhost/run2.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/LittleGhost/attack3.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/LittleGhost/attack2.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/LittleGhost/attack1.png" type="Texture" id=10]
 [ext_resource path="res://source/Player/states/Attack.gd" type="Script" id=11]
-[ext_resource path="res://assets/LittleGhost/dash1.png" type="Texture" id=12]
-[ext_resource path="res://assets/LittleGhost/dash2.png" type="Texture" id=13]
-[ext_resource path="res://assets/LittleGhost/dash3.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/LittleGhost/dash1.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/LittleGhost/dash2.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/LittleGhost/dash3.png" type="Texture" id=14]
 [ext_resource path="res://source/Player/Hitbox.gd" type="Script" id=15]
 [ext_resource path="res://source/Player/HP.gd" type="Script" id=16]
+[ext_resource path="res://assets/sprites/LittleGhost/stagger.png" type="Texture" id=17]
 [ext_resource path="res://source/Player/Sprite.gd" type="Script" id=27]
 [ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=28]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=29]
@@ -38,6 +39,11 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 5 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "move",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "fall",
@@ -58,9 +64,9 @@ animations = [ {
 "name": "jump",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "move",
+"name": "stagger",
 "speed": 5.0
 } ]
 
@@ -213,6 +219,7 @@ shape = SubResource( 1 )
 position = Vector2( 1, -8 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 27 )
 
@@ -286,7 +293,9 @@ anims/stop = SubResource( 7 )
 next/stop = "idle"
 script = ExtResource( 37 )
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"Player",
+]]
 collision_mask = 10
 script = ExtResource( 15 )
 

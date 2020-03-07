@@ -1,10 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/LittleGhost/bullet4.png" type="Texture" id=1]
-[ext_resource path="res://assets/LittleGhost/bullet3.png" type="Texture" id=2]
-[ext_resource path="res://assets/LittleGhost/bullet1.png" type="Texture" id=3]
-[ext_resource path="res://assets/LittleGhost/bullet2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/LittleGhost/bullet4.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/LittleGhost/bullet3.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/LittleGhost/bullet1.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/LittleGhost/bullet2.png" type="Texture" id=4]
 [ext_resource path="res://source/Player/Bullet.gd" type="Script" id=5]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

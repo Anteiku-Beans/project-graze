@@ -1,8 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/Effects/ManaOrb/ManaOrb.gd" type="Script" id=1]
-[ext_resource path="res://assets/effects/mana-small.png" type="Texture" id=2]
+[ext_resource path="res://assets/effects/mana/mana-small.png" type="Texture" id=2]
 [ext_resource path="res://source/Effects/ManaOrb/ManaOrbHitbox.gd" type="Script" id=3]
+
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.539063, 0.616811, 1, 1, 0.0862745, 0.164706, 0.54902, 1 )

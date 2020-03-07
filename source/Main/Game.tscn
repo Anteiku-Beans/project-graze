@@ -14,7 +14,7 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 174.0
+margin_bottom = 156.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -48,8 +48,8 @@ anchor_bottom = 0.0
 margin_top = 120.0
 margin_right = 104.0
 margin_bottom = 156.0
-reference_path = NodePath("../../../../Level2/AspidHatchling/StateMachine/Approach")
-properties = PoolStringArray( "offset" )
+reference_path = NodePath("../../../../Level2/Player/HP")
+properties = PoolStringArray( "current_hp" )
 
 [node name="Level2" parent="." instance=ExtResource( 2 )]
 
