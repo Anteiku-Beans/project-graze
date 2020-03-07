@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/LittleGhost/fall.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/LittleGhost/dash2.png" type="Texture" id=13]
 [ext_resource path="res://assets/LittleGhost/dash3.png" type="Texture" id=14]
 [ext_resource path="res://source/Player/Hitbox.gd" type="Script" id=15]
+[ext_resource path="res://source/Player/HP.gd" type="Script" id=16]
 [ext_resource path="res://source/Player/Sprite.gd" type="Script" id=27]
 [ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=28]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=29]
@@ -292,3 +293,6 @@ script = ExtResource( 15 )
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -2 )
 shape = SubResource( 8 )
+
+[node name="HP" type="Node" parent="."]
+script = ExtResource( 16 )
