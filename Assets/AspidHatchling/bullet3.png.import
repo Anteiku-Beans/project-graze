@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bullet.png-758d6ba84b7c6f126de19bcdd7268d2c.stex"
+path="res://.import/bullet3.png-b6a9daad81516578c7ac1c4dffb4487a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/AspidHatchling/bullet.png"
-dest_files=[ "res://.import/bullet.png-758d6ba84b7c6f126de19bcdd7268d2c.stex" ]
+source_file="res://assets/AspidHatchling/bullet3.png"
+dest_files=[ "res://.import/bullet3.png-b6a9daad81516578c7ac1c4dffb4487a.stex" ]
 
 [params]
 

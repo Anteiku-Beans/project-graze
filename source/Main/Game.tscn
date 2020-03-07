@@ -53,9 +53,6 @@ properties = PoolStringArray( "offset" )
 
 [node name="Level2" parent="." instance=ExtResource( 2 )]
 
-[node name="Sprite" parent="Level2/AspidHatchling" index="1"]
-frame = 1
-
 [editable path="Level2"]
 
 [editable path="Level2/Player"]
