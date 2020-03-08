@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/LittleGhost/fall.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://source/Player/Hitbox.gd" type="Script" id=15]
 [ext_resource path="res://source/Player/HP.gd" type="Script" id=16]
 [ext_resource path="res://assets/sprites/LittleGhost/stagger.png" type="Texture" id=17]
+[ext_resource path="res://source/Player/Stagger.gd" type="Script" id=18]
 [ext_resource path="res://source/Player/Sprite.gd" type="Script" id=27]
 [ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=28]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=29]
@@ -39,10 +40,10 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
-"name": "move",
-"speed": 5.0
+"name": "dash",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -54,19 +55,19 @@ animations = [ {
 "name": "attack",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "dash",
-"speed": 10.0
+"name": "stagger",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "jump",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 17 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "stagger",
+"name": "move",
 "speed": 5.0
 } ]
 
@@ -219,7 +220,6 @@ shape = SubResource( 1 )
 position = Vector2( 1, -8 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 27 )
 
@@ -262,6 +262,13 @@ one_shot = true
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
+
+[node name="Stagger" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
+
+[node name="Timer" type="Timer" parent="StateMachine/Stagger"]
+wait_time = 0.25
+one_shot = true
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true

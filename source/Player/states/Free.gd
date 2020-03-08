@@ -13,6 +13,10 @@ var jump_stock: int
 
 signal facing_direction_changed
 
+func _ready():
+	var hitbox = owner.get_node("Hitbox")
+	hitbox.connect("hit", self, "_on_hit")
+
 func enter(data: Dictionary = {}) -> void:
 	if "landed" in data.keys():
 		reset_jump_stock()
@@ -46,3 +50,6 @@ func use_jump_stock() -> void:
 
 func has_jump_stock() -> bool:
 	return jump_stock >= 1
+
+func _on_hit():
+	_state_machine.transition_to("Stagger")

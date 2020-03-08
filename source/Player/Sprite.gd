@@ -7,6 +7,7 @@ const ANIMATIONS_MAP = {
 	"Move": "move",
 	"Dash": "dash",
 	"Attack": "attack",
+	"Stagger": "stagger",
 }
 
 onready var state_machine = get_parent().get_node("StateMachine")
