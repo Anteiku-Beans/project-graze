@@ -8,6 +8,7 @@ func enter(data: Dictionary = {}) -> void:
 	timer.connect("timeout", self, "_on_timer_timeout")
 	timer.start()
 	on_hit_particles()
+	OS.call_deferred("delay_msec", 50)
 
 func exit() -> void:
 	timer.disconnect("timeout", self, "_on_timer_timeout")

@@ -3,20 +3,20 @@
 [ext_resource path="res://assets/effects/on_hit_particles.gd" type="Script" id=1]
 [ext_resource path="res://assets/effects/on_hit/ball.png" type="Texture" id=2]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.602041, 1 )
 colors = PoolColorArray( 0.00598907, 0.00978488, 0.0766602, 1, 0.113725, 0.00392157, 0.0235294, 1, 0.113725, 0.00392157, 0.0235294, 0.494118 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.709091 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -31,8 +31,8 @@ linear_accel = -500.0
 damping = 100.0
 scale = 0.01
 scale_random = 0.2
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 hue_variation_random = 1.0
 
 [node name="on_hit" type="Position2D"]
@@ -45,8 +45,9 @@ emitting = false
 amount = 50
 lifetime = 0.25
 one_shot = true
+preprocess = 0.1
 explosiveness = 0.4
-process_material = SubResource( 1 )
+process_material = SubResource( 5 )
 texture = ExtResource( 2 )
 
 [node name="left" type="Particles2D" parent="."]
@@ -56,8 +57,9 @@ emitting = false
 amount = 50
 lifetime = 0.25
 one_shot = true
+preprocess = 0.1
 explosiveness = 0.4
-process_material = SubResource( 1 )
+process_material = SubResource( 5 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
