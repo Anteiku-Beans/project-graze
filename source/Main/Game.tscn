@@ -54,7 +54,7 @@ properties = PoolStringArray( "current_hp" )
 [node name="Level2" parent="." instance=ExtResource( 2 )]
 
 [node name="Sprite" parent="Level2/Player" index="1"]
-frame = 0
+frame = 1
 
 [node name="Sprite" parent="Level2/AspidHatchling" index="1"]
 frame = 1
