@@ -2,7 +2,7 @@
 
 [ext_resource path="res://source/Tilesets/GrassTileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/Enemies/AspidHatchling/AspidHatchling.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/Enemies/AspidHatchling/AspidHatchling.tscn" type="PackedScene" id=3]
 
 [node name="Level2" type="Node2D"]
 
@@ -13,14 +13,5 @@ tile_data = PoolIntArray( -524318, 0, 0, -524317, 0, 1, -524316, 0, 1, -524315, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -130.07, 47.7462 )
 
-[node name="AspidHatchling" parent="." instance=ExtResource( 4 )]
-position = Vector2( -172.676, 170.233 )
-
-[node name="AspidHatchling2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -314.401, 32.5804 )
-
-[node name="AspidHatchling3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 48.0562, 79.8221 )
-
-[node name="AspidHatchling4" parent="." instance=ExtResource( 4 )]
-position = Vector2( -62.7174, -30.9514 )
+[node name="AspidHatchling" parent="." instance=ExtResource( 3 )]
+position = Vector2( -74.9077, 28.8801 )

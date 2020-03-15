@@ -1,23 +1,30 @@
 extends State
 
-export (float, 100.0, 5000.0, 0.5) var fall_acceleration: = 1000.0
-export (float, 0.0, 2000.0, 0.5) var max_fall_speed: = 400.0
+const FALL_ACCELERATION = Vector2(0, 900)
+const FALL_DIRECTION = Vector2.DOWN
+const FALL_MAX_SPEED = Vector2(0, 300)
 
-var fall_velocity: Vector2
-
+var fall = Motion.new()
 onready var free = get_parent()
 
-func enter(data: Dictionary = {}) -> void:
-	free.enter()
-	fall_velocity = Vector2.ZERO
 
-func physics_process(delta: float) -> void:
-	# Calculate velocities
-	fall_velocity.y += fall_acceleration * delta
-	fall_velocity.y = min(fall_velocity.y, max_fall_speed)
-	free.move_velocity = free.calculate_move_velocity()
+func _ready():
+	fall.acceleration = FALL_ACCELERATION
+	fall.direction = FALL_DIRECTION
+	fall.max_speed = FALL_MAX_SPEED
+
+
+func enter(data: Dictionary = {}):
+	free.enter(data)
+	fall.velocity = Vector2.ZERO
+
+
+func physics_process(delta):
+	free.physics_process(delta)
+	fall.velocity = fall.calculate_velocity(delta)
 	
-	owner.move_and_slide(fall_velocity + free.move_velocity, Vector2.UP)
+	var total_velocity = fall.velocity + free.move.velocity
+	owner.move_and_slide(total_velocity, Vector2.UP)
 	
 	# land
 	if (owner.is_on_floor()):
@@ -28,11 +35,10 @@ func physics_process(delta: float) -> void:
 			_state_machine.transition_to("Free/Idle")
 			return
 
+
 func exit():
 	free.exit()
 
-func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed('jump') and free.has_jump_stock():
-		_state_machine.transition_to('Free/Jump')
-		return
+
+func unhandled_input(event):
 	free.unhandled_input(event)

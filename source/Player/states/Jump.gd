@@ -1,53 +1,66 @@
 extends State
 
-# Tween export variables
-export(float) var t_initial = 210.0
-export(float) var t_final = 0.0
-export(float, 0.0, 1.0, 0.01) var t_duration = 0.15
-export(int, "TRANS_LINEAR", "TRANS_SINE", "TRANS_QUINT", "TRANS_QUART", "TRANS_QUAD", "TRANS_EXPO", "TRANS_ELASTIC", "TRANS_CUBIC", "TRANS_CIRC", "TRANS_BOUNCE", "TRANS_BACK") var t_trans
-export(int, "EASE_IN", "EASE_OUT", "EASE_IN_OUT", "EASE_OUT_IN") var t_ease
+const JUMP_ACCELERATION = Vector2(0, 4000)
+const JUMP_DAMP = Vector2(0, 4000)
+const JUMP_DIRECTION = Vector2.UP
+const JUMP_MAX_SPEED = Vector2(0, 300)
 
-var jump_speed: = 0.0
-var jump_velocity: = Vector2.ZERO
+var jump := Motion.new()
+var is_jumping: bool
 
 onready var free = get_parent()
-onready var tween = $jumpTween
-onready var timer = $jumpTimer
+onready var timer = $MaxJumpTime
+
 
 func _ready():
-	tween.connect("tween_completed", self, '_on_tween_completed')
+	jump.acceleration = JUMP_ACCELERATION
+	jump.damp = JUMP_DAMP
+	jump.direction = JUMP_DIRECTION
+	jump.max_speed = JUMP_MAX_SPEED
+	
 	timer.connect("timeout", self, "_on_timer_timeout")
 
-func enter(data: Dictionary = {}) -> void:
-	free.enter()
-	free.use_jump_stock()
-	jump_speed = t_initial
-	timer.start()
-	tween.interpolate_property(self, 'jump_speed', t_initial, t_final,
-								   t_duration, t_trans, t_ease)
-	print('jump entered. stock = %d' % free.jump_stock)
-	
-func physics_process(delta: float) -> void:
-	jump_velocity = Vector2.UP * jump_speed
-	free.move_velocity = free.calculate_move_velocity()
-	owner.move_and_slide(jump_velocity + free.move_velocity, Vector2.UP)
 
-func unhandled_input(event: InputEvent) -> void:
-	if (event.is_action_released("jump")):
-		timer.stop()
-		tween.start()
-		return
-	if event.is_action_pressed('jump') and free.has_jump_stock():
-		_state_machine.transition_to('Free/Jump')
+func enter(data: Dictionary = {}):
+	free.enter(data)
+	timer.start()
+	is_jumping = true
+	
+	
+func physics_process(delta: float):
+	free.physics_process(delta)
+	
+#	Calculate velocity
+	if is_jumping:
+		jump.velocity = jump.calculate_velocity(delta)
+	else:
+		jump.velocity = jump.calculate_damp(delta)
+		if jump.velocity == Vector2.ZERO:
+			_state_machine.transition_to("Free/Fall")
+	
+#	Apply movement
+	var total_velocity: Vector2 = jump.velocity + free.move.velocity
+	owner.move_and_slide(total_velocity, Vector2.UP)
+	
+#	Transition to landing state
+	if owner.is_on_floor():
+		if free.move.velocity == Vector2.ZERO:
+			_state_machine.transition_to("Free/Idle")
+		else:
+			_state_machine.transition_to("Free/Move")
+	
+	
+func _on_timer_timeout():
+	is_jumping = false
+
+
+func unhandled_input(event):
+	if event.is_action_released("jump"):
+		is_jumping = false
 		return
 	free.unhandled_input(event)
 
-func _on_timer_timeout() -> void:
-	tween.start()
 
-func _on_tween_completed(object: Object, key: NodePath) -> void:
-	_state_machine.transition_to("Free/Fall")
-
-func exit() -> void:
-	tween.reset_all()
+func exit():
+	timer.stop()
 	free.exit()
