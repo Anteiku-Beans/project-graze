@@ -1,10 +1,11 @@
 extends State
 
 onready var free = get_parent()
-
+onready var sprite = owner.get_node("Sprite")
 
 func enter(data: Dictionary = {}):
 	free.enter(data)
+	sprite.request("idle")
 
 
 func physics_process(delta: float):

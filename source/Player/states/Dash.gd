@@ -12,6 +12,7 @@ var direction: = Vector2.ZERO
 
 onready var cooldown = $Cooldown
 onready var tween = $SpeedTween
+onready var sprite = owner.get_node("Sprite")
 
 func _ready():
 	tween.connect("tween_completed", self, "_on_tween_completed")
@@ -21,6 +22,7 @@ func enter(data: Dictionary = {}) -> void:
 	tween.interpolate_property(self, "speed", I_SPEED, F_SPEED, DASH_TIME, T_TRANS, T_EASE)
 	tween.start()
 	cooldown.start()
+	sprite.request("dash")
 
 func physics_process(delta) -> void:
 	owner.move_and_slide(direction * speed, Vector2.UP)

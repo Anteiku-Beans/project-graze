@@ -6,6 +6,7 @@ const FALL_MAX_SPEED = Vector2(0, 300)
 
 var fall = Motion.new()
 onready var free = get_parent()
+onready var sprite = owner.get_node("Sprite")
 
 
 func _ready():
@@ -17,6 +18,7 @@ func _ready():
 func enter(data: Dictionary = {}):
 	free.enter(data)
 	fall.velocity = Vector2.ZERO
+	sprite.request("fall")
 
 
 func physics_process(delta):

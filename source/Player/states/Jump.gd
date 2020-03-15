@@ -10,6 +10,7 @@ var is_jumping: bool
 
 onready var free = get_parent()
 onready var timer = $MaxJumpTime
+onready var sprite = owner.get_node("Sprite")
 
 
 func _ready():
@@ -25,6 +26,7 @@ func enter(data: Dictionary = {}):
 	free.enter(data)
 	timer.start()
 	is_jumping = true
+	sprite.request("jump")
 	
 	
 func physics_process(delta: float):

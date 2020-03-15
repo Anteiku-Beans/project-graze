@@ -2,29 +2,37 @@ extends AnimatedSprite
 
 const FACING_LEFT = -1
 const FACING_RIGHT = 1
+const DEFAULT_ANIMATION = "idle"
+const NO_ANIMATION = ""
 
-const ANIMATIONS_MAP = {
-	"Idle": "idle",
-	"Jump": "jump",
-	"Fall": "fall",
-	"Move": "move",
-	"Dash": "dash",
-	"Attack": "attack",
-	"Stagger": "stagger",
-}
+var _base_animation: String = DEFAULT_ANIMATION
+var _priority_animation: String = NO_ANIMATION
 
-onready var state_machine = get_parent().get_node("StateMachine")
 onready var player = get_parent()
-#onready var free_state = state_machine.get_node("Free")
+
 
 func _ready():
-	state_machine.connect("state_changed", self, "_on_state_changed")
-#	free_state.connect("facing_direction_changed", self, "_on_facing_direction_changed")
 	owner.connect("facing_updated", self, "_on_facing_updated")
 
-func _on_state_changed(prev_state: String, new_state: String):
-	if (new_state in ANIMATIONS_MAP):
-		self.play(ANIMATIONS_MAP[new_state])
+
+func request(anim_name: String, priority: bool = false):
+	if priority:
+		_priority_animation = anim_name
+		play(_priority_animation)
+		self.connect("animation_finished", self, "_on_animation_finished")
+	else:
+		_base_animation = anim_name
+		play(_base_animation)
+
+
+func _on_animation_finished():
+	if _priority_animation == NO_ANIMATION:
+		return
+	else:
+		_priority_animation = NO_ANIMATION
+		play(_base_animation)
+		self.disconnect("animation_finished", self, "_on_animation_finished")
+
 
 func _on_facing_updated():
 	var player_direction = player.get_facing_int()
