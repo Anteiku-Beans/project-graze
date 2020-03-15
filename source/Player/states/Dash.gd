@@ -1,9 +1,9 @@
 extends State
 
 # Tween constants
-const I_SPEED = 1500.0
+const I_SPEED = 1000.0
 const F_SPEED = 100.0
-const DASH_TIME = 0.3
+const DASH_TIME = 0.2
 const T_TRANS = Tween.TRANS_EXPO
 const T_EASE = Tween.EASE_IN_OUT
 
