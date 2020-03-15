@@ -5,13 +5,18 @@ const _facing_LEFT = -1
 
 var _facing = _facing_RIGHT
 
+signal facing_updated
+
+
 func _ready() -> void:
 	Player.set_player(self)
+
 
 # hack: override inbuilt is_on_floor to prevent state from
 #       rapidly switching between move and fall during movement
 func is_on_floor():
 	return test_move(self.transform, Vector2.DOWN)
+
 
 func update_facing(direction):
 	var new_direction: int = 0
@@ -26,6 +31,7 @@ func update_facing(direction):
 		return
 	
 	self._facing = new_direction
+	emit_signal("facing_updated")
 
 
 func get_facing_int():
