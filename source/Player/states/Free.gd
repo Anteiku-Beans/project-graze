@@ -10,6 +10,9 @@ const MOVE_MAX_SPEED = Vector2(120, 0)
 var move = Motion.new()
 
 onready var hitbox = owner.get_node("Hitbox")
+onready var sprite = owner.get_node("Sprite")
+onready var attack = owner.get_node("Attack")
+
 
 func _ready():
 	move.acceleration = MOVE_ACCELERATION
@@ -38,15 +41,24 @@ func get_move_direction() -> Vector2:
 
 func unhandled_input(event):
 	if event.is_action_pressed("dash"):
-#		Check if direction was pressed with dash
-		var dash_direction: Vector2
-		var x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
-		if x_input != 0:
-			dash_direction = Vector2(x_input, 0)
-		else:
-			dash_direction = owner.get_facing_vector2()
+		var dash_direction = calculate_direction()
 		_state_machine.transition_to("Dash", {"direction":dash_direction})
+		return
+	if event.is_action_pressed("attack"):
+		attack.execute()
 
 
 func _on_hit():
 	_state_machine.transition_to("Stagger")
+
+
+func calculate_direction():
+	var new_direction
+	var x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	
+	if x_input != 0:
+		new_direction = Vector2(x_input, 0)
+	else:
+		new_direction = owner.get_facing_vector2()
+		
+	return new_direction
