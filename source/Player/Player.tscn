@@ -57,7 +57,7 @@ animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "attack",
-"speed": 20.0
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
@@ -99,7 +99,6 @@ shape = SubResource( 1 )
 position = Vector2( 1, -8 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 27 )
 

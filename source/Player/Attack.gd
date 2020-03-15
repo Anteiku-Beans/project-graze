@@ -4,8 +4,13 @@ var _active: = false
 
 onready var hitbox = $Hitbox
 onready var sprite = owner.get_node("Sprite")
+onready var state_machine = owner.get_node("StateMachine")
 
 signal hit
+
+
+func _ready():
+	state_machine.connect("state_changed", self, "_on_state_changed")
 
 
 func is_active():
@@ -37,6 +42,11 @@ func _on_hit(area: Area2D):
 		print("hit an enemy!")
 	else:
 		print("we hit something, but it wasn't an enemy...'")
+
+
+func _on_state_changed(prev_state: String, new_state: String):
+	if new_state == "Stagger":
+		_end()
 
 
 func _set_hitbox_enabled(enable: bool):
