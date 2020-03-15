@@ -20,9 +20,11 @@ func request(anim_name: String, priority: bool = false):
 		_priority_animation = anim_name
 		play(_priority_animation)
 		self.connect("animation_finished", self, "_on_animation_finished")
-	else:
+	elif _priority_animation == NO_ANIMATION:
 		_base_animation = anim_name
 		play(_base_animation)
+	else:
+		_base_animation = anim_name
 
 
 func _on_animation_finished():
