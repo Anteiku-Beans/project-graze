@@ -29,8 +29,8 @@ func _on_timer_timeout() -> void:
 		_state_machine.transition_to("Shoot")
 
 func direction_to(target_position: Vector2) -> Vector2:
-	var direction: Vector2 = target_position - owner.global_position
-	return direction
+	var direction_to: Vector2 = target_position - owner.global_position
+	return direction_to
 
 func distance_to(target_position: Vector2) -> float:
 	var distance: float = (target_position - owner.global_position).length()
