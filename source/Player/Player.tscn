@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/LittleGhost/fall.png" type="Texture" id=2]
@@ -28,7 +28,6 @@
 [ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=28]
 [ext_resource path="res://source/Player/Mana.gd" type="Script" id=35]
 [ext_resource path="res://source/Player/Graze.gd" type="Script" id=36]
-[ext_resource path="res://source/Player/Animations.gd" type="Script" id=37]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.16877, 8.01588 )
@@ -75,127 +74,6 @@ animations = [ {
 radius = 22.9596
 height = 10.2653
 
-[sub_resource type="Animation" id=4]
-resource_name = "default"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "ss_idle" ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "idle"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "ss_idle" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "move"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "ss_run" ]
-}
-
-[sub_resource type="Animation" id=7]
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ "ss_stop" ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 2.82003
 height = 7.57433
@@ -220,8 +98,9 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, -8 )
 frames = SubResource( 2 )
-animation = "attack"
+animation = "idle"
 frame = 1
+playing = true
 script = ExtResource( 27 )
 
 [node name="Attack" type="Node2D" parent="."]
@@ -296,15 +175,6 @@ script = ExtResource( 36 )
 [node name="DetectionArea" type="CollisionShape2D" parent="Graze"]
 position = Vector2( 0, -6 )
 shape = SubResource( 3 )
-
-[node name="Animations" type="AnimationPlayer" parent="."]
-autoplay = "default"
-anims/default = SubResource( 4 )
-anims/idle = SubResource( 5 )
-anims/move = SubResource( 6 )
-anims/stop = SubResource( 7 )
-next/stop = "idle"
-script = ExtResource( 37 )
 
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "Player",
