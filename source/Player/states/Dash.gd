@@ -19,6 +19,7 @@ onready var free_state = owner.get_node("StateMachine/Free")
 onready var sprite = owner.get_node("Sprite")
 onready var animation = owner.get_node("Animation")
 
+
 func _ready():
 	i_speed = free_state.move_speed * MOVE_SPEED_MULTIPLIER
 	f_speed = free_state.move_speed
@@ -33,18 +34,22 @@ func enter(data: Dictionary = {}) -> void:
 	sprite.request("dash")
 	animation.play("dash")
 
+
 func physics_process(delta) -> void:
 	owner.move_and_slide(direction * speed, Vector2.UP)
+
 
 func exit() -> void:
 	tween.reset_all()
 	tween.stop_all()
+
 
 func _on_tween_completed(object, key) -> void:
 	if owner.is_on_floor():
 		_state_machine.transition_to("Free/Move", {"motion":self.direction*speed})
 	else:
 		_state_machine.transition_to("Free/Fall", {"motion":self.direction*speed})
+
 
 func is_on_cooldown() -> bool:
 	return cooldown.time_left > 0
