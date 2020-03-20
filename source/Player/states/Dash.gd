@@ -1,25 +1,32 @@
 extends State
 
 # Tween constants
-const I_SPEED = 1000.0
-const F_SPEED = 100.0
-const DASH_TIME = 0.2
-const T_TRANS = Tween.TRANS_EXPO
+#const I_SPEED = 1000.0
+#const F_SPEED = 120.0
+const MOVE_SPEED_MULTIPLIER = 5
+const DASH_TIME = 0.20
+const T_TRANS = Tween.TRANS_SINE
 const T_EASE = Tween.EASE_IN_OUT
 
+var i_speed: float
+var f_speed: float
 var speed: float
 var direction: = Vector2.ZERO
 
 onready var cooldown = $Cooldown
 onready var tween = $SpeedTween
+onready var free_state = owner.get_node("StateMachine/Free")
 onready var sprite = owner.get_node("Sprite")
 
 func _ready():
+	i_speed = free_state.move_speed * MOVE_SPEED_MULTIPLIER
+	f_speed = free_state.move_speed
 	tween.connect("tween_completed", self, "_on_tween_completed")
+	
 
 func enter(data: Dictionary = {}) -> void:
 	direction = data["direction"]
-	tween.interpolate_property(self, "speed", I_SPEED, F_SPEED, DASH_TIME, T_TRANS, T_EASE)
+	tween.interpolate_property(self, "speed", i_speed, f_speed, DASH_TIME, T_TRANS, T_EASE)
 	tween.start()
 	cooldown.start()
 	sprite.request("dash")
@@ -33,9 +40,9 @@ func exit() -> void:
 
 func _on_tween_completed(object, key) -> void:
 	if owner.is_on_floor():
-		_state_machine.transition_to("Free/Idle")
+		_state_machine.transition_to("Free/Move", {"motion":self.direction*speed})
 	else:
-		_state_machine.transition_to("Free/Fall")
+		_state_machine.transition_to("Free/Fall", {"motion":self.direction*speed})
 
 func is_on_cooldown() -> bool:
 	return cooldown.time_left > 0

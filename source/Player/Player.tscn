@@ -39,42 +39,42 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "stagger",
+"speed": 1.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "move",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "jump",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "fall",
-"speed": 1.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "attack",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "fall",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "jump",
+"speed": 1.0
+}, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "dash",
 "speed": 20.0
-}, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "stagger",
-"speed": 1.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 22.9596
 height = 10.2653
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 2.82003
 height = 7.57433
 
@@ -99,6 +99,7 @@ shape = SubResource( 1 )
 position = Vector2( 1, -8 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 27 )
 
@@ -184,7 +185,7 @@ script = ExtResource( 15 )
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -2 )
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="HP" type="Node" parent="."]
 script = ExtResource( 16 )

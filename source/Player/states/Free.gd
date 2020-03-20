@@ -3,11 +3,12 @@ extends State
 const FACING_LEFT = -1
 const FACING_RIGHT = 1
 
-const MOVE_ACCELERATION = Vector2(1500, 0)
-const MOVE_DAMP = Vector2(2500, 0)
-const MOVE_MAX_SPEED = Vector2(120, 0)
+const DEFAULT_MOVE_SPEED = 180.0
+const ACCELERATION_FACTOR = 12
+const DAMP_FACTOR = 12
 
 var move = Motion.new()
+var move_speed: float = DEFAULT_MOVE_SPEED
 
 onready var hitbox = owner.get_node("Hitbox")
 onready var sprite = owner.get_node("Sprite")
@@ -15,11 +16,17 @@ onready var attack = owner.get_node("Attack")
 
 
 func _ready():
-	move.acceleration = MOVE_ACCELERATION
-	move.damp = MOVE_DAMP
-	move.max_speed = MOVE_MAX_SPEED
+	move.acceleration = Vector2(move_speed * ACCELERATION_FACTOR, 0)
+	move.damp = Vector2(move_speed * DAMP_FACTOR, 0)
+	move.max_speed = Vector2(move_speed, 0)
 
 	hitbox.connect("hit", self, "_on_hit")
+
+
+func enter(data: Dictionary = {}) -> void:
+	if "motion" in data.keys():
+		move.velocity = data["motion"]
+
 
 func physics_process(delta):
 	update_move(delta)
