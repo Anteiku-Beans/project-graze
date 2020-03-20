@@ -17,6 +17,7 @@ onready var cooldown = $Cooldown
 onready var tween = $SpeedTween
 onready var free_state = owner.get_node("StateMachine/Free")
 onready var sprite = owner.get_node("Sprite")
+onready var animation = owner.get_node("Animation")
 
 func _ready():
 	i_speed = free_state.move_speed * MOVE_SPEED_MULTIPLIER
@@ -30,6 +31,7 @@ func enter(data: Dictionary = {}) -> void:
 	tween.start()
 	cooldown.start()
 	sprite.request("dash")
+	animation.play("dash")
 
 func physics_process(delta) -> void:
 	owner.move_and_slide(direction * speed, Vector2.UP)
