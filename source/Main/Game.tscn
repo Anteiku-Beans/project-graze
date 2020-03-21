@@ -29,9 +29,6 @@ properties = PoolStringArray( "_state_name" )
 [node name="Player" parent="Level2" index="1"]
 position = Vector2( -121.925, -55.6959 )
 
-[node name="Sprite" parent="Level2/Player" index="1"]
-frame = 1
-
 [editable path="Level2"]
 
 [editable path="Level2/Player"]
