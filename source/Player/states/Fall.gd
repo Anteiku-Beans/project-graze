@@ -5,9 +5,11 @@ const FALL_DIRECTION = Vector2.DOWN
 const FALL_MAX_SPEED = Vector2(0, 300)
 
 var fall = Motion.new()
+
 onready var free = get_parent()
 onready var sprite = owner.get_node("Sprite")
-
+onready var wall_detector = owner.get_node("WallDetector")
+onready var player = owner
 
 func _ready():
 	fall.acceleration = FALL_ACCELERATION
@@ -26,17 +28,22 @@ func physics_process(delta):
 	fall.velocity = fall.calculate_velocity(delta)
 	
 	var total_velocity = fall.velocity + free.move.velocity
-	owner.move_and_slide(total_velocity, Vector2.UP)
+	player.move_and_slide(total_velocity, Vector2.UP)
 	
 	# land
-	if (owner.is_on_floor()):
+	if (player.is_on_floor()):
 		if (free.get_move_direction().x != 0):
 			_state_machine.transition_to("Free/Move")
 			return
 		else:
 			_state_machine.transition_to("Free/Idle")
 			return
-
+	
+#	Transition to wall slide
+	if player.is_on_wall():
+		if len(wall_detector.get_overlapping_bodies()) > 0:
+			if get_x_input() == player.get_facing_int():
+				_state_machine.transition_to("WallSlide")
 
 func exit():
 	free.exit()
@@ -44,3 +51,7 @@ func exit():
 
 func unhandled_input(event):
 	free.unhandled_input(event)
+
+
+func get_x_input():
+	return Input.get_action_strength("right") - Input.get_action_strength("left")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Tanjiro/move1.png" type="Texture" id=2]
@@ -39,14 +39,20 @@
 [ext_resource path="res://assets/sprites/Tanjiro/move5.png" type="Texture" id=37]
 [ext_resource path="res://assets/sprites/Tanjiro/move6.png" type="Texture" id=38]
 [ext_resource path="res://assets/sprites/Tanjiro/jump1.png" type="Texture" id=39]
+[ext_resource path="res://source/Player/states/WallSlide.gd" type="Script" id=40]
+[ext_resource path="res://assets/sprites/Tanjiro/wall_slide.png" type="Texture" id=41]
+[ext_resource path="res://source/Player/WallDetector.gd" type="Script" id=42]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 9 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 14 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 29 ) ],
-"loop": true,
+"loop": false,
 "name": "idle",
 "speed": 1.0
 }, {
@@ -56,18 +62,18 @@ animations = [ {
 "speed": 20.0
 }, {
 "frames": [ ExtResource( 9 ) ],
-"loop": true,
+"loop": false,
 "name": "stagger",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "attack",
-"speed": 12.0
+"frames": [ ExtResource( 41 ) ],
+"loop": false,
+"name": "wall_slide",
+"speed": 1.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
+"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
 "loop": true,
-"name": "move",
+"name": "fall",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
@@ -75,22 +81,26 @@ animations = [ {
 "name": "jump",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "attack",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
 "loop": true,
-"name": "fall",
+"name": "move",
 "speed": 12.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 22.9596
 height = 10.2653
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=5]
 radius = 2.82003
 height = 7.57433
 
-[sub_resource type="Animation" id=5]
-resource_name = "dash"
+[sub_resource type="Animation" id=6]
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
@@ -106,8 +116,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1.15, 0.87 ), Vector2( 0.95, 1.053 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "default"
+[sub_resource type="Animation" id=7]
 length = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:animation")
@@ -165,16 +174,25 @@ position = Vector2( 0, -7 )
 collision_mask = 4
 script = ExtResource( 1 )
 
+[node name="WallDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 42 )
+
+[node name="Shape" type="CollisionShape2D" parent="WallDetector"]
+position = Vector2( 6, -7 )
+shape = SubResource( 1 )
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 modulate = Color( 0.827451, 1, 0, 1 )
 position = Vector2( 0, -7 )
 z_index = 1
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -9 )
-frames = SubResource( 2 )
-animation = "idle"
+frames = SubResource( 3 )
+animation = "wall_slide"
 playing = true
 script = ExtResource( 27 )
 
@@ -231,6 +249,9 @@ script = ExtResource( 23 )
 wait_time = 0.5
 one_shot = true
 
+[node name="WallSlide" type="Node" parent="StateMachine"]
+script = ExtResource( 40 )
+
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 drag_margin_left = 0.0
@@ -250,7 +271,7 @@ script = ExtResource( 36 )
 
 [node name="DetectionArea" type="CollisionShape2D" parent="Graze"]
 position = Vector2( 0, -6 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "Player",
@@ -261,12 +282,12 @@ script = ExtResource( 15 )
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -2 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="HP" type="Node" parent="."]
 script = ExtResource( 16 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/dash = SubResource( 5 )
-anims/default = SubResource( 6 )
+anims/dash = SubResource( 6 )
+anims/default = SubResource( 7 )
