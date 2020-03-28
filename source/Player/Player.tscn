@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Tanjiro/move1.png" type="Texture" id=2]
@@ -42,9 +42,10 @@
 [ext_resource path="res://source/Player/states/WallSlide.gd" type="Script" id=40]
 [ext_resource path="res://assets/sprites/Tanjiro/wall_slide.png" type="Texture" id=41]
 [ext_resource path="res://source/Player/WallDetector.gd" type="Script" id=42]
+[ext_resource path="res://source/Player/states/WallJump.gd" type="Script" id=43]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1, 9 )
+extents = Vector2( 1, 7 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 14 )
@@ -56,24 +57,19 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
-"loop": true,
-"name": "dash",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
 "loop": false,
-"name": "stagger",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 41 ) ],
-"loop": false,
-"name": "wall_slide",
-"speed": 1.0
+"name": "attack",
+"speed": 12.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
 "loop": true,
 "name": "fall",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "move",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
@@ -81,15 +77,20 @@ animations = [ {
 "name": "jump",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 41 ) ],
 "loop": false,
-"name": "attack",
-"speed": 12.0
+"name": "wall_slide",
+"speed": 1.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "stagger",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
 "loop": true,
-"name": "move",
-"speed": 12.0
+"name": "dash",
+"speed": 20.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=4]
@@ -128,7 +129,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "idle" ]
+"values": [ "fall" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:playing")
@@ -174,16 +175,31 @@ position = Vector2( 0, -7 )
 collision_mask = 4
 script = ExtResource( 1 )
 
-[node name="WallDetector" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+[node name="WallDetector" type="Node2D" parent="."]
 script = ExtResource( 42 )
 
-[node name="Shape" type="CollisionShape2D" parent="WallDetector"]
+[node name="WallDetectorRight" type="Area2D" parent="WallDetector"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Shape" type="CollisionShape2D" parent="WallDetector/WallDetectorRight"]
+modulate = Color( 0.101961, 0, 1, 1 )
 position = Vector2( 6, -7 )
+z_index = 1
+shape = SubResource( 1 )
+
+[node name="WallDetectorLeft" type="Area2D" parent="WallDetector"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Shape" type="CollisionShape2D" parent="WallDetector/WallDetectorLeft"]
+modulate = Color( 0.101961, 0, 1, 1 )
+position = Vector2( -6, -7 )
+z_index = 1
 shape = SubResource( 1 )
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+visible = false
 modulate = Color( 0.827451, 1, 0, 1 )
 position = Vector2( 0, -7 )
 z_index = 1
@@ -192,7 +208,7 @@ shape = SubResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -9 )
 frames = SubResource( 3 )
-animation = "wall_slide"
+animation = "idle"
 playing = true
 script = ExtResource( 27 )
 
@@ -232,6 +248,13 @@ one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine/Free"]
 script = ExtResource( 20 )
+
+[node name="WallJump" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 43 )
+
+[node name="MaxJumpTime" type="Timer" parent="StateMachine/Free/WallJump"]
+wait_time = 0.3
+one_shot = true
 
 [node name="Stagger" type="Node" parent="StateMachine"]
 script = ExtResource( 22 )

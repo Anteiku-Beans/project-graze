@@ -26,8 +26,11 @@ properties = PoolStringArray( "_state_name" )
 
 [node name="Level2" parent="." instance=ExtResource( 2 )]
 
+[node name="GrassTileset" parent="Level2" index="0"]
+position = Vector2( 331.578, 89.4735 )
+
 [node name="Player" parent="Level2" index="1"]
-position = Vector2( -121.925, -55.6959 )
+position = Vector2( 211.759, 62.1986 )
 
 [editable path="Level2"]
 

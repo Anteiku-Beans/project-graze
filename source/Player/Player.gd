@@ -34,6 +34,11 @@ func update_facing(direction):
 	emit_signal("facing_updated")
 
 
+func flip_facing():
+	_facing *= -1
+	emit_signal("facing_updated")
+
+
 func get_facing_int():
 	return _facing
 

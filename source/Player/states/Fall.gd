@@ -40,10 +40,10 @@ func physics_process(delta):
 			return
 	
 #	Transition to wall slide
-	if player.is_on_wall():
-		if len(wall_detector.get_overlapping_bodies()) > 0:
-			if get_x_input() == player.get_facing_int():
-				_state_machine.transition_to("WallSlide")
+	if (player.is_on_wall() and
+		wall_detector.is_colliding() and
+		get_x_input() == wall_detector.get_wall_direction_x()):
+				_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
 
 func exit():
 	free.exit()

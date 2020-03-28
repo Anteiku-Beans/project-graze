@@ -53,6 +53,7 @@ func unhandled_input(event):
 		return
 	if event.is_action_pressed("attack"):
 		attack.execute()
+		return
 
 
 func _on_hit():

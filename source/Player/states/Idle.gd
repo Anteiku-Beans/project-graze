@@ -18,6 +18,7 @@ func physics_process(delta: float):
 		return
 
 
+
 func exit():
 	free.exit()
 

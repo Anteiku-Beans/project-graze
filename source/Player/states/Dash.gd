@@ -18,6 +18,8 @@ onready var tween = $SpeedTween
 onready var free_state = owner.get_node("StateMachine/Free")
 onready var sprite = owner.get_node("Sprite")
 onready var animation = owner.get_node("Animation")
+onready var player = owner
+onready var wall_detector = owner.get_node("WallDetector")
 
 
 func _ready():
@@ -47,9 +49,16 @@ func exit() -> void:
 func _on_tween_completed(object, key) -> void:
 	if owner.is_on_floor():
 		_state_machine.transition_to("Free/Move", {"motion":self.direction*speed})
+	elif (player.is_on_wall() and
+	wall_detector.is_colliding()):
+		_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
 	else:
 		_state_machine.transition_to("Free/Fall", {"motion":self.direction*speed})
 
 
 func is_on_cooldown() -> bool:
 	return cooldown.time_left > 0
+
+
+func get_x_input():
+	return Input.get_action_strength("right") - Input.get_action_strength("left")
