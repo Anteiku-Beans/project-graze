@@ -23,7 +23,7 @@ func _ready():
 	fall.direction = FALL_DIRECTION
 
 
-func _on_wall_detector_body_exited(body: Node):
+func _on_wall_exited(direction_x: int):
 	_state_machine.transition_to("Free/Fall")
 
 
@@ -33,7 +33,7 @@ func enter(data: Dictionary = {}):
 	wall_direction_str = "right" if wall_direction_x == 1 else "left"
 	wall_direction_opposite_str = "right" if wall_direction_str == "left" else "left"
 	sprite.request("wall_slide")
-	wall_detector.connect("body_exited", self, "_on_wall_detector_body_exited")
+	wall_detector.connect("wall_exited", self, "_on_wall_exited")
 
 func physics_process(delta):
 	fall.velocity = fall.calculate_velocity(delta)
@@ -44,7 +44,7 @@ func physics_process(delta):
 
 
 func exit():
-	wall_detector.disconnect("body_exited", self, "_on_wall_detector_body_exited")
+	wall_detector.disconnect("wall_exited", self, "_on_wall_exited")
 
 
 func unhandled_input(event):

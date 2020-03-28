@@ -1,55 +1,65 @@
 extends Node2D
 
-const X_LEFT = -1
-const X_RIGHT = 1
-const X_NO_DIRECTION = 0
+const LEFT_X = -1
+const RIGHT_X = 1
+const NO_DIRECTION_X = 0
 
 onready var player = get_parent()
-onready var RightDetector = $WallDetectorRight
-onready var LeftDetector = $WallDetectorLeft
+onready var wall_detector_right = $WallDetectorRight
+onready var wall_detector_left = $WallDetectorLeft
+onready var FloorDetector = $FloorDetector
+onready var CeilingDetector = $CeilingDetector
 
-signal body_entered
-signal body_exited
+signal wall_entered
+signal wall_exited
 
 func _ready():
-	RightDetector.connect("body_entered", self, "_on_body_entered")
-	LeftDetector.connect("body_entered", self, "_on_body_entered")
-	RightDetector.connect("body_exited", self, "_on_body_exited")
-	LeftDetector.connect("body_exited", self, "_on_body_exited")
+	wall_detector_right.connect("body_entered", self, "_on_wall_entered_right")
+	wall_detector_left.connect("body_entered", self, "_on_wall_entered_left")
+	wall_detector_right.connect("body_exited", self, "_on_wall_exited_right")
+	wall_detector_left.connect("body_exited", self, "_on_wall_exited_left")
 
 
-func _on_body_entered(body: Node):
-	emit_signal("body_entered", body)
+func _on_wall_entered_right(body: Node):
+	emit_signal("wall_entered", RIGHT_X)
 
 
-func _on_body_exited(body: Node):
-	emit_signal("body_exited", body)
+func _on_wall_entered_left(body: Node):
+	emit_signal("wall_entered", LEFT_X)
 
 
-func is_colliding() -> bool:
-	var left_bodies = LeftDetector.get_overlapping_bodies()
-	var right_bodies = RightDetector.get_overlapping_bodies()
+func _on_wall_exited_right(body: Node):
+	emit_signal("wall_exited", RIGHT_X)
+
+
+func _on_wall_exited_left(body: Node):
+	emit_signal("wall_exited", LEFT_X)
+
+
+func is_on_wall() -> bool:
+	var left_bodies = wall_detector_left.get_overlapping_bodies()
+	var right_bodies = wall_detector_right.get_overlapping_bodies()
 	return len(left_bodies) + len(right_bodies) > 0
 
 
 func get_wall_direction_x() -> int:
-	var left_bodies = LeftDetector.get_overlapping_bodies()
+	var left_bodies = wall_detector_left.get_overlapping_bodies()
 	if len(left_bodies) > 0:
-		return X_LEFT
+		return LEFT_X
 
-	var right_bodies = RightDetector.get_overlapping_bodies()
+	var right_bodies = wall_detector_right.get_overlapping_bodies()
 	if len(right_bodies) > 0:
-		return X_RIGHT
+		return RIGHT_X
 	
-	return X_NO_DIRECTION
+	return NO_DIRECTION_X
 
 
 func get_wall_direction() -> Vector2:
-	var left_bodies = LeftDetector.get_overlapping_bodies()
+	var left_bodies = wall_detector_left.get_overlapping_bodies()
 	if len(left_bodies) > 0:
 		return Vector2.LEFT
 
-	var right_bodies = RightDetector.get_overlapping_bodies()
+	var right_bodies = wall_detector_right.get_overlapping_bodies()
 	if len(right_bodies) > 0:
 		return Vector2.RIGHT
 	

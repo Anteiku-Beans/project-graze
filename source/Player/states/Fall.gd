@@ -42,7 +42,7 @@ func physics_process(delta):
 	
 #	Transition to wall slide
 	if (player.is_on_wall() and
-	wall_detector.is_colliding() and
+	wall_detector.is_on_wall() and
 	get_x_input() == wall_detector.get_wall_direction_x()):
 		_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
 		return

@@ -53,7 +53,7 @@ func _on_tween_completed(object, key) -> void:
 	if owner.is_on_floor():
 		_state_machine.transition_to("Free/Move", {"motion":self.direction*speed})
 	elif (player.is_on_wall() and
-	wall_detector.is_colliding()):
+	wall_detector.is_on_wall()):
 		_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
 	else:
 		_state_machine.transition_to("Free/Fall", {"motion":self.direction*speed})
