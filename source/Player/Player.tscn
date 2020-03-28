@@ -126,7 +126,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=7]
 length = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:animation")
+tracks/0/path = NodePath("Sprite:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -135,10 +135,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "fall" ]
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:playing")
+tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -147,27 +147,15 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Sprite:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -191,7 +179,7 @@ shape = SubResource( 1 )
 script = ExtResource( 42 )
 
 [node name="WallDetectorRight" type="Area2D" parent="WallDetector"]
-position = Vector2( 6, -7 )
+position = Vector2( 5, -7 )
 collision_layer = 0
 collision_mask = 4
 
@@ -201,17 +189,17 @@ z_index = 1
 shape = SubResource( 2 )
 
 [node name="WallDetectorLeft" type="Area2D" parent="WallDetector"]
+position = Vector2( -5, -7 )
 collision_layer = 0
 collision_mask = 4
 
 [node name="Shape" type="CollisionShape2D" parent="WallDetector/WallDetectorLeft"]
 modulate = Color( 0.101961, 0, 1, 1 )
-position = Vector2( -6, -7 )
 z_index = 1
 shape = SubResource( 2 )
 
 [node name="FloorDetector" type="Area2D" parent="WallDetector"]
-position = Vector2( 0, 8 )
+position = Vector2( 0, 7 )
 collision_layer = 0
 collision_mask = 4
 
@@ -220,7 +208,7 @@ z_index = 1
 shape = SubResource( 8 )
 
 [node name="CeilingDetector" type="Area2D" parent="WallDetector"]
-position = Vector2( 0, -22 )
+position = Vector2( 0, -21 )
 collision_layer = 0
 collision_mask = 4
 
@@ -230,8 +218,10 @@ shape = SubResource( 9 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 8 )
+scale = Vector2( 1.15, 0.87 )
 frames = SubResource( 3 )
-animation = "idle"
+animation = "fall"
+frame = 3
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -293,7 +283,7 @@ script = ExtResource( 23 )
 [node name="SpeedTween" type="Tween" parent="StateMachine/Dash"]
 
 [node name="Cooldown" type="Timer" parent="StateMachine/Dash"]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="WallSlide" type="Node" parent="StateMachine"]

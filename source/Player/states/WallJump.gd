@@ -16,6 +16,7 @@ onready var free = get_parent()
 onready var timer = $MaxJumpTime
 onready var sprite = owner.get_node("Sprite")
 onready var player = owner
+onready var wall_detector = owner.get_node("WallDetector")
 
 
 func _ready():
@@ -62,7 +63,7 @@ func physics_process(delta: float):
 	owner.move_and_slide(total_velocity, Vector2.UP)
 	
 #	Transition to landing state
-	if owner.is_on_floor():
+	if wall_detector.is_on_floor():
 		if free.move.velocity == Vector2.ZERO:
 			_state_machine.transition_to("Free/Idle")
 		else:

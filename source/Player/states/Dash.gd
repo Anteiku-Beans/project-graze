@@ -25,18 +25,19 @@ onready var wall_detector = owner.get_node("WallDetector")
 func _ready():
 	i_speed = free_state.move_speed * MOVE_SPEED_MULTIPLIER
 	f_speed = free_state.move_speed
-	tween.connect("tween_completed", self, "_on_tween_completed")
-	
+
 
 func enter(data: Dictionary = {}) -> void:
 	direction = data["direction"]
 	player.update_facing(direction)
+	speed = i_speed
+	tween.connect("tween_completed", self, "_on_tween_completed")
 	tween.interpolate_property(self, "speed", i_speed, f_speed, DASH_TIME, T_TRANS, T_EASE)
 	tween.start()
 	cooldown.start()
 	sprite.request("dash")
 	animation.play("dash")
-	if player.is_on_floor():
+	if wall_detector.is_on_floor():
 		summon_ground_particles()
 
 
@@ -47,13 +48,13 @@ func physics_process(delta) -> void:
 func exit() -> void:
 	tween.reset_all()
 	tween.stop_all()
+	tween.disconnect("tween_completed", self, "_on_tween_completed")
 
 
 func _on_tween_completed(object, key) -> void:
-	if owner.is_on_floor():
+	if wall_detector.is_on_floor():
 		_state_machine.transition_to("Free/Move", {"motion":self.direction*speed})
-	elif (player.is_on_wall() and
-	wall_detector.is_on_wall()):
+	elif wall_detector.is_on_wall():
 		_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
 	else:
 		_state_machine.transition_to("Free/Fall", {"motion":self.direction*speed})

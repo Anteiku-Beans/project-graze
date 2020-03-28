@@ -2,6 +2,7 @@ extends State
 
 onready var free = get_parent()
 onready var sprite = owner.get_node("Sprite")
+onready var wall_detector = owner.get_node("WallDetector")
 
 func enter(data: Dictionary = {}):
 	free.enter(data)
@@ -10,13 +11,12 @@ func enter(data: Dictionary = {}):
 
 func physics_process(delta: float):
 	free.physics_process(delta)
-	if not owner.is_on_floor():
+	if not wall_detector.is_on_floor():
 		_state_machine.transition_to("Free/Fall")
 		return
 	if free.get_move_direction() != Vector2.ZERO:
 		_state_machine.transition_to("Free/Move")
 		return
-
 
 
 func exit():

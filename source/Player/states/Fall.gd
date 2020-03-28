@@ -22,6 +22,8 @@ func enter(data: Dictionary = {}):
 	free.enter(data)
 	fall.velocity = Vector2.ZERO
 	sprite.request("fall")
+	wall_detector.connect("floor_entered", self, "_on_floor_entered")
+	wall_detector.connect("wall_entered", self, "_on_wall_entered")
 
 
 func physics_process(delta):
@@ -31,29 +33,28 @@ func physics_process(delta):
 	var total_velocity = fall.velocity + free.move.velocity
 	player.move_and_slide(total_velocity, Vector2.UP)
 	
-	# land
-	if (player.is_on_floor()):
-		if (free.get_move_direction().x != 0):
-			_state_machine.transition_to("Free/Move")
-			return
-		else:
-			_state_machine.transition_to("Free/Idle")
-			return
-	
-#	Transition to wall slide
-	if (player.is_on_wall() and
-	wall_detector.is_on_wall() and
-	get_x_input() == wall_detector.get_wall_direction_x()):
-		_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
-		return
+#	Wall Slide
+	if wall_detector.is_on_wall() and get_x_input() == wall_detector.get_wall_direction_x():
+		_state_machine.transition_to("WallSlide", {
+			"wall_direction_x": wall_detector.get_wall_direction_x(),
+		})
 
-
-func exit():
-	free.exit()
+# Land
+func _on_floor_entered():
+	if (free.get_move_direction().x != 0):
+		_state_machine.transition_to("Free/Move")
+	else:
+		_state_machine.transition_to("Free/Idle")
 
 
 func unhandled_input(event):
 	free.unhandled_input(event)
+
+
+func exit():
+	wall_detector.disconnect("floor_entered", self, "_on_floor_entered")
+	wall_detector.disconnect("wall_entered", self, "_on_wall_entered")
+	free.exit()
 
 
 func get_x_input():

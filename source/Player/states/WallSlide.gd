@@ -39,7 +39,7 @@ func physics_process(delta):
 	fall.velocity = fall.calculate_velocity(delta)
 	player.move_and_slide(fall.velocity, Vector2.UP)
 	
-	if player.is_on_floor():
+	if wall_detector.is_on_floor():
 		_state_machine.transition_to("Free/Idle")
 
 

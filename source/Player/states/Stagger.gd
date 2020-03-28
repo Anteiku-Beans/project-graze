@@ -4,6 +4,7 @@ const ON_HIT_PARTICLES = preload("res://assets/effects/on_hit/on_hit_particles.t
 
 onready var timer = $Timer
 onready var sprite = owner.get_node("Sprite")
+onready var wall_detector = owner.get_node("WallDetector")
 
 func enter(data: Dictionary = {}) -> void:
 	timer.connect("timeout", self, "_on_timer_timeout")
@@ -16,7 +17,7 @@ func exit() -> void:
 	timer.disconnect("timeout", self, "_on_timer_timeout")
 
 func _on_timer_timeout() -> void:
-	if owner.is_on_floor():
+	if wall_detector.is_on_floor():
 		_state_machine.transition_to("Free/Idle")
 	else:
 		_state_machine.transition_to("Free/Fall")

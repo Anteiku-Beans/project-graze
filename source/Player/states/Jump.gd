@@ -12,6 +12,7 @@ onready var free = get_parent()
 onready var timer = $MaxJumpTime
 onready var sprite = owner.get_node("Sprite")
 onready var player = owner
+onready var wall_detector = owner.get_node("WallDetector")
 
 
 func _ready():
@@ -28,6 +29,8 @@ func enter(data: Dictionary = {}):
 	timer.start()
 	is_jumping = true
 	sprite.request("jump")
+	wall_detector.connect("floor_entered", self, "_on_floor_entered")
+	wall_detector.connect("ceiling_entered", self, "_on_ceiling_entered")
 
 
 func physics_process(delta: float):
@@ -44,17 +47,19 @@ func physics_process(delta: float):
 #	Apply movement
 	var total_velocity: Vector2 = jump.velocity + free.move.velocity
 	player.move_and_slide(total_velocity, Vector2.UP)
-	
+
+
 #	Transition to landing state
-	if player.is_on_floor():
-		if free.move.velocity == Vector2.ZERO:
-			_state_machine.transition_to("Free/Idle")
-		else:
-			_state_machine.transition_to("Free/Move")
-	
+func _on_floor_entered():
+	if free.move.velocity == Vector2.ZERO:
+		_state_machine.transition_to("Free/Idle")
+	else:
+		_state_machine.transition_to("Free/Move")
+
+
 #	Transition to Fall if you hit the ceiling
-	if player.is_on_ceiling():
-		_state_machine.transition_to("Free/Fall")
+func _on_ceiling_entered():
+	_state_machine.transition_to("Free/Fall")
 
 
 func _on_timer_timeout():
@@ -70,4 +75,6 @@ func unhandled_input(event):
 
 func exit():
 	timer.stop()
+	wall_detector.disconnect("floor_entered", self, "_on_floor_entered")
+	wall_detector.disconnect("ceiling_entered", self, "_on_ceiling_entered")
 	free.exit()
