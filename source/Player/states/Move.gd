@@ -3,6 +3,7 @@ extends State
 onready var free = get_parent()
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
+onready var player = owner
 
 
 func enter(data: Dictionary = {}):
@@ -12,7 +13,7 @@ func enter(data: Dictionary = {}):
 
 func physics_process(delta: float):
 	free.physics_process(delta)
-	owner.move_and_slide(free.move.velocity, Vector2.ZERO)
+	player.move_and_slide(free.move.velocity, Vector2.ZERO)
 	
 #	Transition to Idle
 	if free.move.velocity == Vector2.ZERO:

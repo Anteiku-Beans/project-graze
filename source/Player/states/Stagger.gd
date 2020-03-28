@@ -5,6 +5,8 @@ const ON_HIT_PARTICLES = preload("res://assets/effects/on_hit/on_hit_particles.t
 onready var timer = $Timer
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
+onready var player = owner
+
 
 func enter(data: Dictionary = {}) -> void:
 	timer.connect("timeout", self, "_on_timer_timeout")
@@ -24,4 +26,4 @@ func _on_timer_timeout() -> void:
 
 func on_hit_particles() -> void:
 	var new_particles = ON_HIT_PARTICLES.instance()
-	owner.call_deferred("add_child", new_particles)
+	player.call_deferred("add_child", new_particles)

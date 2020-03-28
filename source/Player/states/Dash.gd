@@ -42,7 +42,7 @@ func enter(data: Dictionary = {}) -> void:
 
 
 func physics_process(delta) -> void:
-	owner.move_and_slide(direction * speed, Vector2.UP)
+	player.move_and_slide(direction * speed, Vector2.UP)
 
 
 func exit() -> void:

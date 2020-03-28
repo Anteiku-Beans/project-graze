@@ -60,7 +60,7 @@ func physics_process(delta: float):
 	
 #	Apply movement
 	var total_velocity = jump.velocity + free.move.velocity + rebound.velocity
-	owner.move_and_slide(total_velocity, Vector2.UP)
+	player.move_and_slide(total_velocity, Vector2.UP)
 	
 #	Transition to landing state
 	if wall_detector.is_on_floor():

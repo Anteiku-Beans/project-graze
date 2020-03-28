@@ -5,6 +5,7 @@ var _active: = false
 onready var hitbox = $Hitbox
 onready var sprite = owner.get_node("Sprite")
 onready var state_machine = owner.get_node("StateMachine")
+onready var player = owner
 
 signal hit
 
@@ -51,7 +52,7 @@ func _on_state_changed(prev_state: String, new_state: String):
 
 func _set_hitbox_enabled(enable: bool):
 	if enable:
-		var hitbox_direction: int = owner.get_facing_int()
+		var hitbox_direction: int = player.get_facing_int()
 		_set_hitbox_direction(hitbox_direction)
 		hitbox.set_deferred("monitoring", true)
 	else:

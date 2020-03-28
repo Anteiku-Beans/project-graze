@@ -13,6 +13,7 @@ var move_speed: float = DEFAULT_MOVE_SPEED
 onready var hitbox = owner.get_node("Hitbox")
 onready var sprite = owner.get_node("Sprite")
 onready var attack = owner.get_node("Attack")
+onready var player = owner
 
 
 func _ready():
@@ -30,7 +31,7 @@ func enter(data: Dictionary = {}) -> void:
 
 func physics_process(delta):
 	update_move(delta)
-	owner.update_facing(get_move_direction())
+	player.update_facing(get_move_direction())
 
 
 func update_move(delta) -> void:
@@ -67,6 +68,6 @@ func calculate_direction():
 	if x_input != 0:
 		new_direction = Vector2(x_input, 0)
 	else:
-		new_direction = owner.get_facing_vector2()
+		new_direction = player.get_facing_vector2()
 		
 	return new_direction

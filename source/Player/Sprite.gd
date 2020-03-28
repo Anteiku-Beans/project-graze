@@ -12,7 +12,7 @@ onready var player = get_parent()
 
 
 func _ready():
-	owner.connect("facing_updated", self, "_on_facing_updated")
+	player.connect("facing_updated", self, "_on_facing_updated")
 
 
 func request(anim_name: String, priority: bool = false):
