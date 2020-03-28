@@ -48,7 +48,7 @@
 extents = Vector2( 5, 14 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 1, 7 )
+extents = Vector2( 1, 3 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -57,14 +57,19 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 41 ) ],
-"loop": false,
-"name": "wall_slide",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
 "loop": true,
 "name": "move",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "fall",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "attack",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
@@ -77,20 +82,15 @@ animations = [ {
 "name": "stagger",
 "speed": 1.0
 }, {
+"frames": [ ExtResource( 41 ) ],
+"loop": false,
+"name": "wall_slide",
+"speed": 1.0
+}, {
 "frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
 "loop": true,
 "name": "dash",
 "speed": 20.0
-}, {
-"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "fall",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "attack",
-"speed": 12.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=4]
@@ -206,7 +206,7 @@ z_index = 1
 shape = SubResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 7 )
+position = Vector2( 0, 8 )
 frames = SubResource( 3 )
 animation = "idle"
 playing = true
