@@ -1,6 +1,6 @@
 extends State
 
-const ON_HIT_PARTICLES = preload("res://assets/effects/on_hit_particles.tscn")
+const ON_HIT_PARTICLES = preload("res://assets/effects/on_hit/on_hit_particles.tscn")
 
 onready var timer = $Timer
 onready var sprite = owner.get_node("Sprite")

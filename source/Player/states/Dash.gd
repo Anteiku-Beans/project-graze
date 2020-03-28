@@ -1,8 +1,8 @@
 extends State
 
-# Tween constants
-#const I_SPEED = 1000.0
-#const F_SPEED = 120.0
+const GROUND_PARTICLES = preload("res://source/Effects/DashGroundParticles/DashGroundParticles.tscn")
+const GROUND_PARTICLES_OFFSET = Vector2(0,-7)
+
 const MOVE_SPEED_MULTIPLIER = 5
 const DASH_TIME = 0.20
 const T_TRANS = Tween.TRANS_SINE
@@ -36,6 +36,8 @@ func enter(data: Dictionary = {}) -> void:
 	cooldown.start()
 	sprite.request("dash")
 	animation.play("dash")
+	if player.is_on_floor():
+		summon_ground_particles()
 
 
 func physics_process(delta) -> void:
@@ -63,3 +65,11 @@ func is_on_cooldown() -> bool:
 
 func get_x_input():
 	return Input.get_action_strength("right") - Input.get_action_strength("left")
+
+
+func summon_ground_particles():
+	var new_ground_particles = GROUND_PARTICLES.instance()
+	get_tree().get_root().call_deferred("add_child", new_ground_particles)
+	new_ground_particles.global_position = player.global_position
+	new_ground_particles.global_position += GROUND_PARTICLES_OFFSET
+	new_ground_particles.scale.x = player.get_facing_int()
