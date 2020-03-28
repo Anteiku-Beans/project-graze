@@ -5,8 +5,6 @@ const JUMP_DAMP = Vector2(0, 2000)
 const JUMP_DIRECTION = Vector2.UP
 const JUMP_MAX_SPEED = Vector2(0, 350)
 
-#const REBOUND_VELOCITY_INITIAL = Vector2(1000, 0)
-#const REBOUND_DAMP = Vector2(6666.666667, 0)
 const REBOUND_VELOCITY_INITIAL = Vector2(1000, 0)
 const REBOUND_DAMP = Vector2(8000, 0)
 
@@ -70,10 +68,6 @@ func physics_process(delta: float):
 		else:
 			_state_machine.transition_to("Free/Move")
 
-##	Transition to wall slide
-#	if (owner.is_on_wall() and
-#		len(owner.get_node("WallDetector").get_overlapping_bodies()) > 0):
-#		_state_machine.transition_to("WallSlide")
 
 func _on_timer_timeout():
 	is_jumping = false

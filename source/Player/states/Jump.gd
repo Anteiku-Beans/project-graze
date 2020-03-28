@@ -11,6 +11,7 @@ var is_jumping: bool
 onready var free = get_parent()
 onready var timer = $MaxJumpTime
 onready var sprite = owner.get_node("Sprite")
+onready var player = owner
 
 
 func _ready():
@@ -42,17 +43,17 @@ func physics_process(delta: float):
 	
 #	Apply movement
 	var total_velocity: Vector2 = jump.velocity + free.move.velocity
-	owner.move_and_slide(total_velocity, Vector2.UP)
+	player.move_and_slide(total_velocity, Vector2.UP)
 	
 #	Transition to landing state
-	if owner.is_on_floor():
+	if player.is_on_floor():
 		if free.move.velocity == Vector2.ZERO:
 			_state_machine.transition_to("Free/Idle")
 		else:
 			_state_machine.transition_to("Free/Move")
 	
 #	Transition to Fall if you hit the ceiling
-	if owner.is_on_ceiling():
+	if player.is_on_ceiling():
 		_state_machine.transition_to("Free/Fall")
 
 

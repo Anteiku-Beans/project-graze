@@ -11,6 +11,7 @@ onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
 onready var player = owner
 
+
 func _ready():
 	fall.acceleration = FALL_ACCELERATION
 	fall.direction = FALL_DIRECTION
@@ -41,9 +42,11 @@ func physics_process(delta):
 	
 #	Transition to wall slide
 	if (player.is_on_wall() and
-		wall_detector.is_colliding() and
-		get_x_input() == wall_detector.get_wall_direction_x()):
-				_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
+	wall_detector.is_colliding() and
+	get_x_input() == wall_detector.get_wall_direction_x()):
+		_state_machine.transition_to("WallSlide", {"wall_direction_x":wall_detector.get_wall_direction_x()})
+		return
+
 
 func exit():
 	free.exit()

@@ -30,6 +30,7 @@ func _ready():
 
 func enter(data: Dictionary = {}) -> void:
 	direction = data["direction"]
+	player.update_facing(direction)
 	tween.interpolate_property(self, "speed", i_speed, f_speed, DASH_TIME, T_TRANS, T_EASE)
 	tween.start()
 	cooldown.start()

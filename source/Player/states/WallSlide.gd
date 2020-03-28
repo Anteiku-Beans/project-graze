@@ -57,7 +57,6 @@ func unhandled_input(event):
 		return
 	if event.is_action_pressed("dash"):
 		var dash_direction = Vector2(-wall_direction_x, 0)
-		player.flip_facing()
 		_state_machine.transition_to("Dash", {"direction":dash_direction})
 		return
 	if event.is_action_pressed(wall_direction_opposite_str):
