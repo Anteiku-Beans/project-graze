@@ -14,7 +14,7 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 134.0
+margin_bottom = 116.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -49,6 +49,9 @@ position = Vector2( 331.578, 89.4735 )
 
 [node name="Player" parent="Level2" index="1"]
 position = Vector2( 211.759, 62.1986 )
+
+[node name="Sprite" parent="Level2/Player" index="2"]
+frame = 1
 
 [editable path="Level2"]
 

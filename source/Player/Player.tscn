@@ -50,38 +50,18 @@ extents = Vector2( 5, 14 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1, 3 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 1 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5, 1 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 29 ) ],
 "loop": false,
 "name": "idle",
 "speed": 1.0
-}, {
-"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "jump",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
-"loop": true,
-"name": "move",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "fall",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "attack",
-"speed": 12.0
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": false,
@@ -97,17 +77,37 @@ animations = [ {
 "loop": true,
 "name": "dash",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "move",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "fall",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "attack",
+"speed": 12.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 22.9596
 height = 10.2653
 
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=7]
 radius = 2.82003
 height = 7.57433
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
@@ -123,7 +123,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1.15, 0.87 ), Vector2( 0.95, 1.053 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:playing")
@@ -205,7 +205,7 @@ collision_mask = 4
 
 [node name="Shape" type="CollisionShape2D" parent="WallDetector/FloorDetector"]
 z_index = 1
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="CeilingDetector" type="Area2D" parent="WallDetector"]
 position = Vector2( 0, -21 )
@@ -214,14 +214,14 @@ collision_mask = 4
 
 [node name="Shape" type="CollisionShape2D" parent="WallDetector/CeilingDetector"]
 z_index = 1
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 8 )
 scale = Vector2( 1.15, 0.87 )
-frames = SubResource( 3 )
+frames = SubResource( 5 )
 animation = "fall"
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -308,7 +308,7 @@ script = ExtResource( 36 )
 
 [node name="DetectionArea" type="CollisionShape2D" parent="Graze"]
 position = Vector2( 0, -6 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "Player",
@@ -319,12 +319,12 @@ script = ExtResource( 15 )
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -2 )
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 
 [node name="HP" type="Node" parent="."]
 script = ExtResource( 16 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/dash = SubResource( 6 )
-anims/default = SubResource( 7 )
+anims/dash = SubResource( 8 )
+anims/default = SubResource( 9 )
