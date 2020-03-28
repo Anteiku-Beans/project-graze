@@ -19,12 +19,10 @@ func _ready():
 
 
 func _on_body_entered(body: Node):
-	print("body entered: ", get_wall_direction_x())
 	emit_signal("body_entered", body)
 
 
 func _on_body_exited(body: Node):
-	print("body exited: ", get_wall_direction_x())
 	emit_signal("body_exited", body)
 
 
