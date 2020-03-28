@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Tanjiro/move1.png" type="Texture" id=2]
@@ -108,7 +108,7 @@ radius = 2.82003
 height = 7.57433
 
 [sub_resource type="Animation" id=8]
-length = 0.2
+length = 0.1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -117,16 +117,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.16, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1.15, 0.87 ), Vector2( 0.95, 1.053 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1.15, 0.87 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=9]
 length = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:playing")
+tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -134,38 +134,32 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "wall_slide"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.1, 0.909 ), Vector2( 1, 1 ) ]
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
 position = Vector2( 0, -7 )
+scale = Vector2( 1.1, 0.909 )
 collision_mask = 4
 script = ExtResource( 1 )
 
@@ -221,6 +215,7 @@ position = Vector2( 0, 8 )
 scale = Vector2( 1.15, 0.87 )
 frames = SubResource( 5 )
 animation = "fall"
+frame = 1
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -326,3 +321,6 @@ script = ExtResource( 16 )
 autoplay = "default"
 anims/dash = SubResource( 8 )
 anims/default = SubResource( 9 )
+anims/wall_slide = SubResource( 10 )
+next/dash = "default"
+next/wall_slide = "default"

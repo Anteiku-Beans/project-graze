@@ -15,6 +15,7 @@ var wall_direction_x: int
 onready var player = owner
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
+onready var animation = owner.get_node("Animation")
 
 
 func _ready():
@@ -34,6 +35,8 @@ func enter(data: Dictionary = {}):
 	wall_direction_opposite_str = "right" if wall_direction_str == "left" else "left"
 	sprite.request("wall_slide")
 	wall_detector.connect("wall_exited", self, "_on_wall_exited")
+	animation.play("wall_slide")
+
 
 func physics_process(delta):
 	fall.velocity = fall.calculate_velocity(delta)
