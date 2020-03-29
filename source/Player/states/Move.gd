@@ -1,13 +1,11 @@
 extends State
 
-#const GROUND_PARTICLES = preload("res://source/Effects/MoveGroundParticles/MoveGroundParticles.tscn")
 const GROUND_PARTICLES_OFFSET = Vector2(0, -8)
 const GROUND_PARTICLES_TEXTURE_LEFT = preload("res://assets/effects/move/move_ground_particles_left.png")
 const GROUND_PARTICLES_TEXTURE_RIGHT = preload("res://assets/effects/move/move_ground_particles_right.png")
 
 const RIGHT_X = 1
 const LEFT_X = -1
-
 
 onready var free = get_parent()
 onready var sprite = owner.get_node("Sprite")
@@ -21,6 +19,7 @@ func _ready():
 	ground_particles.position += GROUND_PARTICLES_OFFSET
 	ground_particles.emitting = false
 
+
 func enter(data: Dictionary = {}):
 	free.enter(data)
 	sprite.request("move")
@@ -29,6 +28,7 @@ func enter(data: Dictionary = {}):
 	else: 
 		ground_particles.texture = GROUND_PARTICLES_TEXTURE_LEFT
 	ground_particles.emitting = true
+
 
 func physics_process(delta: float):
 	free.physics_process(delta)

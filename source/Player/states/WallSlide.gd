@@ -1,5 +1,9 @@
 extends State
 
+const PARTICLES_OFFSET = Vector2(0, -9)
+const PARTICLES_TEXTURE_LEFT = preload("res://assets/effects/wall_slide/wall_slide_particles_left.png")
+const PARTICLES_TEXTURE_RIGHT = preload("res://assets/effects/wall_slide/wall_slide_particles_right.png")
+
 const X_LEFT = -1
 const X_RIGHT = 1
 
@@ -16,12 +20,16 @@ onready var player = owner
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
 onready var animation = owner.get_node("Animation")
+onready var wall_slide_particles = owner.get_node("WallSlideParticles")
 
 
 func _ready():
 	fall.acceleration = FALL_ACCELERATION
 	fall.max_speed = FALL_SPEED_MAX
 	fall.direction = FALL_DIRECTION
+	
+	wall_slide_particles.emitting = false
+	wall_slide_particles.position += PARTICLES_OFFSET
 
 
 func _on_wall_exited(direction_x: int):
@@ -36,7 +44,12 @@ func enter(data: Dictionary = {}):
 	sprite.request("wall_slide")
 	wall_detector.connect("wall_exited", self, "_on_wall_exited")
 	animation.play("wall_slide")
-
+	
+	if wall_direction_x == X_LEFT:
+		wall_slide_particles.texture = PARTICLES_TEXTURE_LEFT
+	else: 
+		wall_slide_particles.texture = PARTICLES_TEXTURE_RIGHT
+	wall_slide_particles.emitting = true
 
 func physics_process(delta):
 	fall.velocity = fall.calculate_velocity(delta)
@@ -49,6 +62,7 @@ func physics_process(delta):
 func exit():
 	wall_detector.disconnect("wall_exited", self, "_on_wall_exited")
 	animation.play("default")
+	wall_slide_particles.emitting = false
 
 
 func unhandled_input(event):
