@@ -231,7 +231,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, 8 )
 frames = SubResource( 5 )
 animation = "fall"
-frame = 2
+frame = 3
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -255,6 +255,10 @@ initial_state = NodePath("Free/Idle")
 
 [node name="Free" type="Node" parent="StateMachine"]
 script = ExtResource( 18 )
+
+[node name="GroundPuffCooldown" type="Timer" parent="StateMachine/Free"]
+wait_time = 0.3
+one_shot = true
 
 [node name="Idle" type="Node" parent="StateMachine/Free"]
 script = ExtResource( 19 )

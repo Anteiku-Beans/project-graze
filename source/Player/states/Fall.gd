@@ -11,6 +11,7 @@ onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
 onready var player = owner
 
+signal land
 
 func _ready():
 	fall.acceleration = FALL_ACCELERATION
@@ -41,6 +42,7 @@ func physics_process(delta):
 
 # Land
 func _on_floor_entered():
+	emit_signal("land")
 	if (free.get_move_direction().x != 0):
 		_state_machine.transition_to("Free/Move")
 	else:

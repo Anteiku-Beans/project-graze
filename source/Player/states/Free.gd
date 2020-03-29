@@ -1,5 +1,8 @@
 extends State
 
+const GROUND_PARTICLES = preload("res://source/Effects/JumpGroundParticles/JumpGroundParticles.tscn")
+const GROUND_PARTICLES_OFFSET = Vector2(0,-7)
+
 const FACING_LEFT = -1
 const FACING_RIGHT = 1
 
@@ -14,6 +17,9 @@ onready var hitbox = owner.get_node("Hitbox")
 onready var sprite = owner.get_node("Sprite")
 onready var attack = owner.get_node("Attack")
 onready var player = owner
+onready var fall = $Fall
+onready var jump = $Jump
+onready var ground_puff_cooldown = $GroundPuffCooldown
 
 
 func _ready():
@@ -22,6 +28,9 @@ func _ready():
 	move.max_speed = Vector2(move_speed, 0)
 
 	hitbox.connect("hit", self, "_on_hit")
+	
+	jump.connect("jump", self, "summon_ground_particles")
+	fall.connect("land", self, "summon_ground_particles")
 
 
 func enter(data: Dictionary = {}) -> void:
@@ -71,3 +80,12 @@ func calculate_direction():
 		new_direction = player.get_facing_vector2()
 		
 	return new_direction
+
+
+func summon_ground_particles():
+	if ground_puff_cooldown.is_stopped():
+		var new_ground_particles = GROUND_PARTICLES.instance()
+		get_tree().get_root().add_child(new_ground_particles)
+		new_ground_particles.global_position = player.global_position
+		new_ground_particles.global_position += GROUND_PARTICLES_OFFSET
+		ground_puff_cooldown.start()

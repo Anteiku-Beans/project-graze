@@ -19,5 +19,6 @@ animations = [ {
 
 [node name="DashGroundParticles" type="AnimatedSprite"]
 frames = SubResource( 1 )
+frame = 2
 playing = true
 script = ExtResource( 1 )

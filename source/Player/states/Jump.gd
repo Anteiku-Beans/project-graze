@@ -17,6 +17,7 @@ onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
 onready var animation = owner.get_node("Animation")
 
+signal jump
 
 func _ready():
 	jump.acceleration = JUMP_ACCELERATION
@@ -38,6 +39,7 @@ func enter(data: Dictionary = {}):
 	wall_detector.connect("ceiling_entered", self, "_on_ceiling_entered")
 	sprite.request("jump")
 	animation.play("jump")
+	emit_signal("jump")
 
 
 func physics_process(delta: float):
