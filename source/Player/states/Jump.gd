@@ -13,6 +13,7 @@ onready var timer = $MaxJumpTime
 onready var sprite = owner.get_node("Sprite")
 onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
+onready var animation = owner.get_node("Animation")
 
 
 func _ready():
@@ -31,6 +32,7 @@ func enter(data: Dictionary = {}):
 	sprite.request("jump")
 	wall_detector.connect("floor_entered", self, "_on_floor_entered")
 	wall_detector.connect("ceiling_entered", self, "_on_ceiling_entered")
+	animation.play("jump")
 
 
 func physics_process(delta: float):
@@ -77,4 +79,5 @@ func exit():
 	timer.stop()
 	wall_detector.disconnect("floor_entered", self, "_on_floor_entered")
 	wall_detector.disconnect("ceiling_entered", self, "_on_ceiling_entered")
+	animation.play("default")
 	free.exit()
