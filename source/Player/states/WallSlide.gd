@@ -48,6 +48,7 @@ func physics_process(delta):
 
 func exit():
 	wall_detector.disconnect("wall_exited", self, "_on_wall_exited")
+	animation.play("default")
 
 
 func unhandled_input(event):

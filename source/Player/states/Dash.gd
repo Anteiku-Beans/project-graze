@@ -49,6 +49,7 @@ func exit() -> void:
 	tween.reset_all()
 	tween.stop_all()
 	tween.disconnect("tween_completed", self, "_on_tween_completed")
+	animation.play("default")
 
 
 func _on_tween_completed(object, key) -> void:
