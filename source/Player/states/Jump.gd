@@ -7,9 +7,11 @@ const JUMP_MAX_SPEED = Vector2(0, 300)
 
 var jump := Motion.new()
 var is_jumping: bool
+var is_jump_released: bool
 
 onready var free = get_parent()
-onready var timer = $MaxJumpTime
+onready var max_timer = $MaxJumpTime
+onready var min_timer = $MinJumpTime
 onready var sprite = owner.get_node("Sprite")
 onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
@@ -22,16 +24,19 @@ func _ready():
 	jump.direction = JUMP_DIRECTION
 	jump.max_speed = JUMP_MAX_SPEED
 	
-	timer.connect("timeout", self, "_on_timer_timeout")
+	max_timer.connect("timeout", self, "_on_max_timer_timeout")
+	min_timer.connect("timeout", self, "_on_min_timer_timeout")
 
 
 func enter(data: Dictionary = {}):
 	free.enter(data)
-	timer.start()
+	max_timer.start()
+	min_timer.start()
 	is_jumping = true
-	sprite.request("jump")
+	is_jump_released = false
 	wall_detector.connect("floor_entered", self, "_on_floor_entered")
 	wall_detector.connect("ceiling_entered", self, "_on_ceiling_entered")
+	sprite.request("jump")
 	animation.play("jump")
 
 
@@ -64,19 +69,29 @@ func _on_ceiling_entered():
 	_state_machine.transition_to("Free/Fall")
 
 
-func _on_timer_timeout():
+func _on_max_timer_timeout():
 	is_jumping = false
+
+
+func _on_min_timer_timeout():
+	if is_jump_released:
+		is_jumping = false
 
 
 func unhandled_input(event):
 	if event.is_action_released("jump"):
-		is_jumping = false
+		if min_timer.is_stopped():
+			is_jumping = false
+		else:
+			is_jump_released = true
+		
 		return
 	free.unhandled_input(event)
 
 
 func exit():
-	timer.stop()
+	max_timer.stop()
+	min_timer.stop()
 	wall_detector.disconnect("floor_entered", self, "_on_floor_entered")
 	wall_detector.disconnect("ceiling_entered", self, "_on_ceiling_entered")
 	animation.play("default")

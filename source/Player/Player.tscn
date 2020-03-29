@@ -231,6 +231,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, 8 )
 frames = SubResource( 5 )
 animation = "fall"
+frame = 2
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -267,6 +268,9 @@ script = ExtResource( 11 )
 [node name="MaxJumpTime" type="Timer" parent="StateMachine/Free/Jump"]
 wait_time = 0.3
 one_shot = true
+
+[node name="MinJumpTime" type="Timer" parent="StateMachine/Free/Jump"]
+wait_time = 0.1
 
 [node name="Fall" type="Node" parent="StateMachine/Free"]
 script = ExtResource( 20 )
