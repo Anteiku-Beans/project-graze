@@ -51,7 +51,7 @@ position = Vector2( 331.578, 89.4735 )
 position = Vector2( 211.759, 62.1986 )
 
 [node name="Sprite" parent="Level2/Player" index="2"]
-frame = 1
+frame = 0
 
 [editable path="Level2"]
 
