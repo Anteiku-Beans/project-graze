@@ -1,21 +1,34 @@
 extends State
 
-const GROUND_PARTICLES = preload("res://source/Effects/MoveGroundParticles/MoveGroundParticles.tscn")
+#const GROUND_PARTICLES = preload("res://source/Effects/MoveGroundParticles/MoveGroundParticles.tscn")
 const GROUND_PARTICLES_OFFSET = Vector2(0, -8)
+const GROUND_PARTICLES_TEXTURE_LEFT = preload("res://assets/effects/move/move_ground_particles_left.png")
+const GROUND_PARTICLES_TEXTURE_RIGHT = preload("res://assets/effects/move/move_ground_particles_right.png")
 
-var current_ground_particles
+const RIGHT_X = 1
+const LEFT_X = -1
+
 
 onready var free = get_parent()
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
 onready var player = owner
+onready var ground_particles = owner.get_node("MoveGroundParticles")
 
+
+func _ready():
+	ground_particles.global_position = player.global_position
+	ground_particles.position += GROUND_PARTICLES_OFFSET
+	ground_particles.emitting = false
 
 func enter(data: Dictionary = {}):
 	free.enter(data)
 	sprite.request("move")
-	summon_ground_particles()
-
+	if player.get_facing_int() == RIGHT_X:
+		ground_particles.texture = GROUND_PARTICLES_TEXTURE_RIGHT
+	else: 
+		ground_particles.texture = GROUND_PARTICLES_TEXTURE_LEFT
+	ground_particles.emitting = true
 
 func physics_process(delta: float):
 	free.physics_process(delta)
@@ -33,7 +46,7 @@ func physics_process(delta: float):
 
 
 func exit():
-	unsummon_ground_particles()
+	ground_particles.emitting = false
 	free.exit()
 
 
@@ -42,16 +55,3 @@ func unhandled_input(event: InputEvent):
 		_state_machine.transition_to('Free/Jump')
 		return
 	free.unhandled_input(event)
-
-
-func summon_ground_particles():
-	current_ground_particles = GROUND_PARTICLES.instance()
-	player.add_child(current_ground_particles)
-	current_ground_particles.global_position = player.global_position
-	current_ground_particles.position += GROUND_PARTICLES_OFFSET
-	current_ground_particles.scale.x = player.get_facing_int()
-
-
-func unsummon_ground_particles():
-	if current_ground_particles != null:
-		current_ground_particles.queue_free()

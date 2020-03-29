@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Tanjiro/move1.png" type="Texture" id=2]
@@ -43,6 +43,7 @@
 [ext_resource path="res://assets/sprites/Tanjiro/wall_slide.png" type="Texture" id=41]
 [ext_resource path="res://source/Player/WallDetector.gd" type="Script" id=42]
 [ext_resource path="res://source/Player/states/WallJump.gd" type="Script" id=43]
+[ext_resource path="res://source/Effects/MoveGroundParticles/MoveGroundParticles.tscn" type="PackedScene" id=44]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 14 )
@@ -50,13 +51,13 @@ extents = Vector2( 5, 14 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1, 3 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 5, 1 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 5, 1 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=14]
 animations = [ {
 "frames": [ ExtResource( 29 ) ],
 "loop": false,
@@ -99,11 +100,11 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=15]
 radius = 22.9596
 height = 10.2653
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=16]
 radius = 2.82003
 height = 7.57433
 
@@ -214,7 +215,7 @@ collision_mask = 4
 
 [node name="Shape" type="CollisionShape2D" parent="WallDetector/FloorDetector"]
 z_index = 1
-shape = SubResource( 3 )
+shape = SubResource( 12 )
 
 [node name="CeilingDetector" type="Area2D" parent="WallDetector"]
 position = Vector2( 0, -21 )
@@ -223,13 +224,14 @@ collision_mask = 4
 
 [node name="Shape" type="CollisionShape2D" parent="WallDetector/CeilingDetector"]
 z_index = 1
-shape = SubResource( 4 )
+shape = SubResource( 13 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 8 )
-frames = SubResource( 5 )
+scale = Vector2( 1.15, 0.87 )
+frames = SubResource( 14 )
 animation = "move"
-frame = 4
+frame = 5
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -322,7 +324,7 @@ script = ExtResource( 36 )
 
 [node name="DetectionArea" type="CollisionShape2D" parent="Graze"]
 position = Vector2( 0, -6 )
-shape = SubResource( 6 )
+shape = SubResource( 15 )
 
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "Player",
@@ -333,7 +335,7 @@ script = ExtResource( 15 )
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -2 )
-shape = SubResource( 7 )
+shape = SubResource( 16 )
 
 [node name="HP" type="Node" parent="."]
 script = ExtResource( 16 )
@@ -347,3 +349,6 @@ anims/wall_slide = SubResource( 11 )
 next/dash = "default"
 next/jump = "default"
 next/wall_slide = "default"
+
+[node name="MoveGroundParticles" parent="." instance=ExtResource( 44 )]
+position = Vector2( 0, 7 )
