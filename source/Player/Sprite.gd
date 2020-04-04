@@ -27,6 +27,13 @@ func request(anim_name: String, priority: bool = false):
 		_base_animation = anim_name
 
 
+func clear_priority_anim(anim_name: String) -> void:
+	if _priority_animation == NO_ANIMATION:
+		return
+	elif _priority_animation == anim_name:
+		_priority_animation = NO_ANIMATION
+
+
 func _on_animation_finished():
 	if _priority_animation == NO_ANIMATION:
 		return

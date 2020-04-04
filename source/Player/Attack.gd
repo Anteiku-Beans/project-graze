@@ -13,10 +13,6 @@ onready var player = owner
 signal hit
 
 
-func _ready():
-	state_machine.connect("state_changed", self, "_on_state_changed")
-
-
 func is_active():
 	return _active
 
@@ -30,9 +26,16 @@ func execute() -> void:
 #	_set_hitbox_enabled(true)
 	player.set_facing_locked(true)
 	
+	state_machine.connect("state_changed", self, "_on_state_changed")
 	hitbox.connect("area_entered", self, "_on_hit")
 	sprite.connect("animation_finished", self, "_end")
 	sprite.connect("frame_changed", self, "_on_sprite_frame_changed")
+
+
+func interrupt():
+	_set_hitbox_enabled(false)
+	sprite.clear_priority_anim("attack")
+	_end()
 
 
 func _end() -> void:
@@ -41,12 +44,10 @@ func _end() -> void:
 	
 	_active = false
 	player.set_facing_locked(false)
+	state_machine.disconnect("state_changed", self, "_on_state_changed")
 	hitbox.disconnect("area_entered", self, "_on_hit")
 	sprite.disconnect("animation_finished", self, "_end")
 	sprite.disconnect("frame_changed", self, "_on_sprite_frame_changed")
-	
-#	Just in case stuff:
-	_set_hitbox_enabled(false)
 
 
 func _on_sprite_frame_changed():
@@ -65,8 +66,8 @@ func _on_hit(area: Area2D):
 
 
 func _on_state_changed(prev_state: String, new_state: String):
-	if new_state == "Stagger":
-		_end()
+	if not new_state in state_machine.get_free_states():
+		interrupt()
 
 
 func _set_hitbox_enabled(enable: bool):
