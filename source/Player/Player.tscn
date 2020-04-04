@@ -76,12 +76,12 @@ animations = [ {
 "frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 53 ) ],
 "loop": false,
 "name": "attack_down",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [ ExtResource( 52 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ) ],
 "loop": false,
 "name": "attack_air",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [ ExtResource( 41 ) ],
 "loop": false,
@@ -116,7 +116,7 @@ animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "attack",
-"speed": 20.0
+"speed": 12.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=6]
