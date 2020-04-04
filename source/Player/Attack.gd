@@ -1,5 +1,8 @@
 extends Node2D
 
+const HITBOX_START_FRAME = 1
+const HITBOX_END_FRAME = 2
+
 var _active: = false
 
 onready var hitbox = $Hitbox
@@ -24,11 +27,12 @@ func execute() -> void:
 	_active = true
 	
 	sprite.request("attack", true)
-	_set_hitbox_enabled(true)
+#	_set_hitbox_enabled(true)
 	player.set_facing_locked(true)
 	
 	hitbox.connect("area_entered", self, "_on_hit")
 	sprite.connect("animation_finished", self, "_end")
+	sprite.connect("frame_changed", self, "_on_sprite_frame_changed")
 
 
 func _end() -> void:
@@ -36,10 +40,20 @@ func _end() -> void:
 		return
 	
 	_active = false
-	_set_hitbox_enabled(false)
 	player.set_facing_locked(false)
 	hitbox.disconnect("area_entered", self, "_on_hit")
 	sprite.disconnect("animation_finished", self, "_end")
+	sprite.disconnect("frame_changed", self, "_on_sprite_frame_changed")
+	
+#	Just in case stuff:
+	_set_hitbox_enabled(false)
+
+
+func _on_sprite_frame_changed():
+	if sprite.frame == HITBOX_START_FRAME:
+		_set_hitbox_enabled(true)
+	elif sprite.frame == HITBOX_END_FRAME:
+		_set_hitbox_enabled(false)
 
 
 func _on_hit(area: Area2D):
@@ -60,8 +74,10 @@ func _set_hitbox_enabled(enable: bool):
 		var hitbox_direction: int = player.get_facing_int()
 		_set_hitbox_direction(hitbox_direction)
 		hitbox.set_deferred("monitoring", true)
+		hitbox.set_deferred("visible", true)
 	else:
 		hitbox.set_deferred("monitoring", false)
+		hitbox.set_deferred("visible", false)
 
 
 func _set_hitbox_direction(direction: int):
