@@ -3,12 +3,21 @@ extends Node2D
 const HITBOX_START_FRAME = 1
 const HITBOX_END_FRAME = 2
 
-var _active: = false
+const NO_HITOX = null
 
-onready var hitbox = $Hitbox
+const ATTACK_GROUND_STR = "attack"
+const ATTACK_AIR_STR = "attack_air"
+const ATTACK_DOWN_STR = "attack_down"
+const NO_ANIM_STRING = ""
+
+var _active: = false
+var hitbox: Node = NO_HITOX
+var anim_string: String = NO_ANIM_STRING
+
 onready var sprite = owner.get_node("Sprite")
 onready var state_machine = owner.get_node("StateMachine")
 onready var player = owner
+onready var wall_detector = owner.get_node("WallDetector")
 
 signal hit
 
@@ -22,7 +31,18 @@ func execute() -> void:
 		return
 	_active = true
 	
-	sprite.request("attack", true)
+#	Choose which attack to execute
+	if wall_detector.is_on_floor():
+		anim_string = ATTACK_GROUND_STR
+		hitbox = $HitboxGround
+	elif Input.is_action_pressed("down"):
+		anim_string = ATTACK_DOWN_STR
+		hitbox = $HitboxDown
+	else:
+		anim_string = ATTACK_AIR_STR
+		hitbox = $HitboxAir
+	
+	sprite.request(anim_string, true)
 #	_set_hitbox_enabled(true)
 	player.set_facing_locked(true)
 	
@@ -34,7 +54,7 @@ func execute() -> void:
 
 func interrupt():
 	_set_hitbox_enabled(false)
-	sprite.clear_priority_anim("attack")
+	sprite.clear_priority_anim(anim_string)
 	_end()
 
 
@@ -42,12 +62,14 @@ func _end() -> void:
 	if not _active:
 		return
 	
-	_active = false
 	player.set_facing_locked(false)
 	state_machine.disconnect("state_changed", self, "_on_state_changed")
 	hitbox.disconnect("area_entered", self, "_on_hit")
 	sprite.disconnect("animation_finished", self, "_end")
 	sprite.disconnect("frame_changed", self, "_on_sprite_frame_changed")
+	hitbox = NO_HITOX
+	anim_string = NO_ANIM_STRING
+	_active = false
 
 
 func _on_sprite_frame_changed():
