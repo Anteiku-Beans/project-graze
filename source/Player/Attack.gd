@@ -19,22 +19,27 @@ func is_active():
 
 
 func execute() -> void:
-	if not _active:
-		_active = true
-		
-		_set_hitbox_enabled(true)
-		hitbox.connect("area_entered", self, "_on_hit")
-		
-		sprite.request("attack", true)
-		sprite.connect("animation_finished", self, "_end")
+	if _active:
+		return
+	_active = true
+	
+	sprite.request("attack", true)
+	_set_hitbox_enabled(true)
+	player.set_facing_locked(true)
+	
+	hitbox.connect("area_entered", self, "_on_hit")
+	sprite.connect("animation_finished", self, "_end")
 
 
 func _end() -> void:
-	if _active:
-		_active = false
-		_set_hitbox_enabled(false)
-		hitbox.disconnect("area_entered", self, "_on_hit")
-		sprite.disconnect("animation_finished", self, "_end")
+	if not _active:
+		return
+	
+	_active = false
+	_set_hitbox_enabled(false)
+	player.set_facing_locked(false)
+	hitbox.disconnect("area_entered", self, "_on_hit")
+	sprite.disconnect("animation_finished", self, "_end")
 
 
 func _on_hit(area: Area2D):
