@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/Tanjiro/move1.png" type="Texture" id=2]
@@ -45,6 +45,14 @@
 [ext_resource path="res://source/Player/states/WallJump.gd" type="Script" id=43]
 [ext_resource path="res://source/Effects/MoveGroundParticles/MoveGroundParticles.tscn" type="PackedScene" id=44]
 [ext_resource path="res://source/Effects/WallSlideParticles/WallSlideParticles.tscn" type="PackedScene" id=45]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_down2.png" type="Texture" id=46]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_air4.png" type="Texture" id=47]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_down1.png" type="Texture" id=48]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_air2.png" type="Texture" id=49]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_air3.png" type="Texture" id=50]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_down3.png" type="Texture" id=51]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_air1.png" type="Texture" id=52]
+[ext_resource path="res://assets/sprites/Tanjiro/attack_down4.png" type="Texture" id=53]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 14 )
@@ -65,14 +73,14 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 53 ) ],
 "loop": false,
-"name": "attack",
+"name": "attack_down",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "jump",
+"frames": [ ExtResource( 52 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ) ],
+"loop": false,
+"name": "attack_air",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 41 ) ],
@@ -80,15 +88,15 @@ animations = [ {
 "name": "wall_slide",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
-"loop": true,
-"name": "dash",
-"speed": 20.0
-}, {
 "frames": [ ExtResource( 9 ) ],
 "loop": false,
 "name": "stagger",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
+"loop": false,
+"name": "dash",
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
 "loop": true,
@@ -98,6 +106,16 @@ animations = [ {
 "frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
 "loop": true,
 "name": "fall",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "attack",
 "speed": 12.0
 } ]
 
@@ -231,9 +249,8 @@ shape = SubResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 8 )
-scale = Vector2( 1.15, 0.87 )
 frames = SubResource( 5 )
-animation = "wall_slide"
+animation = "idle"
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -357,4 +374,5 @@ next/wall_slide = "default"
 emitting = false
 
 [node name="WallSlideParticles" parent="." instance=ExtResource( 45 )]
+emitting = false
 amount = 2
