@@ -1,6 +1,4 @@
-extends Area2D
-
-class_name ManaOrbHitbox
+extends Hitbox
 
 func consume():
 	owner.consume()

@@ -1,4 +1,4 @@
-extends GrazeableHitbox
+extends Grazebox
 
 var direction: Vector2
 var move_speed: float = 100.0

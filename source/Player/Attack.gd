@@ -1,7 +1,7 @@
 extends Node2D
 
 const HITBOX_START_FRAME = 1
-const HITBOX_END_FRAME = 2
+const HITBOX_END_FRAME = 3
 
 const NO_HITBOX = null
 

@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/sprites/AspidHatchling/bullet_die3.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/AspidHatchling/bullet3.png" type="Texture" id=9]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 1 ) ],
@@ -36,10 +35,11 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+MAX_MANA = 9
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Shape" type="CollisionShape2D" parent="."]

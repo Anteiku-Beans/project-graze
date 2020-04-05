@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/effects/mana/mana-small.png" type="Texture" id=2]
 [ext_resource path="res://source/Effects/ManaOrb/ManaOrbHitbox.gd" type="Script" id=3]
 
-
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.539063, 0.616811, 1, 1, 0.0862745, 0.164706, 0.54902, 1 )
 
@@ -45,9 +44,13 @@ local_coords = false
 draw_order = 1
 process_material = SubResource( 3 )
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"mana_orb",
+]]
 position = Vector2( -0.193695, -0.38744 )
+monitoring = false
 collision_layer = 8
+collision_mask = 16
 script = ExtResource( 3 )
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]

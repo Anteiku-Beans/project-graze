@@ -155,9 +155,9 @@ _global_script_classes=[ {
 "path": "res://libraries/godot_steering_framework/GSAIUtils.gd"
 }, {
 "base": "Area2D",
-"class": "GrazeableHitbox",
+"class": "Grazebox",
 "language": "GDScript",
-"path": "res://source/Classes/GrazeableHitbox.gd"
+"path": "res://source/Classes/Grazebox.gd"
 }, {
 "base": "Resource",
 "class": "HitInfo",
@@ -168,11 +168,6 @@ _global_script_classes=[ {
 "class": "Hitbox",
 "language": "GDScript",
 "path": "res://source/Classes/Hitbox.gd"
-}, {
-"base": "Area2D",
-"class": "ManaOrbHitbox",
-"language": "GDScript",
-"path": "res://source/Effects/ManaOrb/ManaOrbHitbox.gd"
 }, {
 "base": "Resource",
 "class": "Motion",
@@ -219,10 +214,9 @@ _global_script_class_icons={
 "GSAISteeringBehavior": "",
 "GSAITargetAcceleration": "",
 "GSAIUtils": "",
-"GrazeableHitbox": "",
+"Grazebox": "",
 "HitInfo": "",
 "Hitbox": "",
-"ManaOrbHitbox": "",
 "Motion": "",
 "State": "res://assets/icons/state.svg",
 "StateMachine": "res://assets/icons/state_machine.svg"
