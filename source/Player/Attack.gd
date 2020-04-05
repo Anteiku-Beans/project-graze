@@ -3,16 +3,19 @@ extends Node2D
 const HITBOX_START_FRAME = 1
 const HITBOX_END_FRAME = 2
 
-const NO_HITOX = null
+const NO_HITBOX = null
 
 const ATTACK_GROUND_STR = "attack"
 const ATTACK_AIR_STR = "attack_air"
 const ATTACK_DOWN_STR = "attack_down"
 const NO_ANIM_STRING = ""
+const DAMAGE = 1
 
 var _active: = false
-var hitbox: Node = NO_HITOX
+var hitbox: Node = NO_HITBOX
 var anim_string: String = NO_ANIM_STRING
+var hit_type = Hitbox.TYPE.player
+var hit_info: HitInfo
 
 onready var sprite = owner.get_node("Sprite")
 onready var state_machine = owner.get_node("StateMachine")
@@ -20,6 +23,11 @@ onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
 
 signal hit
+
+
+func _ready():
+	hit_info = HitInfo.new()
+	hit_info.set_damage(DAMAGE)
 
 
 func is_active():
@@ -67,7 +75,7 @@ func _end() -> void:
 	hitbox.disconnect("area_entered", self, "_on_hit")
 	sprite.disconnect("animation_finished", self, "_end")
 	sprite.disconnect("frame_changed", self, "_on_sprite_frame_changed")
-	hitbox = NO_HITOX
+	hitbox = NO_HITBOX
 	anim_string = NO_ANIM_STRING
 	_active = false
 
@@ -81,10 +89,9 @@ func _on_sprite_frame_changed():
 
 func _on_hit(area: Area2D):
 	emit_signal("hit")
-	if area.is_in_group("Enemies"):
-		print("hit an enemy!")
-	else:
-		print("we hit something, but it wasn't an enemy...'")
+	if area is Hitbox:
+		if area.can_receive_from(self.hit_type):
+			area.receive_hit(hit_info)
 
 
 func _on_state_changed(prev_state: String, new_state: String):

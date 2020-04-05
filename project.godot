@@ -159,6 +159,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/Classes/GrazeableHitbox.gd"
 }, {
+"base": "Resource",
+"class": "HitInfo",
+"language": "GDScript",
+"path": "res://source/Classes/HitInfo.gd"
+}, {
+"base": "Area2D",
+"class": "Hitbox",
+"language": "GDScript",
+"path": "res://source/Classes/Hitbox.gd"
+}, {
 "base": "Area2D",
 "class": "ManaOrbHitbox",
 "language": "GDScript",
@@ -210,6 +220,8 @@ _global_script_class_icons={
 "GSAITargetAcceleration": "",
 "GSAIUtils": "",
 "GrazeableHitbox": "",
+"HitInfo": "",
+"Hitbox": "",
 "ManaOrbHitbox": "",
 "Motion": "",
 "State": "res://assets/icons/state.svg",
