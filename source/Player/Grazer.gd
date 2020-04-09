@@ -8,6 +8,7 @@ var mana: Node
 
 onready var player = owner
 
+signal grazed
 
 func _ready() -> void:
 # warning-ignore:return_value_discarded
