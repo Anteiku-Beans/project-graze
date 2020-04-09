@@ -21,7 +21,7 @@ func _on_area_entered(area: Area2D) -> void:
 		area.consume()
 		return
 	if area is Grazebox:
-		if area.is_grazeable():
+		if area.get_mana() > 0:
 			area.graze(ORBS_PER_GRAZE * MANA_PER_ORB)
 			var hitbox_position = area.global_position
 			emit_mana_orbs(ORBS_PER_GRAZE, hitbox_position)
