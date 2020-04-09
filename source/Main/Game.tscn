@@ -14,7 +14,7 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 94.0
+margin_bottom = 76.0
 
 [node name="DebugPanel1" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0

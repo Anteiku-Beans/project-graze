@@ -14,7 +14,6 @@ const DAMAGE = 1
 var _active: = false
 var hitbox: Node = NO_HITBOX
 var anim_string: String = NO_ANIM_STRING
-var hit_type = Hitbox.TYPE.player
 var hit_info: HitInfo
 
 onready var sprite = owner.get_node("Sprite")
@@ -90,8 +89,7 @@ func _on_sprite_frame_changed():
 func _on_hit(area: Area2D):
 	emit_signal("hit")
 	if area is Hitbox:
-		if area.can_receive_from(self.hit_type):
-			area.receive_hit(hit_info)
+		area.receive_hit(hit_info)
 
 
 func _on_state_changed(prev_state: String, new_state: String):
