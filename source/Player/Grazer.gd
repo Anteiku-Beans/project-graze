@@ -4,17 +4,15 @@ const ORBS_PER_GRAZE = 3
 const MANA_PER_ORB = 3
 const MANA_ORB = preload("res://source/Effects/ManaOrb/ManaOrb.tscn")
 
-var mana: Node
-
 onready var player = owner
 
 signal grazed
+
 
 func _ready() -> void:
 # warning-ignore:return_value_discarded
 	self.connect("area_entered", self, "_on_area_entered")
 	yield(player, "ready")
-	mana = player.get_node("Mana")
 
 
 func _on_area_entered(area: Area2D) -> void:
