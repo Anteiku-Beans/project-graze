@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/tanjiro/move1.png" type="Texture" id=2]
@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/sprites/tanjiro/dash2.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/tanjiro/jump2.png" type="Texture" id=13]
 [ext_resource path="res://assets/sprites/tanjiro/fall3.png" type="Texture" id=14]
-[ext_resource path="res://source/Classes/Hitbox.gd" type="Script" id=15]
+[ext_resource path="res://source/Player/Hitbox.gd" type="Script" id=15]
 [ext_resource path="res://source/Player/HP.gd" type="Script" id=16]
 [ext_resource path="res://assets/sprites/tanjiro/jump3.png" type="Texture" id=17]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=18]
@@ -201,10 +201,45 @@ tracks/0/keys = {
 "values": [ Vector2( 1.1, 0.909 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=13]
+resource_name = "blink"
+length = 0.2
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.180392, 0.00784314, 0.196078, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.01
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
 position = Vector2( 0, -7 )
+scale = Vector2( 1.1, 0.909 )
 collision_mask = 4
 script = ExtResource( 1 )
 
@@ -261,7 +296,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, 8 )
 frames = SubResource( 5 )
 animation = "poggo"
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -283,7 +318,7 @@ disabled = true
 
 [node name="ShapeDown" type="CollisionPolygon2D" parent="Attack/Hitbox"]
 visible = false
-polygon = PoolVector2Array( -26, 11, 0, 23, 26, 11, 26, -27, -26, -27 )
+polygon = PoolVector2Array( -26, 17, 0.909091, 35.9043, 26, 17, 26, -27, -26, -27 )
 disabled = true
 
 [node name="ShapeAir" type="CollisionPolygon2D" parent="Attack/Hitbox"]
@@ -387,10 +422,14 @@ script = ExtResource( 15 )
 position = Vector2( 0, -2 )
 shape = SubResource( 7 )
 
+[node name="GodModeTimer" type="Timer" parent="Hitbox"]
+wait_time = 2.0
+one_shot = true
+
 [node name="HP" type="Node" parent="."]
 script = ExtResource( 16 )
 
-[node name="Animation" type="AnimationPlayer" parent="."]
+[node name="ScaleAnimation" type="AnimationPlayer" parent="."]
 autoplay = "default"
 anims/dash = SubResource( 8 )
 anims/default = SubResource( 9 )
@@ -399,6 +438,11 @@ anims/wall_slide = SubResource( 11 )
 next/dash = "default"
 next/jump = "default"
 next/wall_slide = "default"
+
+[node name="ColorAnimation" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/blink = SubResource( 13 )
+anims/default = SubResource( 12 )
 
 [node name="MoveDust" parent="." instance=ExtResource( 44 )]
 emitting = false
