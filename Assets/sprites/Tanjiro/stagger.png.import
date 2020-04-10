@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stagger.png-30c4d518c7e192e12f1d83b0b3208279.stex"
+path="res://.import/stagger.png-068cc6bca5b9a5e1390453faaf1bac70.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Tanjiro/stagger.png"
-dest_files=[ "res://.import/stagger.png-30c4d518c7e192e12f1d83b0b3208279.stex" ]
+source_file="res://assets/sprites/tanjiro/stagger.png"
+dest_files=[ "res://.import/stagger.png-068cc6bca5b9a5e1390453faaf1bac70.stex" ]
 
 [params]
 

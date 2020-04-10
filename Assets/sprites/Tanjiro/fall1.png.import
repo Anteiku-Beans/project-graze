@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fall1.png-c992008160cdd72a12be2e49d85e438d.stex"
+path="res://.import/fall1.png-da012fcfb98dda88e82e5f961d97fe2d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Tanjiro/fall1.png"
-dest_files=[ "res://.import/fall1.png-c992008160cdd72a12be2e49d85e438d.stex" ]
+source_file="res://assets/sprites/tanjiro/fall1.png"
+dest_files=[ "res://.import/fall1.png-da012fcfb98dda88e82e5f961d97fe2d.stex" ]
 
 [params]
 

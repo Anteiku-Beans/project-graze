@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack_air3.png-5ff4efaa225ba50e75a9f40ac7e64544.stex"
+path="res://.import/attack_air3.png-257282424c05b993405edabd8965d799.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Tanjiro/attack_air3.png"
-dest_files=[ "res://.import/attack_air3.png-5ff4efaa225ba50e75a9f40ac7e64544.stex" ]
+source_file="res://assets/sprites/tanjiro/attack_air3.png"
+dest_files=[ "res://.import/attack_air3.png-257282424c05b993405edabd8965d799.stex" ]
 
 [params]
 

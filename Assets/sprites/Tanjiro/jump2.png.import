@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jump2.png-3cfebc990bc6e5dbc8cc4ba5d9b4309b.stex"
+path="res://.import/jump2.png-e200c32ce09690aa10af7f70d4458953.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Tanjiro/jump2.png"
-dest_files=[ "res://.import/jump2.png-3cfebc990bc6e5dbc8cc4ba5d9b4309b.stex" ]
+source_file="res://assets/sprites/tanjiro/jump2.png"
+dest_files=[ "res://.import/jump2.png-e200c32ce09690aa10af7f70d4458953.stex" ]
 
 [params]
 

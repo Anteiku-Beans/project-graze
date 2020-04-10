@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://source/UI/debug/DebugPanel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/UI/Debug/DebugPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/Levels/Level2.tscn" type="PackedScene" id=2]
 
 [node name="Game" type="Node"]

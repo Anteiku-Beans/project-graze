@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle.png-4087ba3a5c03b6232f4439b894da1c99.stex"
+path="res://.import/idle.png-dbbd8bd5388e1848e9e4d648e9a50605.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Tanjiro/idle.png"
-dest_files=[ "res://.import/idle.png-4087ba3a5c03b6232f4439b894da1c99.stex" ]
+source_file="res://assets/sprites/tanjiro/idle.png"
+dest_files=[ "res://.import/idle.png-dbbd8bd5388e1848e9e4d648e9a50605.stex" ]
 
 [params]
 

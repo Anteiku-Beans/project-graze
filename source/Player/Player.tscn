@@ -1,22 +1,22 @@
 [gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/Tanjiro/move1.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/Tanjiro/move2.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/Tanjiro/move3.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/Tanjiro/move4.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/Tanjiro/attack4.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/Tanjiro/attack2.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/Tanjiro/attack3.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/Tanjiro/stagger.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/Tanjiro/attack1.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/tanjiro/move1.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/tanjiro/move2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/tanjiro/move3.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/tanjiro/move4.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/tanjiro/attack4.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/tanjiro/attack2.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/tanjiro/attack3.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/tanjiro/stagger.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/tanjiro/attack1.png" type="Texture" id=10]
 [ext_resource path="res://source/Player/states/Jump.gd" type="Script" id=11]
-[ext_resource path="res://assets/sprites/Tanjiro/dash2.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/Tanjiro/jump2.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/Tanjiro/fall3.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/tanjiro/dash2.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/tanjiro/jump2.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/tanjiro/fall3.png" type="Texture" id=14]
 [ext_resource path="res://source/Classes/Hitbox.gd" type="Script" id=15]
 [ext_resource path="res://source/Player/HP.gd" type="Script" id=16]
-[ext_resource path="res://assets/sprites/Tanjiro/jump3.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/tanjiro/jump3.png" type="Texture" id=17]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=18]
 [ext_resource path="res://source/Player/states/Idle.gd" type="Script" id=19]
 [ext_resource path="res://source/Player/states/Fall.gd" type="Script" id=20]
@@ -24,35 +24,35 @@
 [ext_resource path="res://source/Player/states/Stagger.gd" type="Script" id=22]
 [ext_resource path="res://source/Player/states/Dash.gd" type="Script" id=23]
 [ext_resource path="res://source/Player/Attack.gd" type="Script" id=24]
-[ext_resource path="res://assets/sprites/Tanjiro/dash3.png" type="Texture" id=25]
-[ext_resource path="res://assets/sprites/Tanjiro/fall1.png" type="Texture" id=26]
+[ext_resource path="res://assets/sprites/tanjiro/dash3.png" type="Texture" id=25]
+[ext_resource path="res://assets/sprites/tanjiro/fall1.png" type="Texture" id=26]
 [ext_resource path="res://source/Player/Sprite.gd" type="Script" id=27]
 [ext_resource path="res://source/Player/StateMachine.gd" type="Script" id=28]
-[ext_resource path="res://assets/sprites/Tanjiro/idle.png" type="Texture" id=29]
-[ext_resource path="res://assets/sprites/Tanjiro/jump4.png" type="Texture" id=30]
-[ext_resource path="res://assets/sprites/Tanjiro/dash4.png" type="Texture" id=31]
-[ext_resource path="res://assets/sprites/Tanjiro/dash1.png" type="Texture" id=32]
-[ext_resource path="res://assets/sprites/Tanjiro/fall2.png" type="Texture" id=33]
-[ext_resource path="res://assets/sprites/Tanjiro/fall4.png" type="Texture" id=34]
+[ext_resource path="res://assets/sprites/tanjiro/idle.png" type="Texture" id=29]
+[ext_resource path="res://assets/sprites/tanjiro/jump4.png" type="Texture" id=30]
+[ext_resource path="res://assets/sprites/tanjiro/dash4.png" type="Texture" id=31]
+[ext_resource path="res://assets/sprites/tanjiro/dash1.png" type="Texture" id=32]
+[ext_resource path="res://assets/sprites/tanjiro/fall2.png" type="Texture" id=33]
+[ext_resource path="res://assets/sprites/tanjiro/fall4.png" type="Texture" id=34]
 [ext_resource path="res://source/Player/Mana.gd" type="Script" id=35]
 [ext_resource path="res://source/Player/Grazer.gd" type="Script" id=36]
-[ext_resource path="res://assets/sprites/Tanjiro/move5.png" type="Texture" id=37]
-[ext_resource path="res://assets/sprites/Tanjiro/move6.png" type="Texture" id=38]
-[ext_resource path="res://assets/sprites/Tanjiro/jump1.png" type="Texture" id=39]
+[ext_resource path="res://assets/sprites/tanjiro/move5.png" type="Texture" id=37]
+[ext_resource path="res://assets/sprites/tanjiro/move6.png" type="Texture" id=38]
+[ext_resource path="res://assets/sprites/tanjiro/jump1.png" type="Texture" id=39]
 [ext_resource path="res://source/Player/states/WallSlide.gd" type="Script" id=40]
-[ext_resource path="res://assets/sprites/Tanjiro/wall_slide.png" type="Texture" id=41]
+[ext_resource path="res://assets/sprites/tanjiro/wall_slide.png" type="Texture" id=41]
 [ext_resource path="res://source/Player/WallDetector.gd" type="Script" id=42]
 [ext_resource path="res://source/Player/states/WallJump.gd" type="Script" id=43]
-[ext_resource path="res://source/Effects/MoveGroundParticles/MoveGroundParticles.tscn" type="PackedScene" id=44]
-[ext_resource path="res://source/Effects/WallSlideParticles/WallSlideParticles.tscn" type="PackedScene" id=45]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_down2.png" type="Texture" id=46]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_air4.png" type="Texture" id=47]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_down1.png" type="Texture" id=48]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_air2.png" type="Texture" id=49]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_air3.png" type="Texture" id=50]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_down3.png" type="Texture" id=51]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_air1.png" type="Texture" id=52]
-[ext_resource path="res://assets/sprites/Tanjiro/attack_down4.png" type="Texture" id=53]
+[ext_resource path="res://source/Effects/MoveDust/MoveDust.tscn" type="PackedScene" id=44]
+[ext_resource path="res://source/Effects/WallSlideDust/WallSlideDust.tscn" type="PackedScene" id=45]
+[ext_resource path="res://assets/sprites/tanjiro/attack_down2.png" type="Texture" id=46]
+[ext_resource path="res://assets/sprites/tanjiro/attack_air4.png" type="Texture" id=47]
+[ext_resource path="res://assets/sprites/tanjiro/attack_down1.png" type="Texture" id=48]
+[ext_resource path="res://assets/sprites/tanjiro/attack_air2.png" type="Texture" id=49]
+[ext_resource path="res://assets/sprites/tanjiro/attack_air3.png" type="Texture" id=50]
+[ext_resource path="res://assets/sprites/tanjiro/attack_down3.png" type="Texture" id=51]
+[ext_resource path="res://assets/sprites/tanjiro/attack_air1.png" type="Texture" id=52]
+[ext_resource path="res://assets/sprites/tanjiro/attack_down4.png" type="Texture" id=53]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 14 )
@@ -88,24 +88,14 @@ animations = [ {
 "name": "stagger",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 52 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ) ],
-"loop": false,
-"name": "attack_air",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 41 ) ],
 "loop": false,
 "name": "wall_slide",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "fall",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 52 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ) ],
 "loop": false,
-"name": "attack",
+"name": "attack_air",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
@@ -116,6 +106,16 @@ animations = [ {
 "frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
 "loop": true,
 "name": "jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "attack",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "fall",
 "speed": 12.0
 } ]
 
@@ -382,9 +382,9 @@ next/dash = "default"
 next/jump = "default"
 next/wall_slide = "default"
 
-[node name="MoveGroundParticles" parent="." instance=ExtResource( 44 )]
+[node name="MoveDust" parent="." instance=ExtResource( 44 )]
 emitting = false
 
-[node name="WallSlideParticles" parent="." instance=ExtResource( 45 )]
+[node name="WallSlideDust" parent="." instance=ExtResource( 45 )]
 emitting = false
 amount = 2

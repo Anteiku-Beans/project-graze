@@ -1,6 +1,6 @@
 extends State
 
-const GROUND_PARTICLES = preload("res://source/Effects/JumpGroundParticles/JumpGroundParticles.tscn")
+const GROUND_PARTICLES = preload("res://source/Effects/JumpDust/JumpDust.tscn")
 const GROUND_PARTICLES_OFFSET = Vector2(0,-7)
 
 const FACING_LEFT = -1

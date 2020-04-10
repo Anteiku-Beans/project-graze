@@ -11,7 +11,7 @@ onready var free = get_parent()
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
 onready var player = owner
-onready var ground_particles = owner.get_node("MoveGroundParticles")
+onready var ground_particles = owner.get_node("MoveDust")
 
 
 func _ready():

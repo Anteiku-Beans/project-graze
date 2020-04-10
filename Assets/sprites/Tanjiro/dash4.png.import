@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dash4.png-38abd91bab51f9811506a2155c7d4ff0.stex"
+path="res://.import/dash4.png-800bd1e3813bf0b23944114cd5b28105.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Tanjiro/dash4.png"
-dest_files=[ "res://.import/dash4.png-38abd91bab51f9811506a2155c7d4ff0.stex" ]
+source_file="res://assets/sprites/tanjiro/dash4.png"
+dest_files=[ "res://.import/dash4.png-800bd1e3813bf0b23944114cd5b28105.stex" ]
 
 [params]
 

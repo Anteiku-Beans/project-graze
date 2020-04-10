@@ -1,6 +1,6 @@
 extends State
 
-const GROUND_PARTICLES = preload("res://source/Effects/DashGroundParticles/DashGroundParticles.tscn")
+const GROUND_PARTICLES = preload("res://source/Effects/DashDust/DashDust.tscn")
 const GROUND_PARTICLES_OFFSET = Vector2(0,-7)
 
 const MOVE_SPEED_MULTIPLIER = 5

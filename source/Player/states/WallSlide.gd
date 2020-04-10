@@ -20,7 +20,7 @@ onready var player = owner
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
 onready var animation = owner.get_node("Animation")
-onready var wall_slide_particles = owner.get_node("WallSlideParticles")
+onready var wall_slide_particles = owner.get_node("WallSlideDust")
 
 
 func _ready():

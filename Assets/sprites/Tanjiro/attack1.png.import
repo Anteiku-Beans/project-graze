@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack1.png-6a9cf76a8315c091074728a8896abb6f.stex"
+path="res://.import/attack1.png-27e80b151661e12ede81dca514a02603.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Tanjiro/attack1.png"
-dest_files=[ "res://.import/attack1.png-6a9cf76a8315c091074728a8896abb6f.stex" ]
+source_file="res://assets/sprites/tanjiro/attack1.png"
+dest_files=[ "res://.import/attack1.png-27e80b151661e12ede81dca514a02603.stex" ]
 
 [params]
 
