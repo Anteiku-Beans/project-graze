@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/sprites/Tanjiro/dash2.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/Tanjiro/jump2.png" type="Texture" id=13]
 [ext_resource path="res://assets/sprites/Tanjiro/fall3.png" type="Texture" id=14]
-[ext_resource path="res://source/Player/Hitbox.gd" type="Script" id=15]
+[ext_resource path="res://source/Classes/Hitbox.gd" type="Script" id=15]
 [ext_resource path="res://source/Player/HP.gd" type="Script" id=16]
 [ext_resource path="res://assets/sprites/Tanjiro/jump3.png" type="Texture" id=17]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=18]
@@ -361,7 +361,8 @@ shape = SubResource( 6 )
 "Player",
 ]]
 visible = false
-collision_mask = 10
+monitoring = false
+collision_mask = 0
 script = ExtResource( 15 )
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]

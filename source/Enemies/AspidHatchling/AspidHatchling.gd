@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var target: Node
 
+
 func _ready():
 	$Hitbox.connect("hit", self, "_on_hit")
 	
@@ -11,5 +12,6 @@ func _ready():
 		yield (Player, "player_set")
 		target = Player.get_player()
 
+
 func _on_hit(hit_info: HitInfo):
-	print("Aspid: just got hit! Hit info --> ", hit_info.get_info())
+	print("Aspid: Got hit! ({damage})".format({damage=hit_info.damage}))

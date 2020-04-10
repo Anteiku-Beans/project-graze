@@ -2,14 +2,14 @@ extends Resource
 
 class_name HitInfo
 
-var _damage: int = 0 setget set_damage
+var damage: int = 0 setget set_damage
 
 
 func set_damage(value: int) -> void:
-	_damage = value
+	damage = value
 
 
 func get_info() -> Dictionary:
 	return {
-		"damage": _damage,
+		"damage": damage,
 	}

@@ -13,7 +13,6 @@ const DAMP_FACTOR = 12
 var move = Motion.new()
 var move_speed: float = DEFAULT_MOVE_SPEED
 
-onready var hitbox = owner.get_node("Hitbox")
 onready var sprite = owner.get_node("Sprite")
 onready var attack = owner.get_node("Attack")
 onready var player = owner
@@ -26,8 +25,6 @@ func _ready():
 	move.acceleration = Vector2(move_speed * ACCELERATION_FACTOR, 0)
 	move.damp = Vector2(move_speed * DAMP_FACTOR, 0)
 	move.max_speed = Vector2(move_speed, 0)
-
-	hitbox.connect("hit", self, "_on_hit")
 	
 	jump.connect("jump", self, "summon_ground_particles")
 	fall.connect("land", self, "summon_ground_particles")
@@ -64,10 +61,6 @@ func unhandled_input(event):
 	if event.is_action_pressed("attack"):
 		attack.execute()
 		return
-
-
-func _on_hit():
-	_state_machine.transition_to("Stagger")
 
 
 func calculate_direction():
