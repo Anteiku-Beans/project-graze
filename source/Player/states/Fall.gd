@@ -50,6 +50,9 @@ func _on_floor_entered():
 
 
 func unhandled_input(event):
+	if event.is_action_pressed("jump") and free.jump_stock > 0:
+		_state_machine.transition_to("Free/Jump")
+		return
 	free.unhandled_input(event)
 
 

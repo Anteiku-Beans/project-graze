@@ -22,6 +22,7 @@ func _ready():
 
 func enter(data: Dictionary = {}):
 	free.enter(data)
+	free.replenish_jump_stock()
 	sprite.request("move")
 	if player.get_facing_int() == RIGHT_X:
 		ground_particles.texture = GROUND_PARTICLES_TEXTURE_RIGHT

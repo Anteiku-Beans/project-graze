@@ -10,8 +10,11 @@ const DEFAULT_MOVE_SPEED = 180.0
 const ACCELERATION_FACTOR = 12
 const DAMP_FACTOR = 12
 
+const JUMP_STOCK_MAX = 10
+
 var move = Motion.new()
-var move_speed: float = DEFAULT_MOVE_SPEED
+var move_speed := DEFAULT_MOVE_SPEED
+var jump_stock := JUMP_STOCK_MAX
 
 onready var sprite = owner.get_node("Sprite")
 onready var attack = owner.get_node("Attack")
@@ -82,3 +85,11 @@ func summon_ground_particles():
 		new_ground_particles.global_position = player.global_position
 		new_ground_particles.global_position += GROUND_PARTICLES_OFFSET
 		ground_puff_cooldown.start()
+
+
+func use_jump_stock():
+	jump_stock = max(jump_stock - 1, 0)
+
+
+func replenish_jump_stock():
+	jump_stock = JUMP_STOCK_MAX

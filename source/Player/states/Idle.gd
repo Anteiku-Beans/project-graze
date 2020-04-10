@@ -6,6 +6,7 @@ onready var wall_detector = owner.get_node("WallDetector")
 
 func enter(data: Dictionary = {}):
 	free.enter(data)
+	free.replenish_jump_stock()
 	sprite.request("idle")
 
 

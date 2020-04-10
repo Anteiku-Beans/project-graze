@@ -31,6 +31,7 @@ func _ready():
 
 func enter(data: Dictionary = {}):
 	free.enter(data)
+	free.use_jump_stock()
 	max_timer.start()
 	min_timer.start()
 	is_jumping = true
@@ -87,6 +88,9 @@ func unhandled_input(event):
 		else:
 			is_jump_released = true
 		
+		return
+	if event.is_action_pressed("jump") and free.jump_stock > 0:
+		_state_machine.transition_to("Free/Jump")
 		return
 	free.unhandled_input(event)
 
