@@ -1,7 +1,6 @@
 extends Node2D
 
-const HITBOX_START_FRAME = 1
-const HITBOX_END_FRAME = 3
+const HITBOX_END_FRAME = 2
 
 const DAMAGE = 1
 
@@ -34,6 +33,7 @@ onready var hitbox = $Hitbox
 signal hit
 signal finished
 signal interrupted
+signal poggo
 
 
 func _ready():
@@ -58,6 +58,7 @@ func execute() -> void:
 	else:
 		current_attack = ATTACK.AIR
 	
+	_set_hitbox_enabled(true)
 	sprite.request(anim_names[current_attack], true)
 	player.set_facing_locked(true)
 	
@@ -90,9 +91,7 @@ func _end() -> void:
 
 
 func _on_sprite_frame_changed():
-	if sprite.frame == HITBOX_START_FRAME:
-		_set_hitbox_enabled(true)
-	elif sprite.frame == HITBOX_END_FRAME:
+	if sprite.frame == HITBOX_END_FRAME:
 		_set_hitbox_enabled(false)
 
 
@@ -100,6 +99,8 @@ func _on_hit(area: Area2D):
 	emit_signal("hit")
 	if area is Hitbox:
 		area.receive_hit(hit_info)
+		if current_attack == ATTACK.DOWN:
+			emit_signal("poggo")
 
 
 func _on_state_changed(prev_state: String, new_state: String):

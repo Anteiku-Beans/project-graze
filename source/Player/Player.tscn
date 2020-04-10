@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/tanjiro/move1.png" type="Texture" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://assets/sprites/tanjiro/poggo3.png" type="Texture" id=55]
 [ext_resource path="res://assets/sprites/tanjiro/poggo4.png" type="Texture" id=56]
 [ext_resource path="res://assets/sprites/tanjiro/poggo1.png" type="Texture" id=57]
+[ext_resource path="res://source/Player/states/Poggo.gd" type="Script" id=58]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 14 )
@@ -324,6 +325,13 @@ script = ExtResource( 20 )
 script = ExtResource( 43 )
 
 [node name="MaxJumpTime" type="Timer" parent="StateMachine/Free/WallJump"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Poggo" type="Node" parent="StateMachine/Free"]
+script = ExtResource( 58 )
+
+[node name="Timer" type="Timer" parent="StateMachine/Free/Poggo"]
 wait_time = 0.3
 one_shot = true
 

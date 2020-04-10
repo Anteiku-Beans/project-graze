@@ -31,6 +31,7 @@ func _ready():
 	
 	jump.connect("jump", self, "summon_ground_particles")
 	fall.connect("land", self, "summon_ground_particles")
+	attack.connect("poggo", self, "_on_poggo")
 
 
 func enter(data: Dictionary = {}) -> void:
@@ -41,6 +42,10 @@ func enter(data: Dictionary = {}) -> void:
 func physics_process(delta):
 	update_move(delta)
 	player.update_facing(get_move_direction())
+
+
+func _on_poggo():
+	_state_machine.transition_to("Free/Poggo")
 
 
 func update_move(delta) -> void:
