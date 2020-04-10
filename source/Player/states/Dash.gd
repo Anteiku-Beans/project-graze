@@ -17,7 +17,7 @@ onready var cooldown = $Cooldown
 onready var tween = $SpeedTween
 onready var free_state = owner.get_node("StateMachine/Free")
 onready var sprite = owner.get_node("Sprite")
-onready var animation = owner.get_node("Animation")
+onready var scale_animation = owner.get_node("ScaleAnimation")
 onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
 
@@ -36,7 +36,7 @@ func enter(data: Dictionary = {}) -> void:
 	tween.start()
 	cooldown.start()
 	sprite.request("dash")
-	animation.play("dash")
+	scale_animation.play("dash")
 	if wall_detector.is_on_floor():
 		summon_ground_particles()
 
@@ -49,7 +49,7 @@ func exit() -> void:
 	tween.reset_all()
 	tween.stop_all()
 	tween.disconnect("tween_completed", self, "_on_tween_completed")
-	animation.play("default")
+	scale_animation.play("default")
 
 
 func _on_tween_completed(object, key) -> void:

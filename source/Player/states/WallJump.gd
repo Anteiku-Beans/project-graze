@@ -17,7 +17,7 @@ onready var timer = $MaxJumpTime
 onready var sprite = owner.get_node("Sprite")
 onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
-onready var animation = owner.get_node("Animation")
+onready var scale_animation = owner.get_node("ScaleAnimation")
 
 
 func _ready():
@@ -44,7 +44,7 @@ func enter(data: Dictionary = {}):
 	is_jumping = true
 	timer.start()
 	
-	animation.play("jump")
+	scale_animation.play("jump")
 	
 	
 func physics_process(delta: float):
@@ -87,4 +87,4 @@ func unhandled_input(event):
 func exit():
 	timer.stop()
 	free.exit()
-	animation.play("default")
+	scale_animation.play("default")

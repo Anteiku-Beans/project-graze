@@ -15,7 +15,7 @@ onready var min_timer = $MinJumpTime
 onready var sprite = owner.get_node("Sprite")
 onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
-onready var animation = owner.get_node("Animation")
+onready var scale_animation = owner.get_node("ScaleAnimation")
 
 signal jump
 
@@ -39,7 +39,7 @@ func enter(data: Dictionary = {}):
 	wall_detector.connect("floor_entered", self, "_on_floor_entered")
 	wall_detector.connect("ceiling_entered", self, "_on_ceiling_entered")
 	sprite.request("jump")
-	animation.play("jump")
+	scale_animation.play("jump")
 	emit_signal("jump")
 
 
@@ -100,5 +100,5 @@ func exit():
 	min_timer.stop()
 	wall_detector.disconnect("floor_entered", self, "_on_floor_entered")
 	wall_detector.disconnect("ceiling_entered", self, "_on_ceiling_entered")
-	animation.play("default")
+	scale_animation.play("default")
 	free.exit()

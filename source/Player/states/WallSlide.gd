@@ -19,7 +19,7 @@ var wall_direction_x: int
 onready var player = owner
 onready var sprite = owner.get_node("Sprite")
 onready var wall_detector = owner.get_node("WallDetector")
-onready var animation = owner.get_node("Animation")
+onready var scale_animation = owner.get_node("ScaleAnimation")
 onready var wall_slide_particles = owner.get_node("WallSlideDust")
 
 
@@ -43,7 +43,7 @@ func enter(data: Dictionary = {}):
 	wall_direction_opposite_str = "right" if wall_direction_str == "left" else "left"
 	sprite.request("wall_slide")
 	wall_detector.connect("wall_exited", self, "_on_wall_exited")
-	animation.play("wall_slide")
+	scale_animation.play("wall_slide")
 	
 	if wall_direction_x == X_LEFT:
 		wall_slide_particles.texture = PARTICLES_TEXTURE_LEFT
@@ -61,7 +61,7 @@ func physics_process(delta):
 
 func exit():
 	wall_detector.disconnect("wall_exited", self, "_on_wall_exited")
-	animation.play("default")
+	scale_animation.play("default")
 	wall_slide_particles.emitting = false
 
 
