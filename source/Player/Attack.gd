@@ -3,23 +3,33 @@ extends Node2D
 const HITBOX_START_FRAME = 1
 const HITBOX_END_FRAME = 3
 
-const NO_HITBOX = null
-
-const ATTACK_GROUND_STR = "attack"
-const ATTACK_AIR_STR = "attack_air"
-const ATTACK_DOWN_STR = "attack_down"
-const NO_ANIM_STRING = ""
 const DAMAGE = 1
 
+enum ATTACK {NONE, GROUND, AIR, DOWN}
+
 var _active: = false
-var hitbox: Node = NO_HITBOX
-var anim_string: String = NO_ANIM_STRING
+var current_attack: int
 var hit_info: HitInfo
+
+var anim_names = {
+	ATTACK.NONE: "",
+	ATTACK.GROUND: "attack",
+	ATTACK.AIR: "attack_air",
+	ATTACK.DOWN: "attack_down",
+}
+
+onready var shapes = {
+	ATTACK.NONE: null,
+	ATTACK.GROUND: $Hitbox/ShapeGround,
+	ATTACK.AIR: $Hitbox/ShapeAir,
+	ATTACK.DOWN: $Hitbox/ShapeDown
+}
 
 onready var sprite = owner.get_node("Sprite")
 onready var state_machine = owner.get_node("StateMachine")
 onready var player = owner
 onready var wall_detector = owner.get_node("WallDetector")
+onready var hitbox = $Hitbox
 
 signal hit
 
@@ -40,17 +50,14 @@ func execute() -> void:
 	
 #	Choose which attack to execute
 	if wall_detector.is_on_floor():
-		anim_string = ATTACK_GROUND_STR
-		hitbox = $HitboxGround
+		current_attack = ATTACK.GROUND
 	elif Input.is_action_pressed("down"):
-		anim_string = ATTACK_DOWN_STR
-		hitbox = $HitboxDown
+		current_attack = ATTACK.DOWN
 	else:
-		anim_string = ATTACK_AIR_STR
-		hitbox = $HitboxAir
+		current_attack = ATTACK.AIR
 	
-	sprite.request(anim_string, true)
-#	_set_hitbox_enabled(true)
+	sprite.request(anim_names[current_attack], true)
+	_set_hitbox_enabled(true)
 	player.set_facing_locked(true)
 	
 	state_machine.connect("state_changed", self, "_on_state_changed")
@@ -60,8 +67,8 @@ func execute() -> void:
 
 
 func interrupt():
-	_set_hitbox_enabled(false)
-	sprite.clear_priority_anim(anim_string)
+	# Disable hitbox
+	sprite.clear_priority_anim(anim_names[current_attack])
 	_end()
 
 
@@ -69,13 +76,14 @@ func _end() -> void:
 	if not _active:
 		return
 	
+	_set_hitbox_enabled(false)
 	player.set_facing_locked(false)
 	state_machine.disconnect("state_changed", self, "_on_state_changed")
 	hitbox.disconnect("area_entered", self, "_on_hit")
 	sprite.disconnect("animation_finished", self, "_end")
 	sprite.disconnect("frame_changed", self, "_on_sprite_frame_changed")
-	hitbox = NO_HITBOX
-	anim_string = NO_ANIM_STRING
+	
+	current_attack = ATTACK.NONE
 	_active = false
 
 
@@ -102,10 +110,14 @@ func _set_hitbox_enabled(enable: bool):
 		var hitbox_direction: int = player.get_facing_int()
 		_set_hitbox_direction(hitbox_direction)
 		hitbox.set_deferred("monitoring", true)
-		hitbox.set_deferred("visible", true)
+		if shapes[current_attack] != null:
+			shapes[current_attack].disabled = false
+			shapes[current_attack].visible = true
 	else:
 		hitbox.set_deferred("monitoring", false)
-		hitbox.set_deferred("visible", false)
+		if shapes[current_attack] != null:
+			shapes[current_attack].disabled = true
+			shapes[current_attack].visible = false
 
 
 func _set_hitbox_direction(direction: int):
