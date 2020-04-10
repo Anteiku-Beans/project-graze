@@ -32,6 +32,8 @@ onready var wall_detector = owner.get_node("WallDetector")
 onready var hitbox = $Hitbox
 
 signal hit
+signal finished
+signal interrupted
 
 
 func _ready():
@@ -57,7 +59,6 @@ func execute() -> void:
 		current_attack = ATTACK.AIR
 	
 	sprite.request(anim_names[current_attack], true)
-	_set_hitbox_enabled(true)
 	player.set_facing_locked(true)
 	
 	state_machine.connect("state_changed", self, "_on_state_changed")
@@ -67,16 +68,16 @@ func execute() -> void:
 
 
 func interrupt():
-	# Disable hitbox
+	_set_hitbox_enabled(false)
 	sprite.clear_priority_anim(anim_names[current_attack])
 	_end()
+	emit_signal("interrupted")
 
 
 func _end() -> void:
 	if not _active:
 		return
 	
-	_set_hitbox_enabled(false)
 	player.set_facing_locked(false)
 	state_machine.disconnect("state_changed", self, "_on_state_changed")
 	hitbox.disconnect("area_entered", self, "_on_hit")
@@ -84,7 +85,8 @@ func _end() -> void:
 	sprite.disconnect("frame_changed", self, "_on_sprite_frame_changed")
 	
 	current_attack = ATTACK.NONE
-	_active = false
+	_active = false	
+	emit_signal("finished")
 
 
 func _on_sprite_frame_changed():
