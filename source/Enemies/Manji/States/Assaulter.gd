@@ -22,6 +22,8 @@ onready var damage_zone = owner.get_node("DamageZone")
 func enter(data: Dictionary = {}) -> void:
 	assert("direction" in data.keys())
 	direction = data["direction"]
+	sprite.flip(direction)
+	damage_zone.flip(direction)
 	sprite.play("assaulter_start")
 	tween.interpolate_property(self, "speed", SPEED_INITIAL, SPEED_FINAL, DURATION, TRANSITION, EASE)
 	tween.start()
@@ -45,7 +47,7 @@ func _on_frame_changed() -> void:
 
 
 func _on_animation_finished() -> void:
-	_state_machine.transition_to("Walk", {"direction": Vector2.LEFT, "distance": 100.0})
+	_state_machine.transition_to("JumpBack", {"direction": Vector2.LEFT})
 
 
 func exit() -> void:

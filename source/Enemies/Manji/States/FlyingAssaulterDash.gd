@@ -55,7 +55,7 @@ func _on_frame_changed() -> void:
 
 func _on_animation_finished() -> void:
 	if sprite.animation == "flying_assaulter_land":
-		_state_machine.transition_to("Walk", {"direction": Vector2.LEFT})
+		_state_machine.transition_to("Walk", {"direction": Vector2.RIGHT})
 
 
 func exit() -> void:

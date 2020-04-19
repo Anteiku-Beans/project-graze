@@ -218,13 +218,11 @@ position = Vector2( 0, 3 )
 shape = SubResource( 4 )
 
 [node name="Slash" type="CollisionShape2D" parent="DamageZone"]
-visible = false
 position = Vector2( 41, 0 )
 rotation = 1.5708
 shape = SubResource( 5 )
 
 [node name="FlyingAssaulter" type="CollisionShape2D" parent="DamageZone"]
-visible = false
 rotation = 2.00713
 shape = SubResource( 6 )
 

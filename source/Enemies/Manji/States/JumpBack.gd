@@ -29,6 +29,7 @@ func _ready():
 func enter(data: Dictionary = {}) -> void:
 	assert("direction" in data.keys())
 	direction_x = data["direction"].x
+	sprite.flip(-direction_x)
 	velocity.x = direction_x * MOVE_SPEED
 	velocity.y = -JUMP_SPEED
 	current_state = States.CROUCH

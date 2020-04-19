@@ -21,6 +21,7 @@ func _ready():
 func enter(data: Dictionary = {}) -> void:
 	assert("direction" in  data.keys())
 	direction = data["direction"]
+	sprite.flip(direction)
 	sprite.play("flying_assaulter_start")
 	sprite.connect("animation_finished", self, "_on_animation_finished")
 	jump_speed = 0.0
