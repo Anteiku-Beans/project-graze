@@ -1,0 +1,259 @@
+[gd_scene load_steps=100 format=2]
+
+[ext_resource path="res://source/Enemies/Manji/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/manji/idle4.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/manji/idle5.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/manji/idle6.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/manji/idle1.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/manji/idle2.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/manji/idle3.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter4.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter10.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter1.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter3.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter5.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter8.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter9.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter6.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter2.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter7.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter17.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter15.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter20.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter13.png" type="Texture" id=21]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter14.png" type="Texture" id=22]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter19.png" type="Texture" id=23]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter22.png" type="Texture" id=24]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter16.png" type="Texture" id=25]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter18.png" type="Texture" id=26]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter21.png" type="Texture" id=27]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter11.png" type="Texture" id=28]
+[ext_resource path="res://assets/sprites/manji/flying_assaulter12.png" type="Texture" id=29]
+[ext_resource path="res://source/Enemies/Manji/States/Fall.gd" type="Script" id=30]
+[ext_resource path="res://source/Classes/Hitbox.gd" type="Script" id=31]
+[ext_resource path="res://assets/sprites/manji/jump1.png" type="Texture" id=32]
+[ext_resource path="res://assets/sprites/manji/jump3.png" type="Texture" id=33]
+[ext_resource path="res://assets/sprites/manji/jump4.png" type="Texture" id=34]
+[ext_resource path="res://assets/sprites/manji/jump5.png" type="Texture" id=35]
+[ext_resource path="res://assets/sprites/manji/jump6.png" type="Texture" id=36]
+[ext_resource path="res://assets/sprites/manji/jump8.png" type="Texture" id=37]
+[ext_resource path="res://assets/sprites/manji/jump9.png" type="Texture" id=38]
+[ext_resource path="res://assets/sprites/manji/jump2.png" type="Texture" id=39]
+[ext_resource path="res://assets/sprites/manji/jump7.png" type="Texture" id=40]
+[ext_resource path="res://assets/sprites/manji/slash_combo4.png" type="Texture" id=41]
+[ext_resource path="res://assets/sprites/manji/slash_combo1.png" type="Texture" id=42]
+[ext_resource path="res://assets/sprites/manji/slash_combo3.png" type="Texture" id=43]
+[ext_resource path="res://assets/sprites/manji/slash_combo5.png" type="Texture" id=44]
+[ext_resource path="res://assets/sprites/manji/slash_combo6.png" type="Texture" id=45]
+[ext_resource path="res://assets/sprites/manji/slash_combo7.png" type="Texture" id=46]
+[ext_resource path="res://assets/sprites/manji/slash_combo2.png" type="Texture" id=47]
+[ext_resource path="res://assets/sprites/manji/slash_combo8.png" type="Texture" id=48]
+[ext_resource path="res://assets/sprites/manji/slash_combo9.png" type="Texture" id=49]
+[ext_resource path="res://assets/sprites/manji/slash9.png" type="Texture" id=50]
+[ext_resource path="res://assets/sprites/manji/slash1.png" type="Texture" id=51]
+[ext_resource path="res://assets/sprites/manji/slash7.png" type="Texture" id=52]
+[ext_resource path="res://assets/sprites/manji/slash10.png" type="Texture" id=53]
+[ext_resource path="res://assets/sprites/manji/slash_combo12.png" type="Texture" id=54]
+[ext_resource path="res://assets/sprites/manji/slash_combo13.png" type="Texture" id=55]
+[ext_resource path="res://assets/sprites/manji/slash_combo11.png" type="Texture" id=56]
+[ext_resource path="res://assets/sprites/manji/slash_combo19.png" type="Texture" id=57]
+[ext_resource path="res://assets/sprites/manji/slash3.png" type="Texture" id=58]
+[ext_resource path="res://assets/sprites/manji/slash_combo14.png" type="Texture" id=59]
+[ext_resource path="res://assets/sprites/manji/slash2.png" type="Texture" id=60]
+[ext_resource path="res://assets/sprites/manji/slash_combo10.png" type="Texture" id=61]
+[ext_resource path="res://assets/sprites/manji/slash_combo16.png" type="Texture" id=62]
+[ext_resource path="res://assets/sprites/manji/slash_combo20.png" type="Texture" id=63]
+[ext_resource path="res://assets/sprites/manji/slash_combo15.png" type="Texture" id=64]
+[ext_resource path="res://assets/sprites/manji/slash_combo18.png" type="Texture" id=65]
+[ext_resource path="res://assets/sprites/manji/slash_combo17.png" type="Texture" id=66]
+[ext_resource path="res://assets/sprites/manji/slash4.png" type="Texture" id=67]
+[ext_resource path="res://assets/sprites/manji/slash5.png" type="Texture" id=68]
+[ext_resource path="res://assets/sprites/manji/slash6.png" type="Texture" id=69]
+[ext_resource path="res://assets/sprites/manji/slash8.png" type="Texture" id=70]
+[ext_resource path="res://assets/sprites/manji/slash11.png" type="Texture" id=71]
+[ext_resource path="res://assets/sprites/manji/walk8.png" type="Texture" id=72]
+[ext_resource path="res://assets/sprites/manji/walk5.png" type="Texture" id=73]
+[ext_resource path="res://assets/sprites/manji/walk7.png" type="Texture" id=74]
+[ext_resource path="res://assets/sprites/manji/walk12.png" type="Texture" id=75]
+[ext_resource path="res://assets/sprites/manji/walk4.png" type="Texture" id=76]
+[ext_resource path="res://assets/sprites/manji/walk1.png" type="Texture" id=77]
+[ext_resource path="res://assets/sprites/manji/walk6.png" type="Texture" id=78]
+[ext_resource path="res://assets/sprites/manji/walk10.png" type="Texture" id=79]
+[ext_resource path="res://assets/sprites/manji/walk2.png" type="Texture" id=80]
+[ext_resource path="res://assets/sprites/manji/walk3.png" type="Texture" id=81]
+[ext_resource path="res://assets/sprites/manji/walk11.png" type="Texture" id=82]
+[ext_resource path="res://assets/sprites/manji/walk9.png" type="Texture" id=83]
+[ext_resource path="res://source/Enemies/Manji/States/Idle.gd" type="Script" id=84]
+[ext_resource path="res://source/Enemies/Manji/States/Walk.gd" type="Script" id=85]
+[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulterJump.gd" type="Script" id=86]
+[ext_resource path="res://source/Enemies/Manji/States/Assaulter.gd" type="Script" id=87]
+[ext_resource path="res://source/Enemies/Manji/States/JumpBack.gd" type="Script" id=88]
+[ext_resource path="res://source/Enemies/Manji/States/Slash.gd" type="Script" id=89]
+[ext_resource path="res://source/Enemies/Manji/DamageZone.gd" type="Script" id=90]
+[ext_resource path="res://assets/sprites/manji/assaulter.png" type="Texture" id=91]
+[ext_resource path="res://source/Enemies/Manji/Sprite.gd" type="Script" id=92]
+[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulterDash.gd" type="Script" id=93]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "flying_assaulter_dash",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 39 ), ExtResource( 33 ) ],
+"loop": false,
+"name": "jump_start",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 19 ), ExtResource( 25 ), ExtResource( 18 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 24 ) ],
+"loop": false,
+"name": "flying_assaulter_land",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "flying_assaulter_start",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 28 ) ],
+"loop": false,
+"name": "flying_assaulter_jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 40 ), ExtResource( 37 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 42 ), ExtResource( 47 ), ExtResource( 43 ), ExtResource( 41 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 61 ), ExtResource( 56 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 59 ), ExtResource( 64 ), ExtResource( 62 ), ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 63 ) ],
+"loop": false,
+"name": "slash_combo",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 77 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 76 ), ExtResource( 73 ), ExtResource( 78 ), ExtResource( 74 ), ExtResource( 72 ), ExtResource( 83 ), ExtResource( 79 ), ExtResource( 82 ), ExtResource( 75 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 51 ), ExtResource( 60 ), ExtResource( 58 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 52 ), ExtResource( 70 ), ExtResource( 70 ), ExtResource( 70 ), ExtResource( 50 ), ExtResource( 53 ), ExtResource( 71 ) ],
+"loop": false,
+"name": "slash",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 91 ) ],
+"loop": false,
+"name": "assaulter_dash",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 58 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 52 ), ExtResource( 70 ), ExtResource( 70 ), ExtResource( 70 ), ExtResource( 50 ), ExtResource( 53 ), ExtResource( 71 ) ],
+"loop": false,
+"name": "assaulter_slash",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 91 ) ],
+"loop": false,
+"name": "assaulter_start",
+"speed": 1.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 21 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 27, 30 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 15.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 23.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 28.2177
+height = 60.7642
+
+[node name="Manji" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "assaulter_slash"
+frame = 13
+playing = true
+script = ExtResource( 92 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 3 )
+shape = SubResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 31 )
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+modulate = Color( 0, 1, 0.133333, 1 )
+shape = SubResource( 3 )
+
+[node name="DamageZone" type="Area2D" parent="."]
+script = ExtResource( 90 )
+
+[node name="Body" type="CollisionShape2D" parent="DamageZone"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, 3 )
+shape = SubResource( 4 )
+
+[node name="Slash" type="CollisionShape2D" parent="DamageZone"]
+visible = false
+position = Vector2( 41, 0 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="FlyingAssaulter" type="CollisionShape2D" parent="DamageZone"]
+visible = false
+rotation = 2.00713
+shape = SubResource( 6 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("Fall")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource( 30 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 84 )
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="FlyingAssaulterJump" type="Node" parent="StateMachine"]
+script = ExtResource( 86 )
+
+[node name="SpeedTween" type="Tween" parent="StateMachine/FlyingAssaulterJump"]
+
+[node name="FlyingAssaulterDash" type="Node" parent="StateMachine"]
+script = ExtResource( 93 )
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource( 85 )
+
+[node name="Slash" type="Node" parent="StateMachine"]
+script = ExtResource( 89 )
+
+[node name="Assaulter" type="Node" parent="StateMachine"]
+script = ExtResource( 87 )
+
+[node name="SpeedTween" type="Tween" parent="StateMachine/Assaulter"]
+
+[node name="JumpBack" type="Node" parent="StateMachine"]
+script = ExtResource( 88 )
