@@ -1,5 +1,7 @@
 extends State
 
+signal finished
+
 const DURATION_DEFAULT = 2.0
 
 var duration := DURATION_DEFAULT
@@ -14,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	_state_machine.transition_to("FlyingAssaulterJump", {"direction": Vector2.LEFT})
+	emit_signal("finished")
 
 
 func enter(data: Dictionary = {}) -> void:

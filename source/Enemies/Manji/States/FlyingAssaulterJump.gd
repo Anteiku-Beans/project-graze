@@ -42,7 +42,7 @@ func _on_animation_finished() -> void:
 		var data = {
 			"direction": self.direction,
 		}
-		_state_machine.transition_to("FlyingAssaulterDash", data)
+		_state_machine.transition_to("FlyingAssaulterDash", {"direction": direction})
 
 
 func physics_process(delta):

@@ -1,7 +1,10 @@
 extends State
 
-const DASH_SPEED_MAX = Vector2(500, 500)
-const DASH_ACCELERATION = Vector2(2000, 2000)
+signal finished
+
+const DASH_VELOCITY_INITIAL = Vector2.ZERO
+const DASH_SPEED_MAX = Vector2(5000, 5000)
+const DASH_ACCELERATION = Vector2(5000, 5000)
 const DAMAGE_ZONE_FRAME = 0
 const DAMAGE_ZONE_NAME = "FlyingAssaulter"
 
@@ -23,6 +26,7 @@ func _ready():
 
 
 func enter(data: Dictionary = {}):
+	dash.velocity = DASH_VELOCITY_INITIAL
 	assert("direction" in data.keys())
 	is_landed = false
 	dash.direction = calculate_dash_direction(data["direction"])
@@ -55,7 +59,7 @@ func _on_frame_changed() -> void:
 
 func _on_animation_finished() -> void:
 	if sprite.animation == "flying_assaulter_land":
-		_state_machine.transition_to("Walk", {"direction": Vector2.RIGHT})
+		emit_signal("finished")
 
 
 func exit() -> void:

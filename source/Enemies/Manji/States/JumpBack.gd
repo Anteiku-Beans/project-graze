@@ -1,5 +1,7 @@
 extends State
 
+signal finished
+
 enum States {
 	CROUCH,
 	JUMP,
@@ -72,4 +74,4 @@ func _on_animation_finished() -> void:
 		current_state = States.JUMP
 		sprite.play("jump")
 	elif sprite.animation == "jump_land":
-		_state_machine.transition_to("Idle")
+		emit_signal("finished")

@@ -1,5 +1,7 @@
 extends State
 
+signal finished
+
 const SPEED_INITIAL = 600.0
 const SPEED_FINAL = 0.0
 const DURATION = 0.4
@@ -47,7 +49,7 @@ func _on_frame_changed() -> void:
 
 
 func _on_animation_finished() -> void:
-	_state_machine.transition_to("JumpBack", {"direction": Vector2.LEFT})
+	emit_signal("finished")
 
 
 func exit() -> void:

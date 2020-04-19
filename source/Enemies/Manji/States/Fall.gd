@@ -1,5 +1,7 @@
 extends State
 
+signal finished
+
 const FALL_SPEED_MAX = Vector2(0, 200.0)
 const FALL_ACCELERATION = Vector2(0, 500.0)
 const FALL_DIRECTION = Vector2.DOWN

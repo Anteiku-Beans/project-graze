@@ -1,5 +1,7 @@
 extends State
 
+signal finished
+
 const DISTANCE_DEFAULT = 100.0
 const MOVE_SPEED = 50.0
 
@@ -36,7 +38,7 @@ func physics_process(delta) -> void:
 	move_velocity = manji.move_and_slide(move_velocity, Vector2.UP)
 	distance_travelled += MOVE_SPEED * delta
 	if distance_travelled >= distance:
-		_state_machine.transition_to("Slash", {"direction": Vector2.LEFT})
+		emit_signal("finished")
 
 
 func exit():

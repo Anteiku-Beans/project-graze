@@ -1,5 +1,7 @@
 extends State
 
+signal finished
+
 const DAMAGE_ZONE_NAME = "Slash"
 const DAMAGE_ZONE_FRAME_START = 2
 
@@ -13,12 +15,13 @@ func enter(data: Dictionary = {}) -> void:
 	sprite.flip(data["direction"])
 	damage_zone.flip(data["direction"])
 	sprite.play("slash")
+	sprite.frame = 0
 	sprite.connect("animation_finished", self, "_on_animation_finished")
 	sprite.connect("frame_changed", self, "_on_frame_changed")
 
 
 func _on_animation_finished() -> void:
-	_state_machine.transition_to("Assaulter", {"direction": Vector2.RIGHT})
+	emit_signal("finished")
 
 
 func _on_frame_changed() -> void:
