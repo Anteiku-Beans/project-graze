@@ -14,7 +14,8 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	_state_machine.transition_to("FlyingAssaulterJump", {"direction": Vector2.RIGHT})
+#	_state_machine.transition_to("FlyingAssaulterJump", {"direction": Vector2.LEFT})
+	_state_machine.transition_to("JumpBack", {"direction": Vector2.LEFT})
 
 
 func enter(data: Dictionary = {}) -> void:

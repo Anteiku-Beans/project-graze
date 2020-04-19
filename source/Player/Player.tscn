@@ -78,20 +78,35 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "move",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "jump",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "fall",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "attack",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 57 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ) ],
+"loop": true,
+"name": "poggo",
+"speed": 12.0
+}, {
 "frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 53 ) ],
 "loop": false,
 "name": "attack_down",
 "speed": 12.0
-}, {
-"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
-"loop": false,
-"name": "dash",
-"speed": 20.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": false,
-"name": "stagger",
-"speed": 1.0
 }, {
 "frames": [ ExtResource( 41 ) ],
 "loop": false,
@@ -103,30 +118,15 @@ animations = [ {
 "name": "attack_air",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
-"loop": true,
-"name": "move",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "jump",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
 "loop": false,
-"name": "attack",
-"speed": 12.0
+"name": "dash",
+"speed": 20.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "fall",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 57 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ) ],
-"loop": true,
-"name": "poggo",
-"speed": 12.0
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "stagger",
+"speed": 1.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=6]
@@ -201,7 +201,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1.1, 0.909 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 resource_name = "blink"
 length = 0.2
 loop = true
@@ -219,7 +219,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.180392, 0.00784314, 0.196078, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 length = 0.01
 step = 0.01
 tracks/0/type = "value"
@@ -296,7 +296,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, 8 )
 frames = SubResource( 5 )
 animation = "poggo"
-frame = 1
+frame = 3
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -441,8 +441,8 @@ next/wall_slide = "default"
 
 [node name="ColorAnimation" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/blink = SubResource( 13 )
-anims/default = SubResource( 12 )
+anims/blink = SubResource( 12 )
+anims/default = SubResource( 13 )
 
 [node name="MoveDust" parent="." instance=ExtResource( 44 )]
 emitting = false
