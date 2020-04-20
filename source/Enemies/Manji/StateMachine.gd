@@ -48,7 +48,7 @@ func flying_assaulter() -> void:
 	var data = {
 		"direction": get_target_direction()
 	}
-	transition_to("FlyingAssaulterJump", data)
+	transition_to("FlyingAssaulter", data)
 
 
 func walk_towards() -> void:

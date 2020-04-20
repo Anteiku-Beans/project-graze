@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://source/Enemies/Manji/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/manji/idle4.png" type="Texture" id=2]
@@ -85,14 +85,17 @@
 [ext_resource path="res://assets/sprites/manji/walk9.png" type="Texture" id=83]
 [ext_resource path="res://source/Enemies/Manji/States/Idle.gd" type="Script" id=84]
 [ext_resource path="res://source/Enemies/Manji/States/Walk.gd" type="Script" id=85]
-[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulterJump.gd" type="Script" id=86]
+[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter__Crouch.gd" type="Script" id=86]
 [ext_resource path="res://source/Enemies/Manji/States/Assaulter.gd" type="Script" id=87]
 [ext_resource path="res://source/Enemies/Manji/States/JumpBack.gd" type="Script" id=88]
 [ext_resource path="res://source/Enemies/Manji/States/Slash.gd" type="Script" id=89]
 [ext_resource path="res://source/Enemies/Manji/DamageZone.gd" type="Script" id=90]
 [ext_resource path="res://assets/sprites/manji/assaulter.png" type="Texture" id=91]
 [ext_resource path="res://source/Enemies/Manji/Sprite.gd" type="Script" id=92]
-[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulterDash.gd" type="Script" id=93]
+[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter__Dash.gd" type="Script" id=93]
+[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter.gd" type="Script" id=94]
+[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter__Land.gd" type="Script" id=95]
+[ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter__Jump.gd" type="Script" id=96]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -101,44 +104,19 @@ animations = [ {
 "name": "idle",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 29 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "flying_assaulter_dash",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 22 ), ExtResource( 19 ), ExtResource( 25 ), ExtResource( 18 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 24 ) ],
-"loop": false,
-"name": "flying_assaulter_land",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": false,
-"name": "flying_assaulter_start",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 28 ) ],
-"loop": false,
-"name": "flying_assaulter_jump",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 40 ), ExtResource( 37 ), ExtResource( 38 ) ],
 "loop": true,
 "name": "jump",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 42 ), ExtResource( 47 ), ExtResource( 43 ), ExtResource( 41 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 61 ), ExtResource( 56 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 59 ), ExtResource( 64 ), ExtResource( 62 ), ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 63 ) ],
-"loop": false,
-"name": "slash_combo",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 77 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 76 ), ExtResource( 73 ), ExtResource( 78 ), ExtResource( 74 ), ExtResource( 72 ), ExtResource( 83 ), ExtResource( 79 ), ExtResource( 82 ), ExtResource( 75 ) ],
-"loop": true,
-"name": "walk",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 51 ), ExtResource( 60 ), ExtResource( 58 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 52 ), ExtResource( 70 ), ExtResource( 70 ), ExtResource( 70 ), ExtResource( 50 ), ExtResource( 53 ), ExtResource( 71 ) ],
 "loop": false,
 "name": "slash",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "flying_assaulter_dash",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 91 ) ],
@@ -151,6 +129,11 @@ animations = [ {
 "name": "assaulter_slash",
 "speed": 12.0
 }, {
+"frames": [ ExtResource( 10 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "flying_assaulter_start",
+"speed": 12.0
+}, {
 "frames": [ ExtResource( 91 ) ],
 "loop": false,
 "name": "assaulter_start",
@@ -161,9 +144,29 @@ animations = [ {
 "name": "jump_crouch",
 "speed": 12.0
 }, {
+"frames": [ ExtResource( 22 ), ExtResource( 19 ), ExtResource( 25 ), ExtResource( 18 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 24 ) ],
+"loop": false,
+"name": "flying_assaulter_land",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 28 ) ],
+"loop": false,
+"name": "flying_assaulter_jump",
+"speed": 12.0
+}, {
 "frames": [ ExtResource( 33 ), ExtResource( 39 ), ExtResource( 32 ) ],
 "loop": false,
 "name": "jump_land",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 42 ), ExtResource( 47 ), ExtResource( 43 ), ExtResource( 41 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 61 ), ExtResource( 56 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 59 ), ExtResource( 64 ), ExtResource( 62 ), ExtResource( 66 ), ExtResource( 65 ), ExtResource( 57 ), ExtResource( 63 ) ],
+"loop": false,
+"name": "slash_combo",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 77 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 76 ), ExtResource( 73 ), ExtResource( 78 ), ExtResource( 74 ), ExtResource( 72 ), ExtResource( 83 ), ExtResource( 79 ), ExtResource( 82 ), ExtResource( 75 ) ],
+"loop": true,
+"name": "walk",
 "speed": 12.0
 } ]
 
@@ -239,13 +242,24 @@ script = ExtResource( 84 )
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
 
-[node name="FlyingAssaulterJump" type="Node" parent="StateMachine"]
+[node name="FlyingAssaulter" type="Node" parent="StateMachine"]
+script = ExtResource( 94 )
+
+[node name="Crouch" type="Node" parent="StateMachine/FlyingAssaulter"]
 script = ExtResource( 86 )
 
-[node name="SpeedTween" type="Tween" parent="StateMachine/FlyingAssaulterJump"]
+[node name="Jump" type="Node" parent="StateMachine/FlyingAssaulter"]
+script = ExtResource( 96 )
 
-[node name="FlyingAssaulterDash" type="Node" parent="StateMachine"]
+[node name="SpeedTween" type="Tween" parent="StateMachine/FlyingAssaulter/Jump"]
+
+[node name="Dash" type="Node" parent="StateMachine/FlyingAssaulter"]
 script = ExtResource( 93 )
+
+[node name="SpeedTween" type="Tween" parent="StateMachine/FlyingAssaulter/Dash"]
+
+[node name="Land" type="Node" parent="StateMachine/FlyingAssaulter"]
+script = ExtResource( 95 )
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource( 85 )
