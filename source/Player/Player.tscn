@@ -83,24 +83,24 @@ animations = [ {
 "name": "wall_slide",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 53 ) ],
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
 "loop": false,
-"name": "attack_down",
-"speed": 12.0
+"name": "dash",
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": false,
 "name": "stagger",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
-"loop": false,
-"name": "dash",
-"speed": 20.0
-}, {
 "frames": [ ExtResource( 52 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ) ],
 "loop": false,
 "name": "attack_air",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 53 ) ],
+"loop": false,
+"name": "attack_down",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 57 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ) ],
@@ -296,6 +296,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, 8 )
 frames = SubResource( 5 )
 animation = "poggo"
+frame = 2
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )

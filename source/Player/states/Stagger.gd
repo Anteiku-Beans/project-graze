@@ -1,6 +1,6 @@
 extends State
 
-const ON_HIT_PARTICLES = preload("res://assets/effects/on_hit/on_hit_particles.tscn")
+const ON_HIT_PARTICLES = preload("res://assets/effects/on_hit/OnHitParticles.tscn")
 
 onready var timer = $Timer
 onready var sprite = owner.get_node("Sprite")
@@ -26,4 +26,5 @@ func _on_timer_timeout() -> void:
 
 func on_hit_particles() -> void:
 	var new_particles = ON_HIT_PARTICLES.instance()
-	player.call_deferred("add_child", new_particles)
+	get_tree().get_root().call_deferred("add_child", new_particles)
+	new_particles.set_deferred("global_position", player.global_position)

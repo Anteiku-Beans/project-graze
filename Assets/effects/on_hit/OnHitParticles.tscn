@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/effects/on_hit/ball.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/tanjiro/idle.png" type="Texture" id=2]
+[ext_resource path="res://assets/effects/on_hit/OnHitParticles.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.820225, 1 )
+colors = PoolColorArray( 0.552775, 0.0712561, 0.0712561, 1, 0.0862745, 0.0745098, 0.0941176, 1, 0.0862745, 0.0745098, 0.0941176, 0.643137 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.471591 ), 0.0, 0.0, 0, 0, Vector2( 0.253731, 1 ), -0.0532956, -0.0532956, 0, 0, Vector2( 0.855721, 0.147727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 25.0
+flatness = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 700.0
+initial_velocity_random = 0.7
+orbit_velocity = 0.03
+orbit_velocity_random = 0.0
+linear_accel = -1000.0
+damping = 100.0
+scale = 0.1
+scale_random = 0.5
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+hue_variation_random = 1.0
+
+[node name="OnHitParticles" type="Position2D"]
+z_index = 4
+script = ExtResource( 3 )
+
+[node name="idle" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1.79597, -1.3321 )
+rotation = 1.49012e-08
+texture = ExtResource( 2 )
+
+[node name="right" type="Particles2D" parent="."]
+position = Vector2( 3, 0 )
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.4
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="left" type="Particles2D" parent="."]
+position = Vector2( 3, 0 )
+scale = Vector2( -1, 1 )
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.4
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

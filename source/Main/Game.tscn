@@ -14,31 +14,31 @@ size_flags_vertical = 3
 
 [node name="Column" type="VBoxContainer" parent="UI/DebugDock"]
 margin_right = 104.0
-margin_bottom = 107.0
+margin_bottom = 116.0
 
 [node name="DebugPanel3" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 104.0
-margin_bottom = 27.0
+margin_bottom = 36.0
 reference_path = NodePath("../../../../Level2/Player/Hitpoints")
 properties = PoolStringArray( "current_hp" )
 
 [node name="DebugPanel2" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 31.0
+margin_top = 40.0
 margin_right = 104.0
-margin_bottom = 67.0
+margin_bottom = 76.0
 reference_path = NodePath("../../../../Level2/Player/Mana")
 properties = PoolStringArray( "_current_mana" )
 
 [node name="DebugPanel4" parent="UI/DebugDock/Column" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 71.0
+margin_top = 80.0
 margin_right = 104.0
-margin_bottom = 107.0
+margin_bottom = 116.0
 reference_path = NodePath("../../../../Level2/Manji/Hitpoints")
 properties = PoolStringArray( "current_hp" )
 
@@ -46,9 +46,6 @@ properties = PoolStringArray( "current_hp" )
 
 [node name="Player" parent="Level2" index="0"]
 position = Vector2( -126, 165 )
-
-[node name="Sprite" parent="Level2/Player" index="2"]
-frame = 0
 
 [editable path="Level2"]
 
