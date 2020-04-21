@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/sprites/tanjiro/jump2.png" type="Texture" id=13]
 [ext_resource path="res://assets/sprites/tanjiro/fall3.png" type="Texture" id=14]
 [ext_resource path="res://source/Player/Hitbox.gd" type="Script" id=15]
-[ext_resource path="res://source/Player/HP.gd" type="Script" id=16]
+[ext_resource path="res://source/Player/Hitpoints.gd" type="Script" id=16]
 [ext_resource path="res://assets/sprites/tanjiro/jump3.png" type="Texture" id=17]
 [ext_resource path="res://source/Player/states/Free.gd" type="Script" id=18]
 [ext_resource path="res://source/Player/states/Idle.gd" type="Script" id=19]
@@ -78,24 +78,29 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
-"loop": true,
-"name": "move",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "jump",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "fall",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 41 ) ],
 "loop": false,
-"name": "attack",
+"name": "wall_slide",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 53 ) ],
+"loop": false,
+"name": "attack_down",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "stagger",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
+"loop": false,
+"name": "dash",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 52 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ) ],
+"loop": false,
+"name": "attack_air",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 57 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ) ],
@@ -103,34 +108,29 @@ animations = [ {
 "name": "poggo",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ), ExtResource( 53 ) ],
-"loop": false,
-"name": "attack_down",
+"frames": [ ExtResource( 39 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "jump",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 41 ) ],
-"loop": false,
-"name": "wall_slide",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 52 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ) ],
-"loop": false,
-"name": "attack_air",
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 37 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "move",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 31 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
 "loop": false,
-"name": "dash",
-"speed": 20.0
+"name": "attack",
+"speed": 12.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": false,
-"name": "stagger",
-"speed": 1.0
+"frames": [ ExtResource( 26 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "fall",
+"speed": 12.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=6]
-radius = 22.9596
+radius = 18.1818
 height = 10.2653
 
 [sub_resource type="CapsuleShape2D" id=7]
@@ -296,7 +296,6 @@ shape = SubResource( 4 )
 position = Vector2( 0, 8 )
 frames = SubResource( 5 )
 animation = "poggo"
-frame = 3
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -413,7 +412,6 @@ shape = SubResource( 6 )
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "Player",
 ]]
-visible = false
 monitoring = false
 collision_mask = 0
 script = ExtResource( 15 )
@@ -426,7 +424,7 @@ shape = SubResource( 7 )
 wait_time = 2.0
 one_shot = true
 
-[node name="HP" type="Node" parent="."]
+[node name="Hitpoints" type="Node" parent="."]
 script = ExtResource( 16 )
 
 [node name="ScaleAnimation" type="AnimationPlayer" parent="."]

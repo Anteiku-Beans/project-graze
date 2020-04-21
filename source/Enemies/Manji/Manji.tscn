@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://source/Enemies/Manji/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/manji/idle4.png" type="Texture" id=2]
@@ -96,6 +96,8 @@
 [ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter.gd" type="Script" id=94]
 [ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter__Land.gd" type="Script" id=95]
 [ext_resource path="res://source/Enemies/Manji/States/FlyingAssaulter__Jump.gd" type="Script" id=96]
+[ext_resource path="res://source/Enemies/Manji/Hitpoints.gd" type="Script" id=97]
+[ext_resource path="res://source/Classes/Grazebox.gd" type="Script" id=98]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -176,6 +178,9 @@ extents = Vector2( 16, 21 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 27, 30 )
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 25, 35 )
+
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 15.0
 height = 14.0
@@ -214,6 +219,16 @@ script = ExtResource( 31 )
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 modulate = Color( 0, 1, 0.133333, 1 )
 shape = SubResource( 3 )
+
+[node name="Grazebox" type="Area2D" parent="."]
+monitoring = false
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 98 )
+MAX_MANA = 99
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grazebox"]
+shape = SubResource( 7 )
 
 [node name="DamageZone" type="Area2D" parent="."]
 monitorable = false
@@ -279,3 +294,6 @@ script = ExtResource( 87 )
 
 [node name="JumpBack" type="Node" parent="StateMachine"]
 script = ExtResource( 88 )
+
+[node name="Hitpoints" type="Node" parent="."]
+script = ExtResource( 97 )
