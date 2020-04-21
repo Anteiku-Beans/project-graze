@@ -1,10 +1,13 @@
 extends Area2D
 
+const ENEMY_LAYER_BIT = 1
+
 const ORBS_PER_GRAZE = 3
 const MANA_PER_ORB = 3
 const MANA_ORB = preload("res://source/Effects/ManaOrb/ManaOrb.tscn")
 
 onready var player = owner
+onready var hitbox = owner.get_node("Hitbox")
 
 signal grazed
 
@@ -13,6 +16,8 @@ func _ready() -> void:
 # warning-ignore:return_value_discarded
 	self.connect("area_entered", self, "_on_area_entered")
 	yield(player, "ready")
+	hitbox.connect("on", self, "disable")
+	hitbox.connect("off", self, "enable")
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -36,3 +41,13 @@ func emit_mana_orb(hitbox_position: Vector2) -> void:
 func emit_mana_orbs(num: int, hitbox_position: Vector2) -> void:
 	for x in range(num):
 		emit_mana_orb(hitbox_position)
+
+
+func enable() -> void:
+	set_collision_mask_bit(ENEMY_LAYER_BIT, true)
+	print("enabled")
+
+
+func disable() -> void:
+	set_collision_mask_bit(ENEMY_LAYER_BIT, false)
+	print("disabled")

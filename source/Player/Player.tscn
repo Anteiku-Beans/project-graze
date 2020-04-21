@@ -296,6 +296,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, 8 )
 frames = SubResource( 5 )
 animation = "poggo"
+frame = 3
 playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 27 )
@@ -401,6 +402,7 @@ script = ExtResource( 35 )
 
 [node name="Grazer" type="Area2D" parent="."]
 visible = false
+monitorable = false
 collision_layer = 16
 collision_mask = 10
 script = ExtResource( 36 )

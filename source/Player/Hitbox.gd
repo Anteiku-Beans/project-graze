@@ -1,6 +1,9 @@
 extends Hitbox
 
-const GOD_MODE_DURATION_DEFAULT = 2.0
+signal on
+signal off
+
+const GOD_MODE_DURATION_DEFAULT = 20.0
 
 var is_god_mode := false
 
@@ -23,6 +26,7 @@ func enable_god_mode(duration: float = GOD_MODE_DURATION_DEFAULT):
 	god_mode_timer.wait_time = duration
 	god_mode_timer.start()
 	is_god_mode = true
+	emit_signal("on")
 
 
 func disable_god_mode():
@@ -30,3 +34,4 @@ func disable_god_mode():
 		set_deferred("monitorable", true)
 		is_god_mode = false
 		color_animation.play("default")
+		emit_signal("off")
