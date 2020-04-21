@@ -2,19 +2,33 @@ extends Area2D
 
 signal flipped
 
-const DEFAULT_SHAPE = "Body"
+const DAMAGE = 1
+
+const DEFAULT_SHAPES = [
+	"Body",
+]
 
 var damage_zones := {}
+var hit_info = HitInfo.new()
 
 
 func _ready() -> void:
+	hit_info.damage = DAMAGE
+	self.connect("area_entered", self, "_on_area_entered")
+	
 	for shape in self.get_children():
 		damage_zones[shape.name] = shape
+		shape.visible = false
+		shape.disabled = true
 	
-	for damage_zone in damage_zones.values():
-		if damage_zone.name != DEFAULT_SHAPE:
-			damage_zone.disabled = true
-			damage_zone.visible = false
+	for shape in DEFAULT_SHAPES:
+		damage_zones[shape].disabled = false
+		damage_zones[shape].visible = true
+
+
+func _on_area_entered(area: Area2D):
+	if area is Hitbox:
+		area.receive_hit(hit_info)
 
 
 func enable(zone_name: String) -> void:
