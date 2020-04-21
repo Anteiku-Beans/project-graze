@@ -3,7 +3,7 @@ extends Hitbox
 signal on
 signal off
 
-const GOD_MODE_DURATION_DEFAULT = 20.0
+const GOD_MODE_DURATION_DEFAULT = 2.0
 
 var is_god_mode := false
 
