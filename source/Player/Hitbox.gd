@@ -17,6 +17,7 @@ func _ready():
 
 
 func _on_hit(hit_info: HitInfo) -> void:
+	ScreenFreezer.freeze()
 	enable_god_mode()
 
 
@@ -26,7 +27,6 @@ func enable_god_mode(duration: float = GOD_MODE_DURATION_DEFAULT):
 	god_mode_timer.wait_time = duration
 	god_mode_timer.start()
 	is_god_mode = true
-	emit_signal("on")
 
 
 func disable_god_mode():
@@ -34,4 +34,3 @@ func disable_god_mode():
 		set_deferred("monitorable", true)
 		is_god_mode = false
 		color_animation.play("default")
-		emit_signal("off")

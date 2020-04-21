@@ -231,6 +231,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Player="*res://source/Singletons/Player.gd"
+ScreenFreezer="*res://source/Singletons/ScreenFreezer.gd"
 
 [debug]
 
